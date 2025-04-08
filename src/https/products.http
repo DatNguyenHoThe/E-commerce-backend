@@ -1,0 +1,61 @@
+### GET ALL
+GET http://localhost:8889/api/v1/products
+
+### get by id
+GET http://localhost:8889/api/v1/products/67def287122b4c409039e79e
+
+### create
+
+POST http://localhost:8889/api/v1/products
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2Y0YzVmMDI1MTYwYjIyNGY0MTFlNjEiLCJlbWFpbCI6Im5ndXllbmhvdGhlZGF0QGdtYWlsLmNvbSIsImlhdCI6MTc0NDA5NDc0NywiZXhwIjoxNzQ0MTgxMTQ3fQ.oXb0IY9Bx2LTR9NrzWnbyrEJ4w1PMGYAlZf5EeFVuF0
+
+{
+  "product_name": "Microsoft Surface Pro 8",
+  "description": "Microsoft Surface Pro 8 is a next-gen laptop with the versatility of a studio and tablet. Powered by the 10th Gen Intel Core i5 processor, 8GB RAM, and 256GB SSD, it delivers performance in a slim and light design.",
+  "price": 399.99,
+  "salePrice": 349.99,
+  "stock": 100,
+  "images": [
+    "https://hanoicomputercdn.com/media/product/62409_microsoft_surface_pro_8_13.jpg",
+    "https://hanoicomputercdn.com/media/product/62409_microsoft_surface_pro_8_15.jpg"
+  ],
+  "attributes": [
+    { "name": "Color", "values": "Matte Black" },
+    { "name": "Screen Size", "values": "12.3 Inches" },
+    { "name": "Resolution", "values": "1920 x 1080 Pixels" },
+    { "name": "Memory Storage Capacity", "values": "256 GB" },
+    { "name": "RAM", "values": "8 GB" },
+    { "name": "Processor", "values": "10th Gen Intel Core i5" },
+    { "name": "Operating System", "values": "Windows 10, Free Upgrade to Windows 11" },
+    { "name": "Camera", "values": "1080p Front/Rear Camera" }
+  ],
+  "tags": [
+  "surface",
+  "microsoft",
+  "tablet",
+  "2-in-1",
+  "windows 11",
+  "touchscreen",
+  "intel i5",
+  "intel i7",
+  "thin and light",
+  "stylus support",
+  "detachable keyboard"
+],
+  "category": "67d944ab69975e3a9c1c24ba",
+  "brand": "67d8edd80bca92ccab1c9bcc",
+  "vendor": "67f4d8296756123703935cc1"
+}
+
+### update by id
+PUT http://localhost:8889/api/v1/products/67def287122b4c409039e79e
+Content-Type: application/json
+
+{
+    "product_name": "làm mới Epson® Workforce® Pro WF-4820 lần 5",
+    "price": 400
+}
+
+### delete by id
+DELETE http://localhost:8889/api/v1/products/67deea930d9bae179e3bc9df
