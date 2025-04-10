@@ -1,3 +1,5 @@
+import { Mixed } from "mongoose"
+
 export interface ICategory{
     category_name: string,
     description: string,
@@ -64,4 +66,171 @@ export interface IOrder{
     status: string,
     notes: string,
     user: object
+}
+
+export interface IReview {
+    rating: number,
+    title: string,
+    comment: string,
+    images: string[],
+    isVerified: boolean,
+    product: object,
+    user: object
+}
+
+export interface ICart {
+    items: object[],
+    totalAmount: number,
+    user: object
+}
+
+export interface IPayment {
+    amount: number,
+    method: string,
+    status: string,
+    transactionId: string,
+    gateway: string,
+    metadata: object,
+    order: object,
+    user: object
+}
+
+export interface IWishlist {
+    user: object,
+    product: object
+}
+
+export interface ICoupon {
+    code: string,
+    type: string,
+    value: number,
+    minPurchase: number,
+    startDate: Date,
+    endDate: Date,
+    usageLimit: number,
+    usageCount: number,
+    isActive: boolean
+}
+
+export interface IAddress {
+    type: string,
+    fullName: string,
+    phoneNumber: string,
+    addressLine1: string,
+    addressLine2: string,
+    city: string,
+    state: string,
+    postalCode: string,
+    country: string,
+    isDefault: boolean,
+    user: object
+}
+
+export interface IShipping {
+    carrier: string,
+    trackingNumber: string,
+    status: string,
+    estimatedDelivery: Date,
+    actualDelivery: Date,
+    shippingMethod: string,
+    shippingFee: number,
+    order: object
+}
+
+
+export interface INotification {
+    type: string,
+    title: string,
+    message: string,
+    metadata: object,
+    isRead: boolean,
+    user: object
+}
+
+export interface IProductVariant {
+    sku: string,
+    variantName: string,
+    attributes: object,
+    price: number,
+    salePrice: number,
+    stock: number,
+    images: string[],
+    isActive: boolean,
+    product: object
+}
+
+export interface ILocation {
+    name: string;           
+    addressLine1: string;   
+    addressLine2: string;  
+    city: string;           
+    state: string;         
+    postalCode: string;     
+    country: string;        
+    isActive: boolean;     
+  }
+
+export interface IProductInventory {
+    quantity: number,
+    reservedQuantity: number,
+    lowStockThreshold: number,
+    lastRestocked: Date,
+    product: object,
+    variant: object,
+    location: object,
+}
+
+export interface ISetting {
+    key: string,
+    value: Mixed,
+    type: string,
+    group: string,
+    isPublic: boolean,
+    description: string,
+}
+
+export interface IProductAttribute {
+    name: string,
+    displayName: string,
+    description: string,
+    type: string,
+    options: string[],
+    isFilterable: boolean,
+    isVariant: boolean,
+    isRequired: boolean
+}
+
+export interface IPaymentMethod {
+    type: string,
+    provider: string,
+    accountNumber: string,
+    expiryDate: Date,
+    cardholderName: string,
+    billingAddress: object,
+    isDefault: boolean,
+    metadata: object,
+    user: object
+}
+
+export interface IActivityLog {
+    action: string,
+    entityType: string,
+    entityId: object,
+    description: string,
+    metadata: object,
+    ipAddress: string,
+    userAgent: string,
+    user: object
+}
+
+export interface ISEO {
+    entityType: string,
+    entityId: object,
+    metaTitle: string,
+    metaDescription: string,
+    metaKeywords: string,
+    ogTitle: string,
+    ogDescription: string,
+    ogImage: string,
+    canonicalUrl: string,
 }

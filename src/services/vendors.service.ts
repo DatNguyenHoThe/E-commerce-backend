@@ -1,5 +1,4 @@
 import Vendor from '../models/vendor.model';
-import Category from '../models/category.model';
 import createError from 'http-errors';
 
 
@@ -16,9 +15,9 @@ const getAll = async(query: any) => {
 
     //tìm kiếm theo điều kiện
     let where = {};
-    // nếu có tìm kiếm theo tên vendor
-    if(query.vendor_name && query.vendor_name.length > 0) {
-        where = {...where, vendor_name: {$regex: query.vendor_name, $options: 'i'}};
+    // nếu có tìm kiếm theo tên số điện thoại
+    if(query.contactPhone && query.contactPhone.length > 0) {
+        where = {...where, contactPhone: {$regex: query.contactPhone, $options: 'i'}};
     }
 
     const vendors = await Vendor
@@ -84,7 +83,7 @@ const updateById = async(id: string, payload: any) => {
     if(!vendor) {
         throw createError(404, "vendor not found");
     }
-    // kiểm tra xem vendor_name tồn tại không
+    // kiểm tra xem tên của vendor tồn tại không
     const vendorExist = await Vendor.findOne({companyName: payload.companyName});
     if(vendorExist) {
         throw createError(404, "vendor already exists");

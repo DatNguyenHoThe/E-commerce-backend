@@ -14,7 +14,6 @@ const categorySchema = new Schema<ICategory>({
         type: String,
         maxLength: 500,
         require: true,
-        unique: false,
         trim: true,
         default: ""
     },
@@ -35,7 +34,6 @@ const categorySchema = new Schema<ICategory>({
         type: String,
         maxLength:255,
         require: true,
-        unique: false,
         trim: true,
     },
     isActive: {

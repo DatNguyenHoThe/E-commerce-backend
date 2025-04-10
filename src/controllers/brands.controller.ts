@@ -1,5 +1,5 @@
 import brandsService from "../services/brands.service";
-import {Request, Response, NextFunction, query} from 'express';
+import {Request, Response, NextFunction} from 'express';
 import {httpStatus, sendJsonSuccess} from '../helpers/response.helper';
 
 

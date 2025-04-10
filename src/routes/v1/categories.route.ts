@@ -7,7 +7,7 @@ import {authenticateToken} from '../../middlewares/auth.middleware';
 const router = express.Router();
 
 //getAll
-router.get('/categories', authenticateToken, validateSchemaYup(categoriesValidation.getAllSchema), categoriesController.getAll);
+router.get('/categories'/* , authenticateToken */, validateSchemaYup(categoriesValidation.getAllSchema), categoriesController.getAll);
 //get by id
 router.get('/categories/:id', authenticateToken, validateSchemaYup(categoriesValidation.getByIdSchema), categoriesController.getById);
 // create

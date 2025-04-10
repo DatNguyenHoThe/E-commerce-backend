@@ -11,7 +11,7 @@ const router = express.Router();
 */
 
 //get all
-router.get('/users', authenticateToken, validateSchemaYup(usersValidation.getAllSchema), usersController.getAll);
+router.get('/users'/* , authenticateToken */, validateSchemaYup(usersValidation.getAllSchema), usersController.getAll);
 
 //Get user by id
 router.get('/users/:id',authenticateToken, validateSchemaYup(usersValidation.getByIdSchema), usersController.getById);

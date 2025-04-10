@@ -6,7 +6,7 @@ import createError from 'http-errors';
 
 //Get all
 const getAll = async(query: any) => {
-    //const {page = 1, limit = 10} = query;
+    const {page = 1, limit = 10} = query;
     let sortObject = {};
     const sortType = query.sort_type || 'desc';
     const sortBy = query.sort_by || 'createdAt';
@@ -23,6 +23,8 @@ const getAll = async(query: any) => {
 
     const categories = await Category
     .find(where)
+    .skip((page-1)*limit)
+    .limit(limit)
     .sort({...sortObject});
     
     //Đếm tổng số record hiện có của collection categories
@@ -32,6 +34,8 @@ const getAll = async(query: any) => {
         categories,
         pagination: {
             totalRecord: count,
+            limit,
+            page
         }
     };
 }

@@ -7,6 +7,22 @@ import authsRouter from '../src/routes/v1/auths.route';
 import uploadRouter from '../src/routes/v1/upload.router';
 import vendorRouter from '../src/routes/v1/vendors.route';
 import orderRouter from '../src/routes/v1/orders.route';
+import reviewRouter from '../src/routes/v1/reviews.route';
+import cartRouter from '../src/routes/v1/carts.route';
+import paymentRouter from '../src/routes/v1/payments.route';
+import wishlistRoute from '../src/routes/v1/wishlists.route';
+import couponRoute from '../src/routes/v1/coupons.route';
+import addressRoute from '../src/routes/v1/addresses.route';
+import shippingRoute from '../src/routes/v1/shippings.route';
+import notificationRoute from '../src/routes/v1/notifications.route';
+import productVariantRoute from '../src/routes/v1/productVariants.route';
+import locationRoute from '../src/routes/v1/locations.route';
+import productIventoryRoute from '../src/routes/v1/productIventories.route';
+import settingRoute from '../src/routes/v1/settings.route';
+import productAttributeRoute from '../src/routes/v1/productAttributes.route';
+import paymentMethodRoute from '../src/routes/v1/paymentMethods.route';
+import activityLogRoute from '../src/routes/v1/activityLogs.route';
+import seoRoute from '../src/routes/v1/seos.route';
 
 
 var compression = require('compression');
@@ -37,6 +53,23 @@ app.use('/api/v1', productsRouter);
 app.use('/api/v1', usersRouter);
 app.use('/api/v1', vendorRouter);
 app.use('/api/v1', orderRouter);
+app.use('/api/v1', reviewRouter);
+app.use('/api/v1', cartRouter);
+app.use('/api/v1', paymentRouter);
+app.use('/api/v1', wishlistRoute);
+app.use('/api/v1', couponRoute);
+app.use('/api/v1', addressRoute);
+app.use('/api/v1', shippingRoute);
+app.use('/api/v1', notificationRoute);
+app.use('/api/v1', productVariantRoute);
+app.use('/api/v1', locationRoute);
+app.use('/api/v1', productIventoryRoute);
+app.use('/api/v1', settingRoute);
+app.use('/api/v1', productAttributeRoute);
+app.use('/api/v1', paymentMethodRoute);
+app.use('/api/v1', activityLogRoute);
+app.use('/api/v1', seoRoute);
+
 
 //login and get profile route
 app.use('/api/v1/auth', authsRouter);

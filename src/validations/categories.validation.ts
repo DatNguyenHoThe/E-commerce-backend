@@ -27,15 +27,15 @@ const getAllSchema = yup
 const createSchema = yup
   .object({
     body: yup.object({
-      category_name: yup.string().min(2).max(50).required(), // required: bắt buộc
+      category_name: yup.string().min(2).max(50).required(), 
       description: yup.string().max(255).required(),
-      //slug: yup.string().min(2).max(50).required(), // required: bắt buộc
+      slug: yup.string().min(2).max(50).optional(),
       level: yup.number().integer().positive().required(),
       imageUrl: yup.string().max(255).required(),
-      //isActive: yup.boolean().required(), // required: bắt buộc
+      isActive: yup.boolean().optional(),
     }),
   })
-  .required();// khi truyền vào object phải tồn tại
+  .required();
 
 
 
