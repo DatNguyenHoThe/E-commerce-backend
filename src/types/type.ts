@@ -1,9 +1,10 @@
-import { Mixed } from "mongoose"
+import { Mixed, Types } from "mongoose"
 
 export interface ICategory{
     category_name: string,
     description: string,
     slug: string,
+    parentId: Types.ObjectId | null,
     level: number,
     imageUrl: string,
     isActive: boolean

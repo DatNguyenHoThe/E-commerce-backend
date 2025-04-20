@@ -9,7 +9,7 @@ const router = express.Router();
 //getAll
 router.get('/activitylogs'/* , authenticateToken */, validateSchemaYup(activityLogsValidation.getAllSchema), activityLogsController.getAll);
 //get by id
-router.get('/activitylogs/:id', authenticateToken, validateSchemaYup(activityLogsValidation.getByIdSchema), activityLogsController.getById);
+router.get('/activitylogs/:id'/* , authenticateToken */, validateSchemaYup(activityLogsValidation.getByIdSchema), activityLogsController.getById);
 // create
 router.post('/activitylogs', authenticateToken, validateSchemaYup(activityLogsValidation.createSchema), activityLogsController.create);
 // update by id

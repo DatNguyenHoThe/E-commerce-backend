@@ -25,6 +25,11 @@ const categorySchema = new Schema<ICategory>({
         unique: true,
         lowercase: true
     },
+    parentId: { 
+        type: Schema.Types.ObjectId, 
+        ref: 'Category', 
+        default: null 
+    },
     level: {
         type: Number,
         require: true,

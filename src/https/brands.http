@@ -10,8 +10,8 @@ POST http://localhost:8889/api/v1/brands
 Content-Type: application/json
 
 {
-    "brand_name": "ZAGG",
-    "description": "ZAGG is a brand known for its innovative mobile accessories, offering high-quality screen protectors, cases, keyboards, and charging solutions designed to enhance and protect smartphones, tablets, and other devices."
+    "brand_name": "Apple",
+    "description": "Apple is a brand known for its innovative mobile accessories, offering high-quality screen protectors, cases, keyboards, and charging solutions designed to enhance and protect smartphones, tablets, and other devices."
 }
 
 ### update by id

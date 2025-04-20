@@ -1,12 +1,42 @@
 import Category from '../models/category.model';
 import { buildSlug } from '../helpers/slugify.helper';
 import createError from 'http-errors';
+import mongoose from 'mongoose';
 
 
+//Get AllCategories level = 1
+const getAllCategories = async(query: any) => {
+    const {page = 1, limit = 20} = query;
 
-//Get all
-const getAll = async(query: any) => {
-    const {page = 1, limit = 10} = query;
+    //tìm kiếm theo điều kiện
+    let where: any = { level: 1 };
+    // nếu có tìm kiếm theo tên danh mục
+    if(query.category_name && query.category_name.length > 0) {
+        where = {...where, category_name: {$regex: query.category_name, $options: 'i'}};
+    }
+
+    const categories = await Category
+    .find(where)
+    .skip((page-1)*limit)
+    .limit(limit)
+    .sort({ createAt: 1 });
+    
+    //Đếm tổng số record hiện có của collection categories
+    const count = await Category.countDocuments(where);
+
+    return {
+        categories,
+        pagination: {
+            totalRecord: count,
+            limit,
+            page
+        }
+    };
+}
+
+//Get RootCategories level = 0
+const getRootCategories = async(query: any) => {
+    const {page = 1, limit = 20} = query;
     let sortObject = {};
     const sortType = query.sort_type || 'desc';
     const sortBy = query.sort_by || 'createdAt';
@@ -15,7 +45,7 @@ const getAll = async(query: any) => {
     console.log('sortObject : ', sortObject);
 
     //tìm kiếm theo điều kiện
-    let where = {};
+    let where: any = { level: 0 };
     // nếu có tìm kiếm theo tên danh mục
     if(query.category_name && query.category_name.length > 0) {
         where = {...where, category_name: {$regex: query.category_name, $options: 'i'}};
@@ -40,6 +70,44 @@ const getAll = async(query: any) => {
     };
 }
 
+//get ChildrenCategories
+const getChildrenCategories = async(parentId: string, query: any) => {
+    
+    const {page = 1, limit = 20} = query;
+    console.log('parentId==>',parentId);
+    //Tạo Objectid cho parentId
+    const objectParentId = new mongoose.Types.ObjectId(parentId);
+
+    let where: any = {};
+
+    // Tạo điều kiện tìm kiếm cho parentId
+    if (parentId) {
+        if (!mongoose.Types.ObjectId.isValid(parentId)) {
+          throw new Error("Invalid parentId");
+        }
+        where.parentId = new mongoose.Types.ObjectId(parentId);
+      }
+
+    const categories = await Category
+    .find({parentId: objectParentId})
+    .skip((page-1)*limit)
+    .limit(limit)
+    .sort({ createAt: 1 });
+    
+    //Đếm tổng số record hiện có của collection categories
+    const count = await Category.countDocuments(where);
+
+    return {
+        categories,
+        pagination: {
+            totalRecord: count,
+            limit,
+            page
+        }
+    };
+}
+
+
 //get by ID
 const getById = async(id: string) => {
     const category = await Category.findById(id);
@@ -61,6 +129,7 @@ const create = async(payload: any) => {
         category_name: payload.category_name,
         description: payload.description,
         slug: buildSlug(payload.category_name),
+        parentId: payload.parentId ? payload.parentId : null,
         level: payload.level,
         imageUrl: payload.imageUrl,
         isActive: payload.isActive ? payload.isActive : true
@@ -107,7 +176,9 @@ const deleteById = async(id: string) => {
 
 
 export default {
-    getAll,
+    getAllCategories,
+    getRootCategories,
+    getChildrenCategories,
     getById,
     create,
     updateById,

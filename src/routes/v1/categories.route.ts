@@ -6,8 +6,12 @@ import {authenticateToken} from '../../middlewares/auth.middleware';
 
 const router = express.Router();
 
-//getAll
-router.get('/categories'/* , authenticateToken */, validateSchemaYup(categoriesValidation.getAllSchema), categoriesController.getAll);
+//get AllCategories
+router.get('/categories'/* , authenticateToken */, validateSchemaYup(categoriesValidation.getAllSchema), categoriesController.getAllCategories);
+//get RootCategories
+router.get('/categories/root'/* , authenticateToken */, validateSchemaYup(categoriesValidation.getAllSchema), categoriesController.getRootCategories);
+//get ChildrenCategories
+router.get('/categories/children/:parentId'/* , authenticateToken */, validateSchemaYup(categoriesValidation.getChildrenSchema), categoriesController.getChildrenCategories);
 //get by id
 router.get('/categories/:id', authenticateToken, validateSchemaYup(categoriesValidation.getByIdSchema), categoriesController.getById);
 // create

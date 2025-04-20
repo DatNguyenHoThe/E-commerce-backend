@@ -1,12 +1,32 @@
 import categoriesService from "../services/categories.service";
 import {Request, Response, NextFunction} from 'express';
 import {httpStatus, sendJsonSuccess} from '../helpers/response.helper';
+import mongoose from "mongoose";
 
 
-//Get All
-const getAll = async(req: Request, res: Response, next: NextFunction) => {
+//Get AllCategories
+const getAllCategories = async(req: Request, res: Response, next: NextFunction) => {
     try {
-        const categories = await categoriesService.getAll(req.query);
+        const categories = await categoriesService.getAllCategories(req.query);
+    sendJsonSuccess(res, categories, httpStatus.OK.statusCode, httpStatus.OK.message)
+    } catch (error) {
+        next(error);
+    }
+}
+//Get RootCategories
+const getRootCategories = async(req: Request, res: Response, next: NextFunction) => {
+    try {
+        const categories = await categoriesService.getRootCategories(req.query);
+    sendJsonSuccess(res, categories, httpStatus.OK.statusCode, httpStatus.OK.message)
+    } catch (error) {
+        next(error);
+    }
+}
+//Get ChidrenCategories
+const getChildrenCategories = async(req: Request, res: Response, next: NextFunction) => {
+    try {
+        const {parentId} = req.params;
+        const categories = await categoriesService.getChildrenCategories(parentId, req.query);
     sendJsonSuccess(res, categories, httpStatus.OK.statusCode, httpStatus.OK.message)
     } catch (error) {
         next(error);
@@ -55,7 +75,9 @@ const deleteById = async(req: Request, res: Response, next: NextFunction) => {
 }
 
 export default {
-    getAll,
+    getAllCategories,
+    getRootCategories,
+    getChildrenCategories,
     getById,
     create,
     updateById,

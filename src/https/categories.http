@@ -1,23 +1,50 @@
-### GET ALL
-GET http://localhost:8889/api/v1/categories?page=2
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2Y0YzVmMDI1MTYwYjIyNGY0MTFlNjEiLCJlbWFpbCI6Im5ndXllbmhvdGhlZGF0QGdtYWlsLmNvbSIsImlhdCI6MTc0NDE3MDc4OCwiZXhwIjoxNzQ0MjU3MTg4fQ.t0z_EeHQTDuyvX1GJEEr-YY4LfC17rgq1Hg4GYxw5g8
+### GET ALL CATEGORIES LEVEL = 1
+GET http://localhost:8889/api/v1/categories
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODAwYTE3NTZhY2M0YmZiZjFmYzc3NTkiLCJlbWFpbCI6ImRhdG5ndXllbmhvdGhlQGdtYWlsLmNvbSIsImlhdCI6MTc0NTA4MzQ3MywiZXhwIjoxNzQ1MTY5ODczfQ.AxJo7b-xq778o-xRDJ0JbBlJGx7pEOgrrro6K7X8y00
+
+### GET ALL CATEGORIES LEVEL = 0
+GET http://localhost:8889/api/v1/categories/root
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODAwYTE3NTZhY2M0YmZiZjFmYzc3NTkiLCJlbWFpbCI6ImRhdG5ndXllbmhvdGhlQGdtYWlsLmNvbSIsImlhdCI6MTc0NTA4MzQ3MywiZXhwIjoxNzQ1MTY5ODczfQ.AxJo7b-xq778o-xRDJ0JbBlJGx7pEOgrrro6K7X8y00
+
+### GET ALL CHILDREN CATEGORIES
+GET http://localhost:8889/api/v1/categories/children/6803f0c103bc2c0f4f04020b
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODAwYTE3NTZhY2M0YmZiZjFmYzc3NTkiLCJlbWFpbCI6ImRhdG5ndXllbmhvdGhlQGdtYWlsLmNvbSIsImlhdCI6MTc0NTA4MzQ3MywiZXhwIjoxNzQ1MTY5ODczfQ.AxJo7b-xq778o-xRDJ0JbBlJGx7pEOgrrro6K7X8y00
+
 
 ### get by id
 GET http://localhost:8889/api/v1/categories/67d4f565e8a642017c78d9dd
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2Y0YzVmMDI1MTYwYjIyNGY0MTFlNjEiLCJlbWFpbCI6Im5ndXllbmhvdGhlZGF0QGdtYWlsLmNvbSIsImlhdCI6MTc0NDE3MDc4OCwiZXhwIjoxNzQ0MjU3MTg4fQ.t0z_EeHQTDuyvX1GJEEr-YY4LfC17rgq1Hg4GYxw5g8
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODAwYTE3NTZhY2M0YmZiZjFmYzc3NTkiLCJlbWFpbCI6ImRhdG5ndXllbmhvdGhlQGdtYWlsLmNvbSIsImlhdCI6MTc0NTA4MzQ3MywiZXhwIjoxNzQ1MTY5ODczfQ.AxJo7b-xq778o-xRDJ0JbBlJGx7pEOgrrro6K7X8y00
 
-### create
+
+### //------------------------- BEGIN CREATE -------------------------// ###
+### create lvl 0
 
 POST http://localhost:8889/api/v1/categories
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2Y0YzVmMDI1MTYwYjIyNGY0MTFlNjEiLCJlbWFpbCI6Im5ndXllbmhvdGhlZGF0QGdtYWlsLmNvbSIsImlhdCI6MTc0NDE3MDc4OCwiZXhwIjoxNzQ0MjU3MTg4fQ.t0z_EeHQTDuyvX1GJEEr-YY4LfC17rgq1Hg4GYxw5g8
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODAwYTE3NTZhY2M0YmZiZjFmYzc3NTkiLCJlbWFpbCI6ImRhdG5ndXllbmhvdGhlQGdtYWlsLmNvbSIsImlhdCI6MTc0NTA4MzQ3MywiZXhwIjoxNzQ1MTY5ODczfQ.AxJo7b-xq778o-xRDJ0JbBlJGx7pEOgrrro6K7X8y00
 
 {
-    "category_name": "Tablet Accessories new",
-    "description": "Accessories for tablets, including cases, chargers, stylus pens, and more to enhance functionality.",
-    "level": 3,
-    "imageUrl": "http://localhost:8889/uploads/categories/scanner.png"
+    "category_name": "Apple",
+    "description": "Sản phẩm Apple chính hãng: MacBook, iMac, phụ kiện và phần mềm liên quan.",
+    "imageUrl": "http://localhost:8889/uploads/categories/apple_categories.webp"
 }
+
+### create lvl 1
+
+POST http://localhost:8889/api/v1/categories
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODAwYTE3NTZhY2M0YmZiZjFmYzc3NTkiLCJlbWFpbCI6ImRhdG5ndXllbmhvdGhlQGdtYWlsLmNvbSIsImlhdCI6MTc0NTA4MzQ3MywiZXhwIjoxNzQ1MTY5ODczfQ.AxJo7b-xq778o-xRDJ0JbBlJGx7pEOgrrro6K7X8y00
+
+{
+    "category_name": "Laptop văn phòng",
+    "description": "Dòng laptop mỏng nhẹ, pin lâu, phù hợp cho dân văn phòng.",
+    "imageUrl": "http://localhost:8889/uploads/categories/laptop_categories.webp",
+    "parentId": "6803f0c103bc2c0f4f04020b",
+    "level": 1
+}
+
+
+### //------------------------- END CREATE -------------------------// ###
 
 ### update by id
 PUT http://localhost:8889/api/v1/categories/67d9452369975e3a9c1c24cc
