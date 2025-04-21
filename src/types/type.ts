@@ -34,6 +34,10 @@ export interface IProduct{
     reviewCount: number,
     tags: string[],
     isActive: boolean,
+    bestSale: boolean,
+    flashSale: boolean,
+    promotion: string[],
+    contentBlock: object[],
     category: object,
     brand: object,
     vendor: object

@@ -1,52 +1,137 @@
 ### GET ALL
-GET http://localhost:8889/api/v1/products
+GET http://localhost:8889/api/v1/products?page=3
 
 ### get by id
-GET http://localhost:8889/api/v1/products/67def287122b4c409039e79e
+GET http://localhost:8889/api/v1/products/680615c848f0a1f1f4eb4d6d
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODAwYTE3NTZhY2M0YmZiZjFmYzc3NTkiLCJlbWFpbCI6ImRhdG5ndXllbmhvdGhlQGdtYWlsLmNvbSIsImlhdCI6MTc0NTIyOTIyNywiZXhwIjoxNzQ1MzE1NjI3fQ.84w1mGGkXLRufKdd-yqxF1aUMj2MVhKnryvA19O7C4A
 
 ### create
 
 POST http://localhost:8889/api/v1/products
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2Y0YzVmMDI1MTYwYjIyNGY0MTFlNjEiLCJlbWFpbCI6Im5ndXllbmhvdGhlZGF0QGdtYWlsLmNvbSIsImlhdCI6MTc0NDA5NDc0NywiZXhwIjoxNzQ0MTgxMTQ3fQ.oXb0IY9Bx2LTR9NrzWnbyrEJ4w1PMGYAlZf5EeFVuF0
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODAwYTE3NTZhY2M0YmZiZjFmYzc3NTkiLCJlbWFpbCI6ImRhdG5ndXllbmhvdGhlQGdtYWlsLmNvbSIsImlhdCI6MTc0NTIyOTIyNywiZXhwIjoxNzQ1MzE1NjI3fQ.84w1mGGkXLRufKdd-yqxF1aUMj2MVhKnryvA19O7C4A
 
 {
-  "product_name": "Microsoft Surface Pro 8",
-  "description": "Microsoft Surface Pro 8 is a next-gen laptop with the versatility of a studio and tablet. Powered by the 10th Gen Intel Core i5 processor, 8GB RAM, and 256GB SSD, it delivers performance in a slim and light design.",
-  "price": 399.99,
-  "salePrice": 349.99,
+  "product_name": "Laptop Gaming MSI Katana 15 B13VFK 676VN",
+  "description": "Laptop Gaming MSI Katana 15 B13VFK 676VN được trang bị vi xử lý Intel Core i7-13620H, RAM 16GB DDR5, ổ cứng SSD 1TB và card đồ họa NVIDIA GeForce RTX 4060 8GB. Màn hình 15.6 inch FHD 144Hz mang đến trải nghiệm chơi game mượt mà và sống động.",
+  "price": 36990000,
+  "salePrice": 26990000,
   "stock": 100,
   "images": [
-    "https://hanoicomputercdn.com/media/product/62409_microsoft_surface_pro_8_13.jpg",
-    "https://hanoicomputercdn.com/media/product/62409_microsoft_surface_pro_8_15.jpg"
+    "http://localhost:8889/uploads/Laptop_gaming_MSI_Katana_15_B13VEK_252VN/1205vn_da651643e91047bfa9729c53f93ffc6e_large_39f1561f3448481c94add35d7fda7dc4_grande.webp",
+    "http://localhost:8889/uploads/Laptop_gaming_MSI_Katana_15_B13VEK_252VN/p_gaming_msi_katana_15_b13vek_252vn_1_a336f129fc874587a476e4c7dfecabdf_0c12a98a67b34ec2882cca1f36106763_grande.webp",
+    "http://localhost:8889/uploads/Laptop_gaming_MSI_Katana_15_B13VEK_252VN/p_gaming_msi_katana_15_b13vek_252vn_2_2e289c7ac8514d2ba14d4c73c885a0bb_582c356fef73423ea48a3fac1dd7e63a_grande.webp",
+    "http://localhost:8889/uploads/Laptop_gaming_MSI_Katana_15_B13VEK_252VN/p_gaming_msi_katana_15_b13vek_252vn_3_2d450979c0d847a2b7cf5a12e366cea7_26f2a5646027421a9e5b3bacadb335f5_grande.webp",
+    "http://localhost:8889/uploads/Laptop_gaming_MSI_Katana_15_B13VEK_252VN/p_gaming_msi_katana_15_b13vek_252vn_4_dbc0252c879b4e49801c4a569244ae70_c12c8dfd0e1c44cd86160f5ed03b9290_grande.webp",
+    "http://localhost:8889/uploads/Laptop_gaming_MSI_Katana_15_B13VEK_252VN/p_gaming_msi_katana_15_b13vek_252vn_5_e3ac8d246b9446d497eaf7676f94e265_8ae9b4769d23443eb9644c7dc2885e1d_grande.webp",
+    "http://localhost:8889/uploads/Laptop_gaming_MSI_Katana_15_B13VEK_252VN/p_gaming_msi_katana_15_b13vek_252vn_6_194702ae6ec94939843530fb56c1d880_aac9a124f63b40a38ff2a4aad0b80e0f_grande.webp",
+    "http://localhost:8889/uploads/Laptop_gaming_MSI_Katana_15_B13VEK_252VN/p_gaming_msi_katana_15_b13vek_252vn_7_55172d4c9837409ea3b16fa1308fc8d6_d9bacd36e27c4fe6b0e64ce4d07493e8_grande.webp",
+    "http://localhost:8889/uploads/Laptop_gaming_MSI_Katana_15_B13VEK_252VN/p_gaming_msi_katana_15_b13vek_252vn_8_d24dc0524cb3494da30d26ebfa759f4e_28a1b97fecbf4490a0cd9cf49bcdc568_grande.webp"
   ],
   "attributes": [
-    { "name": "Color", "values": "Matte Black" },
-    { "name": "Screen Size", "values": "12.3 Inches" },
-    { "name": "Resolution", "values": "1920 x 1080 Pixels" },
-    { "name": "Memory Storage Capacity", "values": "256 GB" },
-    { "name": "RAM", "values": "8 GB" },
-    { "name": "Processor", "values": "10th Gen Intel Core i5" },
-    { "name": "Operating System", "values": "Windows 10, Free Upgrade to Windows 11" },
-    { "name": "Camera", "values": "1080p Front/Rear Camera" }
-  ],
-  "tags": [
-  "surface",
-  "microsoft",
-  "tablet",
-  "2-in-1",
-  "windows 11",
-  "touchscreen",
-  "intel i5",
-  "intel i7",
-  "thin and light",
-  "stylus support",
-  "detachable keyboard"
+  { "name": "CPU", "value": "Intel Core i7-13620H (3.6GHz~4.9GHz, 10 nhân, 16 luồng)", "time": "12 Tháng" },
+    { "name": "RAM", "value": "16GB (2 x 8GB) DDR5 5200MHz", "time": "12 Tháng" },
+    { "name": "Ổ cứng", "value": "1TB NVMe PCIe Gen 4 SSD", "time": "12 Tháng" },
+    { "name": "Card đồ họa", "value": "NVIDIA GeForce RTX 4060 8GB GDDR6", "time": "12 Tháng" },
+    { "name": "Màn hình", "value": "15.6 inch FHD (1920x1080), 144Hz, IPS-Level", "time": "12 Tháng" },
+    { "name": "Bàn phím", "value": "4-Zone RGB Gaming Keyboard", "time": "12 Tháng" },
+    { "name": "Hệ điều hành", "value": "Windows 11 Home", "time": "12 Tháng" },
+    { "name": "Pin", "value": "3 cell, 53.5Whr", "time": "12 Tháng" },
+    { "name": "Trọng lượng", "value": "2.2 kg", "time": "12 Tháng" }
 ],
-  "category": "67d944ab69975e3a9c1c24ba",
-  "brand": "67d8edd80bca92ccab1c9bcc",
-  "vendor": "67f4d8296756123703935cc1"
+  "rating": 5,
+  "tags": [
+  "i7-13620H",
+  "RTX 4050",
+  "8 GB",
+  "512 GB",
+  "15.6 inch FHD",
+  "144 Hz"
+],
+  "bestSale": true,
+  "flashSale": false,
+  "promotion": [
+    "Giảm ngay 100.000đ khi mua Microsoft Office kèm Laptop.",
+    "Ưu đãi 500.000đ khi nâng cấp RAM với Laptop Gaming."
+  ],
+  "contentBlock": [
+    {
+      "type": "text",
+      "content": "<strong>Đánh giá chi tiết laptop gaming MSI Katana 15 B13VEK 252VN</strong>"
+    },
+    {
+      "type": "text",
+      "content": "Laptop gaming MSI Katana 15 B13VEK 252VN đáp ứng mọi nhu cầu chơi game của người dùng. Được sản xuất bởi hãng MSI với phần trau chuốt kỹ lưỡng về thiết kế cũng như đầu tư từ những linh kiện hàng đầu hứa hẹn một sản phẩm tuyệt vời cho các tín đồ đam mê game, tham chiến cùng bạn bè. Hãy cùng GEARVN tìm hiểu về chiếc laptop này nhé!"
+    },
+    {
+      "type": "image",
+      "src": "http://localhost:8889/uploads/Laptop_gaming_MSI_Katana_15_B13VEK_252VN/gearvn_laptop_gaming_msi_katana_15_b13vek_252vn_1_8d865dc268934035a6690a00aff01fe4.webp",
+      "alt": "image_1"
+    },
+    {
+      "type": "text",
+      "content": "<strong>Thiết kế mạnh mẽ đậm chất gaming</strong>"
+    },
+    {
+      "type": "text",
+      "content": "Laptop MSI Katana 15 sở hữu từng đường nét vuông vắn mạnh mẽ được bao phủ một màu đen cá tính. Phần khung được làm từ chất liệu cao cấp tạo độ cứng cáp cho toàn bộ linh kiện bên trong laptop MSI. Trọng lượng chỉ khoảng 2.25kg nên việc bỏ vào balo mang đi bất cứ đâu cũng vô cùng dễ dàng cho người dùng."
+    },
+    {
+      "type": "image",
+      "src": "http://localhost:8889/uploads/Laptop_gaming_MSI_Katana_15_B13VEK_252VN/p_gaming_msi_katana_15_b13vek_252vn_2_2e289c7ac8514d2ba14d4c73c885a0bb_582c356fef73423ea48a3fac1dd7e63a_grande.webp",
+      "alt": "image_2"
+    },
+    {
+      "type": "text",
+      "content": "<strong>Bàn phím dễ thao tác</strong>"
+    },
+    {
+      "type": "text",
+      "content": "Bàn phím của MSI Katana 15 cho một độ nảy phím ổn định với hành trình phím sâu tạo cảm giác thoải mái cho mọi thao tác nhấn. Ngoài ra, bàn phím của MSI Katana 15 còn được trang bị hệ thống đèn nền LED 4 vùng gia tăng thêm sự mạnh mẽ cá tính đầy thu hút. Bên cạnh đó việc thao tác trong môi trường thiếu ánh sáng cũng chính xác hơn, dễ dàng đạt được mục tiêu mong muốn trong mọi hoàn cảnh."
+    },
+    {
+      "type": "image",
+      "src": "http://localhost:8889/uploads/Laptop_gaming_MSI_Katana_15_B13VEK_252VN/gearvn_laptop_gaming_msi_katana_15_b13vek_252vn___24__370c81d35d3944e4bf5840428595a36f_grande.webp.webp",
+      "alt": "image_3"
+    },
+    {
+      "type": "text",
+      "content": "<strong>Cấu hình vượt trội chơi game thả ga</strong>"
+    },
+    {
+      "type": "text",
+      "content": "MSI Katana 15 được trang bị bộ vi xử lý Intel Core i7-13620H với xung nhịp cơ bản là 3.6GHz có thể nâng cấp tối đa lên đến 4.9 GHz. Mọi thao tác từ văn phòng cơ bản đến thiết kế nâng cao đều không thể làm khó được chiếc laptop này. Kết hợp cùng card đồ họa NVIDIA GeForce RTX 4050 đem lại trải nghiệm đồ họa đẹp mắt với tốc độ xử lý mượt mà trên mọi khung hình. Laptop MSI gaming có thể đáp ứng mọi yêu cầu khắc nghiệt của người dùng ở bất kỳ tựa game cấu hình cao như là FPS, MOBA,..."
+    },
+    {
+      "type": "image",
+      "src": "http://localhost:8889/uploads/Laptop_gaming_MSI_Katana_15_B13VEK_252VN/gearvn_laptop_gaming_msi_katana_15_b13vek_252vn___2__7be8458e52e64ffba84290248a5a8db6_grande.webp.webp",
+      "alt": "image_4"
+    },
+    {
+      "type": "text",
+      "content": "<strong>Màn hình Full HD sắc nét trên MSI Katana 15 B13VEK 252VN</strong>"
+    },
+    {
+      "type": "text",
+      "content": "MSI Katana 15 có kích thước màn hình 15.6 inch Full HD, độ phân giải 1920x1080 cực sắc nét. Tốc độ xử lý nhanh chóng với độ mượt mà cao trên chiếc màn hình 144Hz làm cắt giảm hoàn toàn tình trạng giật lag và nhòe màn hình khi chơi game. Giờ đây người dùng không cần tốn nhiều thời gian đến những tiệm net chất lượng cao khi chiếc laptop gaming MSI này có thể đáp ứng đủ mọi nhu cầu sử dụng của họ tại nhà hay bất cứ đâu."
+    },
+    {
+      "type": "image",
+      "src": "http://localhost:8889/uploads/Laptop_gaming_MSI_Katana_15_B13VEK_252VN/p_gaming_msi_katana_15_b13vek_252vn_1_a336f129fc874587a476e4c7dfecabdf_0c12a98a67b34ec2882cca1f36106763_grande.webp",
+      "alt": "image_5"
+    },
+    {
+      "type": "text",
+      "content": "Bài viết trên đây đã điểm qua một số thông số đáng chú ý của chiếc laptop gaming MSI Katana 15 B13VEK 252VN, bạn có thể để lại bình luận bên dưới nếu có bất kỳ thắc mắc nào về sản phẩm hoặc liên hệ trực tiếp qua số hotline của chúng tôi để được tư vấn và giải đáp ngay nhé!"
+    }
+  ],
+  "category": "68048ae7d1d97cddae3e321c",
+  "brand": "6805e67efea56b05826cc2db",
+  "vendor": "6805ebf6c350793d7da27a88"
 }
+
+
 
 ### update by id
 PUT http://localhost:8889/api/v1/products/67def287122b4c409039e79e

@@ -579,3 +579,141 @@ Content-Type: application/json
 
 
 */
+
+// BEGIN create DATA
+
+import mongoose from 'mongoose'
+import {env} from "../helpers/env.helper"
+import Brand from '../models/brand.model';
+import { IBrand } from '../types/type';
+import { buildSlug } from '../helpers/slugify.helper';
+
+//Step 1: Ket noi Database su dung mongoose
+const mongooseDbOptions = {
+    autoIndex: true, // Don't build indexes
+    maxPoolSize: 10, // Maintain up to 10 socket connections
+    serverSelectionTimeoutMS: 5000, // Keep trying to send operations for 5 seconds
+    socketTimeoutMS: 45000, // Close sockets after 45 seconds of inactivity
+    family: 4, // Use IPv4, skip trying IPv6
+    
+  };
+  mongoose
+    .connect(env.MONGODB_URI as string, mongooseDbOptions)
+    .then(() => {
+      console.log('Connected to MongoDB');
+      //should listen app here
+    })
+    .catch((err) => {
+      console.error('Failed to Connect to MongoDB', err);
+    });
+
+  
+const brands = [
+  { brand_name: 'ASUS', description: 'Thương hiệu Đài Loan nổi bật với laptop, linh kiện và thiết bị gaming.' },
+  { brand_name: 'ACER', description: 'Hãng máy tính đến từ Đài Loan, nổi tiếng với dòng Aspire và Predator.' },
+  { brand_name: 'MSI', description: 'Chuyên về laptop và linh kiện gaming hiệu năng cao.' },
+  { brand_name: 'LENOVO', description: 'Tập đoàn công nghệ Trung Quốc, nổi bật với dòng ThinkPad và Legion.' },
+  { brand_name: 'DELL', description: 'Thương hiệu Mỹ với các dòng laptop như XPS, Alienware và Inspiron.' },
+  { brand_name: 'HP-Pavilion', description: 'Dòng laptop phổ thông của HP, thiết kế đẹp và hiệu năng ổn định.' },
+  { brand_name: 'LG', description: 'Thương hiệu Hàn Quốc, nổi bật với dòng laptop LG Gram siêu nhẹ.' },
+  { brand_name: 'GIGABYTE', description: 'Hãng linh kiện và laptop gaming AORUS đến từ Đài Loan.' },
+
+  { brand_name: 'Edifier', description: 'Hãng loa chất lượng cao, thiết kế sang trọng, âm thanh rõ.' },
+  { brand_name: 'Raze', description: 'Thương hiệu loa và phụ kiện gaming (có thể là Razer?).' },
+  { brand_name: 'Logitech', description: 'Thương hiệu toàn cầu về phụ kiện máy tính, loa và thiết bị ngoại vi.' },
+  { brand_name: 'SoundMax', description: 'Hãng loa phổ biến tại Việt Nam, giá tốt, dễ tiếp cận.' },
+
+  { brand_name: 'Corsair', description: 'Hãng Mỹ chuyên case, RAM, SSD và thiết bị gaming cao cấp.' },
+  { brand_name: 'Lianli', description: 'Chuyên case máy tính chất lượng cao, thiết kế nhôm nguyên khối.' },
+  { brand_name: 'NZXT', description: 'Hãng case hiện đại, tối giản, airflow tốt.' },
+  { brand_name: 'Inwin', description: 'Case máy tính với thiết kế độc đáo, sáng tạo.' },
+  { brand_name: 'Thermaltake', description: 'Hãng phần cứng nổi bật với case, tản nhiệt và phụ kiện PC.' },
+
+  { brand_name: 'DeepCool', description: 'Hãng nguồn và tản nhiệt phổ biến tại Việt Nam, giá tốt.' },
+
+  { brand_name: 'Kingston', description: 'Hãng nổi tiếng với RAM và SSD chất lượng cao.' },
+  { brand_name: 'G.Skill', description: 'RAM hiệu năng cao cho dân chơi PC, nổi bật với dòng Trident Z.' },
+  { brand_name: 'PNY', description: 'RAM và SSD tầm trung, ổn định và dễ tiếp cận.' },
+
+  { brand_name: 'Wester Digital', description: 'Hãng ổ cứng nổi tiếng nhất thế giới, đa dạng dòng sản phẩm.' },
+  { brand_name: 'Seagate', description: 'Đối thủ lớn của WD, ổ cứng HDD/SSD phổ biến toàn cầu.' },
+  { brand_name: 'Toshiba', description: 'Hãng Nhật Bản, chuyên ổ cứng giá tốt, độ bền ổn.' },
+
+  { brand_name: 'Samsung', description: 'Hãng công nghệ hàng đầu Hàn Quốc, SSD tốc độ cao.' },
+
+  { brand_name: 'ANKKO', description: 'Thương hiệu bàn phím cơ giá rẻ, dành cho người mới.' },
+  { brand_name: 'AULA', description: 'Bàn phím gaming RGB giá tốt, thiết kế đa dạng.' },
+  { brand_name: 'Dare-U', description: 'Bàn phím cơ giá rẻ, nổi bật ở thị trường Việt Nam.' },
+  { brand_name: 'Durgod', description: 'Thương hiệu phím cơ Trung Quốc, build tốt, gõ sướng.' },
+  { brand_name: 'FL-Esports', description: 'Bàn phím cơ custom đẹp, layout hiện đại.' },
+  { brand_name: 'Cidoo', description: 'Phím cơ pre-built nổi bật với switch chất lượng.' },
+  { brand_name: 'E-Dra', description: 'Thương hiệu Việt Nam về bàn phím và ghế gaming.' },
+  { brand_name: 'Machenike', description: 'Thương hiệu gaming Trung Quốc, bàn phím, laptop.' },
+  { brand_name: 'Leopold', description: 'Phím cơ cao cấp từ Hàn Quốc, nổi tiếng về build và cảm giác gõ.' },
+  { brand_name: 'Stellseries', description: 'Hãng gaming gear nổi tiếng từ Đan Mạch.' },
+  { brand_name: 'Rapoo', description: 'Thương hiệu phụ kiện giá rẻ đến từ Trung Quốc.' },
+  { brand_name: 'VGN', description: 'Hãng phím cơ giá rẻ, build ổn, thiết kế trẻ trung.' },
+
+  { brand_name: 'Warrior', description: 'Ghế gaming phổ biến tại Việt Nam, giá rẻ dễ tiếp cận.' },
+  { brand_name: 'DXRacer', description: 'Ghế gaming cao cấp, nổi bật trong giới eSports.' },
+  { brand_name: 'Cougar', description: 'Ghế và phụ kiện gaming mạnh về thiết kế.' },
+  { brand_name: 'AKRaing', description: 'Ghế gaming tầm trung, hỗ trợ tốt cho game thủ.' },
+  { brand_name: 'Sihoo', description: 'Ghế công thái học (ergonomic) chuyên dùng cho dân văn phòng.' },
+
+  { brand_name: 'Microsoft', description: 'Hãng phần mềm số 1 thế giới, nổi bật với Windows, Office.' },
+  { brand_name: 'LinkSys', description: 'Thương hiệu router mạng nổi tiếng từ Mỹ.' },
+  { brand_name: 'TP-LINK', description: 'Thiết bị mạng giá tốt, phổ biến tại Việt Nam.' },
+  { brand_name: 'Mercusys', description: 'Hãng con của TP-Link, thiết bị mạng giá rẻ.' },
+
+  { brand_name: 'Rog Ally', description: 'Thiết bị chơi game cầm tay chạy Windows do ASUS sản xuất.' },
+  { brand_name: 'Legion Go', description: 'Thiết bị chơi game cầm tay của Lenovo, cạnh tranh với Steam Deck.' }
+];
+//step 2: Su dung cac model de ket noi den collection
+const postData = async () => {  
+  
+   //insert brands to data mongoBD
+ for(let i = 0; i < brands.length; i++) {
+    const brand = new Brand({
+      brand_name: brands[i].brand_name,
+      description: brands[i].description,
+      slug: buildSlug(brands[i].brand_name)
+    });
+    await brand.save();
+    console.log(`Create brands ${i} successfully !`);
+  }
+
+   /* const currentBrands = await Brand.find();
+   const currentCategories = await Category.find();
+
+     for (let i = 1; i <= 15; i++) {
+
+    let productName = faker.commerce.productName()+i;
+    
+    const brand = currentBrands[Math.floor(Math.random() * currentBrands.length)];
+    const category = currentCategories[Math.floor(Math.random() * currentCategories.length)];
+
+    const fakeProduct = {
+      product_name: productName,
+      price: faker.commerce.price({ min: 100, max: 1200 }),
+      discount: faker.number.int({ min: 1, max: 50 }),
+      category: category._id,
+      brand_id: brand._id,
+      description: faker.commerce.productDescription(),
+      model_year: faker.helpers.fromRegExp('2[0-9]{3}'),
+      stock: faker.number.int({ min: 1, max: 200 }), // Thêm trường stock
+      thumbnail: 'https://picsum.photos/400/400', // Thêm trường thumbnail
+      slug: faker.helpers.slugify(productName), // Tạo slug từ productName
+    }
+   
+    const product = new Product(fakeProduct);
+    await product.save();
+    console.log(`Create Product ${i} successfully !`);
+    
+  } */
+  
+}
+try {
+  postData();
+} catch (error) {
+  console.log('<<=== 🚀 error ===>>',error);
+}

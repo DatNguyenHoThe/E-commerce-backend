@@ -39,6 +39,10 @@ const createSchema = yup
         reviewCount: yup.number().min(0).optional(),
         tags: yup.array().required(),
         isActive: yup.boolean().optional(),
+        bestSale: yup.boolean().optional(),
+        flashSale: yup.boolean().optional(),
+        promotion: yup.array().of(yup.string()).optional(),
+        contentBlock: yup.array().of(yup.object()).optional(),
         category: yup.string().required(),
         brand: yup.string().required(),
         vendor: yup.string().required()
@@ -68,6 +72,8 @@ const updateByIdSchema = yup
       reviewCount: yup.number().min(0).optional(),
       tags: yup.array().optional(),
       isActive: yup.boolean().optional(),
+      bestSale: yup.boolean().optional(),
+      flashSale: yup.boolean().optional(),
       category: yup.string().optional(),
       brand: yup.string().optional(),
       vendor: yup.string().optional()
@@ -94,6 +100,8 @@ const deleteByIdSchema = yup
       reviewCount: yup.number().min(0).optional(),
       tags: yup.array().optional(),
       isActive: yup.boolean().optional(),
+      bestSale: yup.boolean().optional(),
+      flashSale: yup.boolean().optional(),
       category: yup.string().optional(),
       brand: yup.string().optional(),
       vendor: yup.string().optional()

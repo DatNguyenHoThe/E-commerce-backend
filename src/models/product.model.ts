@@ -67,6 +67,39 @@ const productSchema = new Schema<IProduct>({
         require: true,
         default: true
     },
+    bestSale: {
+        type: Boolean,
+        require: true,
+        default: false
+    },
+    flashSale: {
+        type: Boolean,
+        require: true,
+        default: false
+    },
+    promotion: {
+        type: [String],
+        maxlength: 255,
+        require: false
+    },
+    contentBlock: [
+        {
+          type: {
+            type: String,
+            enum: ['text', 'image'],
+            required: true
+          },
+          content: {
+            type: String // dùng cho 'text'
+          },
+          src: {
+            type: String // dùng cho 'image'
+          },
+          alt: {
+            type: String // dùng cho 'image', optional
+          }
+        }
+      ],
     //tham chiếu
     category: {
         type: Schema.Types.ObjectId,
