@@ -8,6 +8,8 @@ const router = express.Router();
 
 //getAll
 router.get('/products'/* , authenticateToken */, validateSchemaYup(productsValidation.getAllSchema), productsController.getAll);
+//getAllByType
+router.get('/collections/:slug'/* , authenticateToken */, validateSchemaYup(productsValidation.getAllByTypeSchema), productsController.getAllByType);
 //get by id
 router.get('/products/:id'/* , authenticateToken */, validateSchemaYup(productsValidation.getByIdSchema), productsController.getById);
 // create

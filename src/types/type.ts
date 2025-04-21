@@ -18,7 +18,8 @@ export interface IBrand{
 
 interface IAttribute{
     name: string,
-    values: string
+    value: string,
+    time: string,
 }
 
 export interface IProduct{

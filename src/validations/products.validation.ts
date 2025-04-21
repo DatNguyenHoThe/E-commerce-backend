@@ -14,6 +14,24 @@ const getAllSchema = yup
     })
   .required();
 
+  //get all by type
+const getAllByTypeSchema = yup
+  .object({
+    params: yup.object({
+      slug: yup.string()
+        .matches(/^[a-z0-9-]+$/, { message: 'Slug không hợp lệ, chỉ được dùng chữ thường, số và dấu gạch ngang' })
+        .required(),
+    }),
+    query: yup.object({
+      page: yup.number().integer().positive().optional(),
+      limit: yup.number().integer().positive().optional(),
+      }),
+      sort_type: yup.string().oneOf(['asc', 'desc']).optional(),
+      sort_by: yup.string().oneOf(['createdAt', 'category_name']).optional(),
+      keyword: yup.string().min(2).max(50).optional(), // search category_name
+})
+.required();
+
   //get by id
   const getByIdSchema = yup
   .object({
@@ -28,14 +46,14 @@ const createSchema = yup
   .object({
     body: yup.object({
         product_name: yup.string().min(2).max(150).required(), // required: bắt buộc
-        description: yup.string().min(0).max(255).required(),
+        description: yup.string().min(0).max(255).optional(),
         slug: yup.string().min(2).max(150).optional(),
         price: yup.number().positive().required(), // required: không bắt buộc
         salePrice: yup.number().positive().required(), // required: bắt buộc
         stock: yup.number().max(100).positive().integer().optional(),
         images: yup.array().required(),
-        attributes: yup.array().required(),
-        rating: yup.number().min(0).max(5).integer().optional(),
+        attributes: yup.array().optional(),
+        rating: yup.number().min(0).max(5).optional(),
         reviewCount: yup.number().min(0).optional(),
         tags: yup.array().required(),
         isActive: yup.boolean().optional(),
@@ -112,6 +130,7 @@ const deleteByIdSchema = yup
 
 export default {
     getAllSchema,
+    getAllByTypeSchema,
     getByIdSchema,
     createSchema,
     updateByIdSchema,

@@ -7,7 +7,7 @@ import createError from 'http-errors';
 
 //Get all
 const getAll = async(query: any) => {
-    const {page = 1, limit = 10} = query;
+    const {page = 1, limit = 20} = query;
     let sortObject = {};
     const sortType = query.sort_type || 'desc';
     const sortBy = query.sort_by || 'createdAt';
@@ -35,6 +35,69 @@ const getAll = async(query: any) => {
             };
         }
     }
+
+    const products = await Product
+    .find(where)
+    .populate('category')
+    .populate('brand')
+    .populate('vendor')
+    .skip((page-1)*limit)
+    .limit(limit)
+    .sort({...sortObject});
+    
+    //Đếm tổng số record hiện có của collection products
+    const count = await Product.countDocuments(where);
+
+    return {
+        products,
+        pagination: {
+            totalRecord: count,
+            limit,
+            page
+        }
+    };
+}
+
+//Get all by type
+const getAllByType = async(params: any ,query: any) => {
+    const {page = 1, limit = 20} = query;
+    let sortObject = {};
+    const sortType = query.sort_type || 'desc';
+    const sortBy = query.sort_by || 'createdAt';
+    sortObject = {...sortObject, [sortBy]: sortType === 'desc' ? -1 : 1};
+    
+    console.log('sortObject getAllByType : ', sortObject);
+
+    //tìm kiếm theo điều kiện
+    let where = {};
+    const slug = params.slug;
+
+    console.log('slug===>', slug);
+    // nếu có tìm kiếm theo tên sản phẩm
+    if(query.product_name && query.product_name.length > 0) {
+        where = {...where, product_name: {$regex: query.product_name, $options: 'i'}};
+    }
+    // Nếu có tìm kiếm theo params
+    if (slug && slug.length > 0) {
+        const category = await Category.findOne({
+            slug: { $regex: slug, $options: 'i' },
+        });
+
+        if (category) {
+            where = { ...where, category: category._id };
+        } else if (slug === 'bestsale') {
+            where = { ...where, bestSale: true };
+        } else if (slug === 'flashsale') {
+            where = { ...where, flashSale: true };
+        } else {
+            return {
+                products: [],
+                pagination: { totalRecord: 0, limit, page },
+            };
+        }
+    }
+
+    console.log('where===>', where);
 
     const products = await Product
     .find(where)
@@ -140,6 +203,7 @@ const deleteById = async(id: string) => {
 
 export default {
     getAll,
+    getAllByType,
     getById,
     create,
     updateById,

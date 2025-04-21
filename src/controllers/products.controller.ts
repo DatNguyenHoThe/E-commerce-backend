@@ -12,6 +12,17 @@ const getAll = async(req: Request, res: Response, next: NextFunction) => {
         next(error);
     }
 }
+
+//Get All by Type
+const getAllByType = async(req: Request, res: Response, next: NextFunction) => {
+    try {
+        const products = await productsService.getAllByType(req.params, req.query);
+    sendJsonSuccess(res, products, httpStatus.OK.statusCode, httpStatus.OK.message)
+    } catch (error) {
+        next(error);
+    }
+}
+
 // get by id
 const getById = async(req: Request, res: Response, next: NextFunction) => {
     try {
@@ -56,6 +67,7 @@ const deleteById = async(req: Request, res: Response, next: NextFunction) => {
 
 export default {
     getAll,
+    getAllByType,
     getById,
     create,
     updateById,

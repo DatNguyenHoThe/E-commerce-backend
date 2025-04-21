@@ -6,7 +6,7 @@ GET http://localhost:8889/api/v1/products/680615c848f0a1f1f4eb4d6d
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODAwYTE3NTZhY2M0YmZiZjFmYzc3NTkiLCJlbWFpbCI6ImRhdG5ndXllbmhvdGhlQGdtYWlsLmNvbSIsImlhdCI6MTc0NTIyOTIyNywiZXhwIjoxNzQ1MzE1NjI3fQ.84w1mGGkXLRufKdd-yqxF1aUMj2MVhKnryvA19O7C4A
 
-### create
+### create pc, laptop
 
 POST http://localhost:8889/api/v1/products
 Content-Type: application/json
@@ -131,6 +131,36 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODAwYTE3N
   "vendor": "6805ebf6c350793d7da27a88"
 }
 
+
+### create MOUSE
+
+POST http://localhost:8889/api/v1/products
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODAwYTE3NTZhY2M0YmZiZjFmYzc3NTkiLCJlbWFpbCI6ImRhdG5ndXllbmhvdGhlQGdtYWlsLmNvbSIsImlhdCI6MTc0NTIyOTIyNywiZXhwIjoxNzQ1MzE1NjI3fQ.84w1mGGkXLRufKdd-yqxF1aUMj2MVhKnryvA19O7C4A
+
+{
+  "product_name": "Chuột Steelseries Aerox 3 Wireless Snow Edition",
+  "price": 3490000,
+  "salePrice": 2490000,
+  "stock": 100,
+  "images": [
+    "http://localhost:8889/uploads/Chuot_Steelseries_Aerox_3_Wireless_Snow_Edition/eries_aerox_3_wireless_snow_edition_1_5508676fc8d74c96aab9a00d2d0b2e54_12cd3276efd34e62b8bc64c833ac34f2_grande.webp",
+    "http://localhost:8889/uploads/Chuot_Steelseries_Aerox_3_Wireless_Snow_Edition/eries_aerox_3_wireless_snow_edition_2_931fccf8e98141128c0513c6aa66a1c8_4b5b1d12e8ca462e8409ae471edbe88e_gran.webp",
+    "http://localhost:8889/uploads/Chuot_Steelseries_Aerox_3_Wireless_Snow_Edition/eries_aerox_3_wireless_snow_edition_3_c08f23fd7f654c53b0307eb8fc667796_0c51985f6169408dbc9fe5ba75d2e9f7_gran.webp",
+    "http://localhost:8889/uploads/Chuot_Steelseries_Aerox_3_Wireless_Snow_Edition/eries_aerox_3_wireless_snow_edition_4_93ff52a35fe94fa9b1a5499b7de3ffef_5a9e671f50064922ac95c8d24d7758fb_gran.webp"
+  ],
+  "rating": 4.2,
+  "tags": [
+  "Pin rời",
+  "Không dây",
+  "DPI - 1.000"
+],
+  "bestSale": false,
+  "flashSale": false,
+  "category": "6805190b3556be73141264ec",
+  "brand": "6805e680fea56b05826cc31d",
+  "vendor": "6805ebf6c350793d7da27a88"
+}
 
 
 ### update by id
