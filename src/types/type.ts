@@ -240,3 +240,12 @@ export interface ISEO {
     ogImage: string,
     canonicalUrl: string,
 }
+
+export interface ITechNew {
+    title: string,
+    keyword: string,
+    thumbnail: string,
+    description: string,
+    content: string,
+    date: Date
+}

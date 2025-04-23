@@ -23,6 +23,7 @@ import productAttributeRoute from './routes/v1/productAttributes.route';
 import paymentMethodRoute from './routes/v1/paymentMethods.route';
 import activityLogRoute from './routes/v1/activityLogs.route';
 import seoRoute from './routes/v1/seos.route';
+import techNewRoute from './routes/v1/techNews.route';
 
 
 var compression = require('compression');
@@ -69,6 +70,7 @@ app.use('/api/v1', productAttributeRoute);
 app.use('/api/v1', paymentMethodRoute);
 app.use('/api/v1', activityLogRoute);
 app.use('/api/v1', seoRoute);
+app.use('/api/v1', techNewRoute);
 
 
 //login and get profile route

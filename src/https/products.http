@@ -10,124 +10,139 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODAwYTE3N
 
 POST http://localhost:8889/api/v1/products
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODAwYTE3NTZhY2M0YmZiZjFmYzc3NTkiLCJlbWFpbCI6ImRhdG5ndXllbmhvdGhlQGdtYWlsLmNvbSIsImlhdCI6MTc0NTIyOTIyNywiZXhwIjoxNzQ1MzE1NjI3fQ.84w1mGGkXLRufKdd-yqxF1aUMj2MVhKnryvA19O7C4A
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODAwYTE3NTZhY2M0YmZiZjFmYzc3NTkiLCJlbWFpbCI6ImRhdG5ndXllbmhvdGhlQGdtYWlsLmNvbSIsImlhdCI6MTc0NTMxNzI1NCwiZXhwIjoxNzQ1NDAzNjU0fQ.nQE0nLtLdTNL0PeUUMgQwtNvA5ADuJj4SZ9MADKh1Hc
 
 {
-  "product_name": "Laptop Gaming MSI Katana 15 B13VFK 676VN",
-  "description": "Laptop Gaming MSI Katana 15 B13VFK 676VN được trang bị vi xử lý Intel Core i7-13620H, RAM 16GB DDR5, ổ cứng SSD 1TB và card đồ họa NVIDIA GeForce RTX 4060 8GB. Màn hình 15.6 inch FHD 144Hz mang đến trải nghiệm chơi game mượt mà và sống động.",
-  "price": 36990000,
-  "salePrice": 26990000,
+  "product_name": "Laptop ASUS Vivobook 15 OLED A1505VA MA468W",
+  "description": "Asus Vivobook 15 OLED A1505VA L1114W mang lại trải nghiệm hình ảnh tốt hơn với trang bị màn hình OLED. Thiết kế mỏng nhẹ cùng cấu hình mạnh mẽ cho phép người dùng nâng cao hiệu suất khi làm việc.",
+  "price": 20990000,
+  "salePrice": 18490000,
   "stock": 100,
   "images": [
-    "http://localhost:8889/uploads/Laptop_gaming_MSI_Katana_15_B13VEK_252VN/1205vn_da651643e91047bfa9729c53f93ffc6e_large_39f1561f3448481c94add35d7fda7dc4_grande.webp",
-    "http://localhost:8889/uploads/Laptop_gaming_MSI_Katana_15_B13VEK_252VN/p_gaming_msi_katana_15_b13vek_252vn_1_a336f129fc874587a476e4c7dfecabdf_0c12a98a67b34ec2882cca1f36106763_grande.webp",
-    "http://localhost:8889/uploads/Laptop_gaming_MSI_Katana_15_B13VEK_252VN/p_gaming_msi_katana_15_b13vek_252vn_2_2e289c7ac8514d2ba14d4c73c885a0bb_582c356fef73423ea48a3fac1dd7e63a_grande.webp",
-    "http://localhost:8889/uploads/Laptop_gaming_MSI_Katana_15_B13VEK_252VN/p_gaming_msi_katana_15_b13vek_252vn_3_2d450979c0d847a2b7cf5a12e366cea7_26f2a5646027421a9e5b3bacadb335f5_grande.webp",
-    "http://localhost:8889/uploads/Laptop_gaming_MSI_Katana_15_B13VEK_252VN/p_gaming_msi_katana_15_b13vek_252vn_4_dbc0252c879b4e49801c4a569244ae70_c12c8dfd0e1c44cd86160f5ed03b9290_grande.webp",
-    "http://localhost:8889/uploads/Laptop_gaming_MSI_Katana_15_B13VEK_252VN/p_gaming_msi_katana_15_b13vek_252vn_5_e3ac8d246b9446d497eaf7676f94e265_8ae9b4769d23443eb9644c7dc2885e1d_grande.webp",
-    "http://localhost:8889/uploads/Laptop_gaming_MSI_Katana_15_B13VEK_252VN/p_gaming_msi_katana_15_b13vek_252vn_6_194702ae6ec94939843530fb56c1d880_aac9a124f63b40a38ff2a4aad0b80e0f_grande.webp",
-    "http://localhost:8889/uploads/Laptop_gaming_MSI_Katana_15_B13VEK_252VN/p_gaming_msi_katana_15_b13vek_252vn_7_55172d4c9837409ea3b16fa1308fc8d6_d9bacd36e27c4fe6b0e64ce4d07493e8_grande.webp",
-    "http://localhost:8889/uploads/Laptop_gaming_MSI_Katana_15_B13VEK_252VN/p_gaming_msi_katana_15_b13vek_252vn_8_d24dc0524cb3494da30d26ebfa759f4e_28a1b97fecbf4490a0cd9cf49bcdc568_grande.webp"
+    "http://localhost:8889/uploads/Laptop_ASUS_Vivobook_15_OLED_A1505VA_MA468W/khung_laptop_23_b898f38424a44201bf2df947e637c74e_grande.webp",
+    "http://localhost:8889/uploads/Laptop_ASUS_Vivobook_15_OLED_A1505VA_MA468W/asus_vivobook_15_oled_a1505va_ma468w_d2642bc41bd84971a2970fd38c2c9185_13ba03b92bcf44188b8ad89f772aba68_grande.webp",
+    "http://localhost:8889/uploads/Laptop_ASUS_Vivobook_15_OLED_A1505VA_MA468W/0eef2c64124985082c2e5251d24_7fe5f53a7c6247f68cad7a76af233226_1024x1024_8aa5cdc5033f42b88b12f495370bf805_grande.webp",
+    "http://localhost:8889/uploads/Laptop_ASUS_Vivobook_15_OLED_A1505VA_MA468W/177d6dd45dba017f687f0500e05_5c03347b17454d2b813fa1dcad19c813_1024x1024_6c7342a6ec3047a68e1efb6520ecc105_grande.webp",
+    "http://localhost:8889/uploads/Laptop_ASUS_Vivobook_15_OLED_A1505VA_MA468W/sus_vivobook_15_oled_a1505va_ma468w_3_8a55adc974de491ab6488a7cb10acbb4_5006db168fd343b194ad84db51699970_grande.webp",
+    "http://localhost:8889/uploads/Laptop_ASUS_Vivobook_15_OLED_A1505VA_MA468W/sus_vivobook_15_oled_a1505va_ma468w_4_b26ab9a8153648f690e41fccb3706613_a509be8005404762b089609967014162_grande.webp",
+    "http://localhost:8889/uploads/Laptop_ASUS_Vivobook_15_OLED_A1505VA_MA468W/sus_vivobook_15_oled_a1505va_ma468w_1_585a938bb73d4a05b73b23347e67ba5e_78a13cb4f8034270baf86a256f5b920e_grande.png",
+    "http://localhost:8889/uploads/Laptop_ASUS_Vivobook_15_OLED_A1505VA_MA468W/sus_vivobook_15_oled_a1505va_ma468w_2_f651f04a58ef4f9fb7f33c19a540cf57_a6892af9d5594f8d830dcf52fe05562a_grande.png",
+    "http://localhost:8889/uploads/Laptop_ASUS_Vivobook_15_OLED_A1505VA_MA468W/sus_vivobook_15_oled_a1505va_ma468w_5_9cb59ab1662342398782bf089095927d_07ad841d0fe5412f8e32a97c6e50161f_grande.png"
   ],
   "attributes": [
-  { "name": "CPU", "value": "Intel Core i7-13620H (3.6GHz~4.9GHz, 10 nhân, 16 luồng)", "time": "12 Tháng" },
-    { "name": "RAM", "value": "16GB (2 x 8GB) DDR5 5200MHz", "time": "12 Tháng" },
-    { "name": "Ổ cứng", "value": "1TB NVMe PCIe Gen 4 SSD", "time": "12 Tháng" },
-    { "name": "Card đồ họa", "value": "NVIDIA GeForce RTX 4060 8GB GDDR6", "time": "12 Tháng" },
-    { "name": "Màn hình", "value": "15.6 inch FHD (1920x1080), 144Hz, IPS-Level", "time": "12 Tháng" },
-    { "name": "Bàn phím", "value": "4-Zone RGB Gaming Keyboard", "time": "12 Tháng" },
-    { "name": "Hệ điều hành", "value": "Windows 11 Home", "time": "12 Tháng" },
-    { "name": "Pin", "value": "3 cell, 53.5Whr", "time": "12 Tháng" },
-    { "name": "Trọng lượng", "value": "2.2 kg", "time": "12 Tháng" }
+  { "name": "CPU", "value": "Intel Core i5-13500H (2.6GHz ~ 4.7GHz, 12 nhân, 16 luồng, 18MB Cache)", "time": "24 Tháng" },
+  { "name": "RAM", "value": "16GB (8GB Onboard + 8GB Sodimm) DDR4 3200MHz", "time": "24 Tháng" },
+  { "name": "Ổ cứng", "value": "512GB M.2 NVMe PCIe 3.0 SSD", "time": "24 Tháng" },
+  { "name": "Card đồ họa", "value": "Intel Iris Xe Graphics (dual channel)", "time": "24 Tháng" },
+  { "name": "Màn hình", "value": "15.6 inch 2.8K OLED (2880 x 1620), 120Hz, 0.2ms, 600nits, 100% DCI-P3, HDR True Black 600", "time": "24 Tháng" },
+  { "name": "Cổng giao tiếp", "value": "1x USB 2.0 Type-A, 2x USB 3.2 Gen 1 Type-A, 1x USB 3.2 Gen 1 Type-C (PD), 1x HDMI 1.4, 1x Audio Jack, 1x DC-in", "time": "24 Tháng" },
+  { "name": "Bàn phím", "value": "Chiclet có phím số", "time": "24 Tháng" },
+  { "name": "Bảo mật", "value": "Cảm biến vân tay", "time": "24 Tháng" },
+  { "name": "Âm thanh", "value": "SonicMaster Audio", "time": "24 Tháng" },
+  { "name": "Kết nối không dây", "value": "Wi-Fi 6E, Bluetooth 5.3", "time": "24 Tháng" },
+  { "name": "Webcam", "value": "720p HD có màn che bảo mật", "time": "24 Tháng" },
+  { "name": "Hệ điều hành", "value": "Windows 11 Home", "time": "24 Tháng" },
+  { "name": "Pin", "value": "50WHrs, 3-cell Li-ion", "time": "24 Tháng" },
+  { "name": "Trọng lượng", "value": "1.7 kg", "time": "24 Tháng" },
+  { "name": "Màu sắc", "value": "Cool Silver", "time": "24 Tháng" },
+  { "name": "Chất liệu", "value": "Nhựa (Top, Bottom, LCD cover)", "time": "24 Tháng" },
+  { "name": "Kích thước", "value": "35.68 x 22.76 x 1.99 cm", "time": "24 Tháng" }
 ],
-  "rating": 5,
+  "rating": 4.5,
   "tags": [
-  "i7-13620H",
-  "RTX 4050",
-  "8 GB",
+  "i5-13500H",
+  "Onboard",
+  "16 GB",
   "512 GB",
-  "15.6 inch FHD",
-  "144 Hz"
+  "15.6 inch 2.8K OLED"
 ],
-  "bestSale": true,
-  "flashSale": false,
+  "bestSale": false,
+  "flashSale": true,
   "promotion": [
-    "Giảm ngay 100.000đ khi mua Microsoft Office kèm Laptop.",
-    "Ưu đãi 500.000đ khi nâng cấp RAM với Laptop Gaming."
+    "Giảm ngay 100.000đ khi mua Microsoft Office kèm Laptop."
   ],
   "contentBlock": [
     {
       "type": "text",
-      "content": "<strong>Đánh giá chi tiết laptop gaming MSI Katana 15 B13VEK 252VN</strong>"
+      "content": "<strong>Đánh giá chi tiết laptop Asus Vivobook 15 OLED A1505VA L1114W</strong>"
     },
     {
       "type": "text",
-      "content": "Laptop gaming MSI Katana 15 B13VEK 252VN đáp ứng mọi nhu cầu chơi game của người dùng. Được sản xuất bởi hãng MSI với phần trau chuốt kỹ lưỡng về thiết kế cũng như đầu tư từ những linh kiện hàng đầu hứa hẹn một sản phẩm tuyệt vời cho các tín đồ đam mê game, tham chiến cùng bạn bè. Hãy cùng GEARVN tìm hiểu về chiếc laptop này nhé!"
+      "content": "Asus Vivobook 15 OLED A1505VA L1114W mang lại trải nghiệm hình ảnh tốt hơn với trang bị màn hình OLED. Thiết kế mỏng nhẹ cùng cấu hình mạnh mẽ cho phép người dùng nâng cao hiệu suất khi làm việc."
     },
     {
       "type": "image",
-      "src": "http://localhost:8889/uploads/Laptop_gaming_MSI_Katana_15_B13VEK_252VN/gearvn_laptop_gaming_msi_katana_15_b13vek_252vn_1_8d865dc268934035a6690a00aff01fe4.webp",
+      "src": "http://localhost:8889/uploads/Laptop_ASUS_Vivobook_15_OLED_A1505VA_MA468W/khung_laptop_23_b898f38424a44201bf2df947e637c74e_grande.webp",
       "alt": "image_1"
     },
-    {
+     {
       "type": "text",
-      "content": "<strong>Thiết kế mạnh mẽ đậm chất gaming</strong>"
+      "content": "<strong>Thiết kế sang trọng, độc đáo</strong>"
     },
     {
       "type": "text",
-      "content": "Laptop MSI Katana 15 sở hữu từng đường nét vuông vắn mạnh mẽ được bao phủ một màu đen cá tính. Phần khung được làm từ chất liệu cao cấp tạo độ cứng cáp cho toàn bộ linh kiện bên trong laptop MSI. Trọng lượng chỉ khoảng 2.25kg nên việc bỏ vào balo mang đi bất cứ đâu cũng vô cùng dễ dàng cho người dùng."
+      "content": "Laptop Asus Vivobook 15 OLED sở hữu một màu đen sang trọng với thiết kế vuông vắn đầy tinh tế. Bản lề được thiết kế tự tạo một góc nghiêng vừa phải khi mở nắp máy tính lên. Trọng lượng nhẹ khoảng 1.7kg với bề dày máy tính là 1.99cm tạo điều kiện hơn cho người dùng bỏ vào balo và mang vác đi bất cứ đâu."
     },
     {
       "type": "image",
-      "src": "http://localhost:8889/uploads/Laptop_gaming_MSI_Katana_15_B13VEK_252VN/p_gaming_msi_katana_15_b13vek_252vn_2_2e289c7ac8514d2ba14d4c73c885a0bb_582c356fef73423ea48a3fac1dd7e63a_grande.webp",
+      "src": "http://localhost:8889/uploads/Laptop_ASUS_Vivobook_15_OLED_A1505VA_MA468W/sus_vivobook_15_oled_a1505va_ma468w_1_585a938bb73d4a05b73b23347e67ba5e_78a13cb4f8034270baf86a256f5b920e_grande.png",
       "alt": "image_2"
     },
     {
       "type": "text",
-      "content": "<strong>Bàn phím dễ thao tác</strong>"
+      "content": "<strong>Cấu hình vượt trội</strong>"
     },
     {
       "type": "text",
-      "content": "Bàn phím của MSI Katana 15 cho một độ nảy phím ổn định với hành trình phím sâu tạo cảm giác thoải mái cho mọi thao tác nhấn. Ngoài ra, bàn phím của MSI Katana 15 còn được trang bị hệ thống đèn nền LED 4 vùng gia tăng thêm sự mạnh mẽ cá tính đầy thu hút. Bên cạnh đó việc thao tác trong môi trường thiếu ánh sáng cũng chính xác hơn, dễ dàng đạt được mục tiêu mong muốn trong mọi hoàn cảnh."
+      "content": "Sử dụng CPU Intel core i5-13500H thế hệ 13 mạnh mẽ cho phép Asus OLED Vivobook 15 OLED giải quyết mọi tác vụ văn phòng cơ bản đến nâng cao. Việc làm đồ họa cơ bản trên máy cũng được hỗ trợ với VGA tích hợp Intel® Iris Xe Graphics. 16GB RAM DDR4 xử lý đa nhiệm nhanh chóng cho những thao tác mượt mà. Bộ lưu trữ 512GB thỏa sức lưu trữ các dữ liệu quan trọng mà người dùng cần."
     },
     {
       "type": "image",
-      "src": "http://localhost:8889/uploads/Laptop_gaming_MSI_Katana_15_B13VEK_252VN/gearvn_laptop_gaming_msi_katana_15_b13vek_252vn___24__370c81d35d3944e4bf5840428595a36f_grande.webp.webp",
+      "src": "http://localhost:8889/uploads/Laptop_ASUS_Vivobook_15_OLED_A1505VA_MA468W/0eef2c64124985082c2e5251d24_7fe5f53a7c6247f68cad7a76af233226_1024x1024_8aa5cdc5033f42b88b12f495370bf805_grande.webp",
       "alt": "image_3"
     },
     {
       "type": "text",
-      "content": "<strong>Cấu hình vượt trội chơi game thả ga</strong>"
+      "content": "<strong>Hệ thống tản nhiệt hiệu quả trên Asus Vivobook 15 OLED A1505VA L1114W</strong>"
     },
     {
       "type": "text",
-      "content": "MSI Katana 15 được trang bị bộ vi xử lý Intel Core i7-13620H với xung nhịp cơ bản là 3.6GHz có thể nâng cấp tối đa lên đến 4.9 GHz. Mọi thao tác từ văn phòng cơ bản đến thiết kế nâng cao đều không thể làm khó được chiếc laptop này. Kết hợp cùng card đồ họa NVIDIA GeForce RTX 4050 đem lại trải nghiệm đồ họa đẹp mắt với tốc độ xử lý mượt mà trên mọi khung hình. Laptop MSI gaming có thể đáp ứng mọi yêu cầu khắc nghiệt của người dùng ở bất kỳ tựa game cấu hình cao như là FPS, MOBA,..."
+      "content": "Để duy trì mọi hoạt động và công suất làm việc từ các linh kiện một cách tốt nhất nhà Asus đã trang bị thêm hệ thống tản nhiệt trên laptop Asus Vivobook 15 OLED. Công nghệ tản nhiệt Asus IceCool hiệu quả khi sử dụng 6 ống dẫn nhiệt và bộ quạt IceBlade 87 cánh được làm bằng Polyme tinh thể lỏng cao cấp. Tất cả góp phần trong việc dẫn các khí nóng được sản sinh trong quá trình vận hành máy từ các linh kiện bên trong thân máy. Từ đó tối ưu hóa công việc một cách trơn tru và mượt mà nhất cho người dùng."
     },
     {
       "type": "image",
-      "src": "http://localhost:8889/uploads/Laptop_gaming_MSI_Katana_15_B13VEK_252VN/gearvn_laptop_gaming_msi_katana_15_b13vek_252vn___2__7be8458e52e64ffba84290248a5a8db6_grande.webp.webp",
+      "src": "http://localhost:8889/uploads/Laptop_ASUS_Vivobook_15_OLED_A1505VA_MA468W/sus_vivobook_15_oled_a1505va_ma468w_4_b26ab9a8153648f690e41fccb3706613_a509be8005404762b089609967014162_grande.webp",
       "alt": "image_4"
     },
     {
       "type": "text",
-      "content": "<strong>Màn hình Full HD sắc nét trên MSI Katana 15 B13VEK 252VN</strong>"
+      "content": "<strong>Chất lượng hình ảnh chân thực</strong>"
     },
     {
       "type": "text",
-      "content": "MSI Katana 15 có kích thước màn hình 15.6 inch Full HD, độ phân giải 1920x1080 cực sắc nét. Tốc độ xử lý nhanh chóng với độ mượt mà cao trên chiếc màn hình 144Hz làm cắt giảm hoàn toàn tình trạng giật lag và nhòe màn hình khi chơi game. Giờ đây người dùng không cần tốn nhiều thời gian đến những tiệm net chất lượng cao khi chiếc laptop gaming MSI này có thể đáp ứng đủ mọi nhu cầu sử dụng của họ tại nhà hay bất cứ đâu."
+      "content": "Asus Vivobook 15 sở hữu màn hình OLED Full HD với độ phân giải 1920 x 1080. Tỷ lệ màn hình 16:9 cùng thiết kế viền mỏng mở ra tầm nhìn thoải mái hơn trên một sản phẩm laptop mỏng nhẹ. Độ sáng 600 nits hỗ trợ hình ảnh hiển thị luôn tốt trong nhiều điều kiện ánh sáng. Vivobook 15 OLED đạt chuẩn PANTONE Validated và dải màu DCI-P3 100% mang lại độ chính xác về màu sắc cao. Trải nghiệm xem phim hay chiến những tựa game chân thực đến từng chi tiết."
     },
     {
       "type": "image",
-      "src": "http://localhost:8889/uploads/Laptop_gaming_MSI_Katana_15_B13VEK_252VN/p_gaming_msi_katana_15_b13vek_252vn_1_a336f129fc874587a476e4c7dfecabdf_0c12a98a67b34ec2882cca1f36106763_grande.webp",
+      "src": "http://localhost:8889/uploads/Laptop_ASUS_Vivobook_15_OLED_A1505VA_MA468W/177d6dd45dba017f687f0500e05_5c03347b17454d2b813fa1dcad19c813_1024x1024_6c7342a6ec3047a68e1efb6520ecc105_grande.webp",
       "alt": "image_5"
     },
     {
       "type": "text",
-      "content": "Bài viết trên đây đã điểm qua một số thông số đáng chú ý của chiếc laptop gaming MSI Katana 15 B13VEK 252VN, bạn có thể để lại bình luận bên dưới nếu có bất kỳ thắc mắc nào về sản phẩm hoặc liên hệ trực tiếp qua số hotline của chúng tôi để được tư vấn và giải đáp ngay nhé!"
+      "content": "<strong>Bàn phím và bảo mật</strong>"
+    },
+    {
+      "type": "text",
+      "content": "Đây có lẽ là sản phẩm laptop cho sinh viên hoàn hảo với thiết kế bàn phím thoải mái. Hành trình phím sâu với đầy đủ các phím để việc gõ máy trên Asus Vivobook 15 OLED thuận lợi không khác gì những dòng bàn phím cơ rời có trên thị trường. Cảm biến vân tay được tích hợp với bàn di chuột trải nghiệm mở máy nhanh hơn chỉ với 1 chạm."
+    },
+    {
+      "type": "image",
+      "src": "http://localhost:8889/uploads/Laptop_ASUS_Vivobook_15_OLED_A1505VA_MA468W/sus_vivobook_15_oled_a1505va_ma468w_3_8a55adc974de491ab6488a7cb10acbb4_5006db168fd343b194ad84db51699970_grande.webp",
+      "alt": "image_6"
     }
   ],
-  "category": "68048ae7d1d97cddae3e321c",
-  "brand": "6805e67efea56b05826cc2db",
+  "category": "680516243556be73141264bc",
+  "brand": "6805e67efea56b05826cc2d6",
   "vendor": "6805ebf6c350793d7da27a88"
 }
 
@@ -162,9 +177,97 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODAwYTE3N
   "vendor": "6805ebf6c350793d7da27a88"
 }
 
+### create KEYBOARD
+
+POST http://localhost:8889/api/v1/products
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODAwYTE3NTZhY2M0YmZiZjFmYzc3NTkiLCJlbWFpbCI6ImRhdG5ndXllbmhvdGhlQGdtYWlsLmNvbSIsImlhdCI6MTc0NTIyOTIyNywiZXhwIjoxNzQ1MzE1NjI3fQ.84w1mGGkXLRufKdd-yqxF1aUMj2MVhKnryvA19O7C4A
+
+{
+  "product_name": "Bàn phím Asus ROG Strix Scope II 96 Wireless ROG NX Snow Switch",
+  "price": 4990000,
+  "salePrice": 3690000,
+  "stock": 100,
+  "images": [
+    "http://localhost:8889/uploads/Ban_phim_Asus_ROG_Strix_Scope_II_96_Wireless_ROG_NX_Snow_Switch/arvn_ban_phim_asus_rog_strix_scope_ii_96_wireless_rog_nx_snow_switch_1_f163cb90590f4640bb0.webp",
+    "http://localhost:8889/uploads/Ban_phim_Asus_ROG_Strix_Scope_II_96_Wireless_ROG_NX_Snow_Switch/arvn_ban_phim_asus_rog_strix_scope_ii_96_wireless_rog_nx_snow_switch_1_42b4ca48ebbf461.webp",
+    "http://localhost:8889/uploads/Ban_phim_Asus_ROG_Strix_Scope_II_96_Wireless_ROG_NX_Snow_Switch/arvn_ban_phim_asus_rog_strix_scope_ii_96_wireless_rog_nx_snow_switch_2_f5e4262062d44022b0d.webp",
+    "http://localhost:8889/uploads/Ban_phim_Asus_ROG_Strix_Scope_II_96_Wireless_ROG_NX_Snow_Switch/arvn_ban_phim_asus_rog_strix_scope_ii_96_wireless_rog_nx_snow_switch_3_b1d37aab419940ed90a.webp"
+  ],
+  "rating": 4.9,
+  "tags": [
+  "Không dây",
+  "ABS",
+  "RGB"
+],
+  "bestSale": false,
+  "flashSale": false,
+    "contentBlock": [
+    {
+      "type": "text",
+      "content": "<strong>Đánh giá chi tiết bàn phím Asus ROG Strix Scope II 96 Wireless ROG NX Snow Switch</strong>"
+    },
+    {
+      "type": "text",
+      "content": "Dù bạn có am hiểu về công nghệ hay không thì bạn chắc chắn vẫn biết đến các thiết bị công nghệ của thương hiệu Asus như laptop Asus, màn hình Asus… Bên cạnh đó thì các thiết bị Gaming Gear đặc biệt là không thể nhắc đến Bàn phím Asus ROG Strix Scope II 96 Wireless ROG NX Snow Switch với nhiều công năng vượt trội, hãy cùng GEARVN tìm hiểu ngay sau đây."
+    },
+    {
+      "type": "image",
+      "src": "http://localhost:8889/uploads/Ban_phim_Asus_ROG_Strix_Scope_II_96_Wireless_ROG_NX_Snow_Switch/n_ban_phim_asus_rog_strix_scope_ii_96_wireless_rog_nx_snow_switch___1__1024x1024.jpg",
+      "alt": "image_1"
+    },
+    {
+      "type": "text",
+      "content": "<strong>Thiết kế thu gọn tối đa với bàn phím 96%</strong>"
+    },
+    {
+      "type": "text",
+      "content": "Bàn phím Asus ROG Strix Scope II 96 Wireless được xem là bàn phím 96% khi vẫn giữ lại toàn bộ các phím nhưng lại được thu gọn khoảng cách một cách tối đa, từ đó mà kích thước của chiếc bàn phím này chỉ lớn hơn bàn phím tiêu chuẩn 80% chỉ 1cm. Tuy là được thu gọn thiết kế một cách tối đa nhưng bàn phím lại mang trong mình vẻ cứng cáp và hoành tráng khi có cho mình trọng lượng"
+    },
+     {
+      "type": "image",
+      "src": "http://localhost:8889/uploads/Ban_phim_Asus_ROG_Strix_Scope_II_96_Wireless_ROG_NX_Snow_Switch/_ban_phim_asus_rog_strix_scope_ii_96_wireless_rog_nx_snow_switch___11__1024x1024.webp",
+      "alt": "image_2"
+    },
+    {
+      "type": "text",
+      "content": "<strong>Màu sắc LED đồng bộ với nhiều thiết bị</strong>"
+    },
+    {
+      "type": "text",
+      "content": "Bàn phím Asus ROG Strix Scope II 96 Wireless sở hữu cho mình bộ LED RGB trong từng phím. Cùng với đó nếu bạn sở hữu laptop Asus, chuột Asus, tai nghe Asus các gamer sẽ còn được có thể sử dụng thêm tính năng Asus Aura sync đồng bộ ánh sáng và màu sắc cho mọi thiết bị Asus. Việc sở hữu khả năng thay đổi và kết hợp màu sắc cho sản phẩm công nghệ giúp cho trải nghiệm thư giãn cũng như chơi game của các gamer được nâng cấp lên một level mới."
+    },
+    {
+      "type": "image",
+      "src": "http://localhost:8889/uploads/Ban_phim_Asus_ROG_Strix_Scope_II_96_Wireless_ROG_NX_Snow_Switch/_ban_phim_asus_rog_strix_scope_ii_96_wireless_rog_nx_snow_switch___12__1024x1024.webp",
+      "alt": "image_3"
+    },
+    {
+      "type": "text",
+      "content": "<strong>Sự kết hợp hoàn hảo cho dân gaming</strong>"
+    },
+    {
+      "type": "text",
+      "content": "Bạn sẽ có thể trải nghiệm cảm giác chơi game thuận tiện nhất khi bàn phím Asus ROG Strix Scope II 96 Wireless ROG NX Snow Switch sở hữu cho mình tính năng Anti -Ghosting giúp anh em linh hoạt các nút bấm nhằm né được những đòn đánh và phản công địch một cách tối ưu. Bên cạnh đó, anh em có thể kích hoạt thêm Marco Key vào bất kỳ phím nào trên bàn phím để có thể linh hoạt và tiết kiệm thời gian nhất trong quá trình sử dụng."
+    },
+    {
+      "type": "image",
+      "src": "http://localhost:8889/uploads/Ban_phim_Asus_ROG_Strix_Scope_II_96_Wireless_ROG_NX_Snow_Switch/n_ban_phim_asus_rog_strix_scope_ii_96_wireless_rog_nx_snow_switch___8__1024x1024.webp",
+      "alt": "image_4"
+    },
+    {
+      "type": "text",
+      "content": "Bàn phím Asus ROG Strix Scope II 96 Wireless ROG NX Snow Switch có thể là sự lựa chọn tối ưu của các anh em gamer không chỉ vì các tính năng kể trên mà chiếc bàn phím này còn hỗ trợ kết nối đa thiết bị thuận lợi cho việc sử dụng của anh em trên mọi mặt trận."
+    }
+  ],
+  "category": "680518eb3556be73141264e8",
+  "brand": "6805e67efea56b05826cc2d6",
+  "vendor": "6805ebf6c350793d7da27a88"
+}
+
 
 ### update by id
-PUT http://localhost:8889/api/v1/products/67def287122b4c409039e79e
+PUT http://localhost:8889/api/v1/products/680752bcc03069f384176bc3
 Content-Type: application/json
 
 {
