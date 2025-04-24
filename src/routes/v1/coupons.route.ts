@@ -9,7 +9,7 @@ const router = express.Router();
 //getAll
 router.get('/coupons'/* , authenticateToken */, validateSchemaYup(couponsValidation.getAllSchema), couponsController.getAll);
 //get by id
-router.get('/coupons/:id', authenticateToken, validateSchemaYup(couponsValidation.getByIdSchema), couponsController.getById);
+router.get('/coupons/:id'/* , authenticateToken */, validateSchemaYup(couponsValidation.getByIdSchema), couponsController.getById);
 // create
 router.post('/coupons', authenticateToken, validateSchemaYup(couponsValidation.createSchema), couponsController.create);
 // update by id

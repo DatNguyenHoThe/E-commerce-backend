@@ -9,7 +9,7 @@ const router = express.Router();
 //getAll
 router.get('/reviews'/* , authenticateToken */, validateSchemaYup(reviewsValidation.getAllSchema), reviewsController.getAll);
 //get by id
-router.get('/reviews/:id', authenticateToken, validateSchemaYup(reviewsValidation.getByIdSchema), reviewsController.getById);
+router.get('/reviews/:id'/* , authenticateToken */, validateSchemaYup(reviewsValidation.getByIdSchema), reviewsController.getById);
 // create
 router.post('/reviews', authenticateToken, validateSchemaYup(reviewsValidation.createSchema), reviewsController.create);
 // update by id

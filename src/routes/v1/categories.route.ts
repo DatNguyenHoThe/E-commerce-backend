@@ -13,7 +13,7 @@ router.get('/categories/root'/* , authenticateToken */, validateSchemaYup(catego
 //get ChildrenCategories
 router.get('/categories/children/:parentId'/* , authenticateToken */, validateSchemaYup(categoriesValidation.getChildrenSchema), categoriesController.getChildrenCategories);
 //get by id
-router.get('/categories/:id', authenticateToken, validateSchemaYup(categoriesValidation.getByIdSchema), categoriesController.getById);
+router.get('/categories/:id'/* , authenticateToken */, validateSchemaYup(categoriesValidation.getByIdSchema), categoriesController.getById);
 // create
 router.post('/categories', authenticateToken, validateSchemaYup(categoriesValidation.createSchema), categoriesController.create);
 // update by id

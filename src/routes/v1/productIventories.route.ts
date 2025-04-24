@@ -9,7 +9,7 @@ const router = express.Router();
 //getAll
 router.get('/productiventories'/* , authenticateToken */, validateSchemaYup(productIventoriesValidation.getAllSchema), productIventoriesController.getAll);
 //get by id
-router.get('/productiventories/:id', authenticateToken, validateSchemaYup(productIventoriesValidation.getByIdSchema), productIventoriesController.getById);
+router.get('/productiventories/:id'/* , authenticateToken */, validateSchemaYup(productIventoriesValidation.getByIdSchema), productIventoriesController.getById);
 // create
 router.post('/productiventories', authenticateToken, validateSchemaYup(productIventoriesValidation.createSchema), productIventoriesController.create);
 // update by id
