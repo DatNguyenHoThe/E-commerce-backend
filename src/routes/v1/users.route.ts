@@ -18,7 +18,7 @@ router.get('/users/:id',authenticateToken, validateSchemaYup(usersValidation.get
 
 //Create user
 //POST /api/v1/users
-router.post('/users'/* , authenticateToken */, validateSchemaYup(usersValidation.createSchema), usersController.Create);
+router.post('/users', authenticateToken, validateSchemaYup(usersValidation.createSchema), usersController.Create);
 
 //Update user
 //PUT /api/v1/users/:id

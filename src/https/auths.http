@@ -5,8 +5,8 @@ POST http://localhost:8889/api/v1/auth/login
 Content-Type: application/json
 
 {
-    "email": "datnguyenhothe@gmail.com",
-    "password": "123456"
+    "email": "datnguyen@gmail.com",
+    "password": "123456789"
 }
 
 ### get profile

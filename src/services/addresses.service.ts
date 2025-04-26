@@ -49,6 +49,15 @@ const getById = async(id: string) => {
     return address;
 }
 
+//getby userId
+const getByUserId = async(userId: string) => {
+    const address = await Address.find({user: userId});
+    if(!address) {
+        createError(404, 'address not found, please try again with other userId');
+    }
+    return address;
+}
+
 
 // Create
 const create = async(payload: any) => {
@@ -56,11 +65,10 @@ const create = async(payload: any) => {
         type: payload.type,
         fullName: payload.fullName,
         phoneNumber: payload.phoneNumber,
-        addressLine1: payload.addressLine1,
-        addressLine2: payload.addressLine2,
+        street: payload.street,
+        ward: payload.ward,
+        district: payload.district,
         city: payload.city,
-        state: payload.state,
-        postalCode: payload.postalCode,
         country: payload.country,
         isDefault: payload.isDefault,
         user: payload.user,
@@ -100,6 +108,7 @@ const deleteById = async(id: string) => {
 export default {
     getAll,
     getById,
+    getByUserId,
     create,
     updateById,
     deleteById

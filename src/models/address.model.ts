@@ -19,29 +19,24 @@ const addressSchema = new Schema<IAddress>({
         maxLength: 20,
         require: true
     },
-    addressLine1: {
+    street: {
         type: String,
         maxLength: 255,
         require: true
     },
-    addressLine2: {
+    ward: {
         type: String,
         maxLength: 255,
-        require: false
+        require: true
+    },
+    district: {
+        type: String,
+        maxLength: 255,
+        require: true
     },
     city: {
         type: String,
         maxLength: 100,
-        require: true
-    },
-    state: {
-        type: String,
-        maxLength: 100,
-        require: true
-    },
-    postalCode: {
-        type: String,
-        maxLength: 20,
         require: true
     },
     country: {

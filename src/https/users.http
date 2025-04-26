@@ -4,31 +4,31 @@ Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2Y0YzVmMDI1MTYwYjIyNGY0MTFlNjEiLCJlbWFpbCI6Im5ndXllbmhvdGhlZGF0QGdtYWlsLmNvbSIsImlhdCI6MTc0NDA5NDc0NywiZXhwIjoxNzQ0MTgxMTQ3fQ.oXb0IY9Bx2LTR9NrzWnbyrEJ4w1PMGYAlZf5EeFVuF0
 
 ### get by id
-GET http://localhost:8889/api/v1/users/67e25c33a31721c7dab94277
+GET http://localhost:8889/api/v1/users/680b58cbcd2845ba20567174
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2Y0YzVmMDI1MTYwYjIyNGY0MTFlNjEiLCJlbWFpbCI6Im5ndXllbmhvdGhlZGF0QGdtYWlsLmNvbSIsImlhdCI6MTc0NDA5NDc0NywiZXhwIjoxNzQ0MTgxMTQ3fQ.oXb0IY9Bx2LTR9NrzWnbyrEJ4w1PMGYAlZf5EeFVuF0
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODAwYTE3NTZhY2M0YmZiZjFmYzc3NTkiLCJlbWFpbCI6ImRhdG5ndXllbmhvdGhlQGdtYWlsLmNvbSIsImlhdCI6MTc0NTU3NDYyOSwiZXhwIjoxNzQ1NjYxMDI5fQ.2JmRv0djWO-ltDP-u169FZvcEpJ-8PC_F9q2i--bI5A
 
 ### create
 
-POST http://localhost:8889/api/v1/users
+POST http://localhost:8889/api/v1/users/680b58cbcd2845ba20567174
 Content-Type: application/json
-
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODAwYTE3NTZhY2M0YmZiZjFmYzc3NTkiLCJlbWFpbCI6ImRhdG5ndXllbmhvdGhlQGdtYWlsLmNvbSIsImlhdCI6MTc0NTU3NDYyOSwiZXhwIjoxNzQ1NjYxMDI5fQ.2JmRv0djWO-ltDP-u169FZvcEpJ-8PC_F9q2i--bI5A
 
 {
-    "userName": "DatNguyenHoThe",
-    "fullName": "Nguyen Ho The Dat",
-    "email": "datnguyenhothe@gmail.com",
-    "password": "123456",
-    "avatarUrl": "http://localhost:8889/uploads/users/leader_team_5.png"
+    "fullName": "",
 }
 
 ### update by id
-PUT http://localhost:8889/api/v1/users/67da7b8ca1d1c9a428f76c80
+PUT http://localhost:8889/api/v1/users/6800a1756acc4bfbf1fc7759
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2UwY2M3ZDQ4MmFjOGIwMDBmMzY3ZGYiLCJlbWFpbCI6InBodW9uZ25ndXllbnRoYW5oQGdtYWlsLmNvbSIsImlhdCI6MTc0Mjg4NzY4OSwiZXhwIjoxNzc0NDIzNjg5fQ.BeIf5IGT1UMF1c5F8GgfmTb81v4Q83RFed5XJ5nBgGw
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODAwYTE3NTZhY2M0YmZiZjFmYzc3NTkiLCJlbWFpbCI6ImRhdG5ndXllbmhvdGhlQGdtYWlsLmNvbSIsImlhdCI6MTc0NTU5NDY4MCwiZXhwIjoxNzQ
 
 {
-    "roles": "owner"
+    "fullName": "Nguyen Ho The Dat",
+    "phone": "0905111222",
+    "gender": "",
+    "email": "datnguyenhothe@gmail.com",
+    "birthDay": "2005-05-05"
 }
 
 ### delete by id

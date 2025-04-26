@@ -34,7 +34,10 @@ const createSchema = yup
       roles: yup.string().min(2).max(50).optional(),
       status: yup.string().oneOf(["active", "inactive", "banned"]).optional(),
       avatarUrl: yup.string().min(2).max(255).required(),
-      lastLogin: yup.date().optional()
+      lastLogin: yup.date().optional(),
+      gender: yup.string().optional(),
+      phone: yup.string().optional(),
+      birthDay: yup.date().optional(),
     }),
   })
   .required();// khi truyền vào object phải tồn tại
@@ -49,14 +52,17 @@ const updateByIdSchema = yup
         id: yup.string().matches(/^[0-9a-fA-F]{24}$/, {message: 'ID is non-ObjectID'}).required(),
     }),
     body: yup.object({
-      userName: yup.string().min(2).max(50).optional(),
-      fullName: yup.string().min(2).max(100).optional(),
+      userName: yup.string().max(50).optional(),
+      fullName: yup.string().max(100).optional(),
       email: yup.string().max(100).email().optional(),
       password: yup.string().min(6).max(255).optional(),
-      roles: yup.string().min(2).max(50).optional(),
+      roles: yup.string().max(50).optional(),
       status: yup.string().oneOf(["active", "inactive", "banned"]).optional(),
-      avatarUrl: yup.string().min(2).max(255).optional(),
-      lastLogin: yup.date().optional()
+      avatarUrl: yup.string().max(255).optional(),
+      lastLogin: yup.date().optional(),
+      gender: yup.string().optional(),
+      phone: yup.string().optional(),
+      birthDay: yup.date().optional(),
     })
   })
   .required();
@@ -68,14 +74,17 @@ const deleteByIdSchema = yup
       id: yup.string().matches(/^[0-9a-fA-F]{24}$/, {message: 'ID is non-ObjectID'}).required(),
   }),
   body: yup.object({
-    userName: yup.string().min(2).max(50).optional(),
-      fullName: yup.string().min(2).max(100).optional(),
+    userName: yup.string().max(50).optional(),
+      fullName: yup.string().max(100).optional(),
       email: yup.string().max(100).email().optional(),
       password: yup.string().min(6).max(255).optional(),
-      roles: yup.string().min(2).max(50).optional(),
+      roles: yup.string().max(50).optional(),
       status: yup.string().oneOf(["active", "inactive", "banned"]).optional(),
-      avatarUrl: yup.string().min(2).max(255).optional(),
-      lastLogin: yup.date().optional()
+      avatarUrl: yup.string().max(255).optional(),
+      lastLogin: yup.date().optional(),
+      gender: yup.string().optional(),
+      phone: yup.string().optional(),
+      birthDay: yup.date().optional(),
   })
 })
 .required();

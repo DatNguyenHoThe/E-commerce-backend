@@ -122,11 +122,10 @@ export interface IAddress {
     type: string,
     fullName: string,
     phoneNumber: string,
-    addressLine1: string,
-    addressLine2: string,
+    street: string,
+    ward: string,
+    district: string,
     city: string,
-    state: string,
-    postalCode: string,
     country: string,
     isDefault: boolean,
     user: object
@@ -248,4 +247,18 @@ export interface ITechNew {
     description: string,
     content: string,
     date: Date
+}
+
+export interface Iuser{
+    userName: string,
+    fullName: string,
+    email: string,
+    password: string,
+    roles: string,
+    status: string,
+    avatarUrl: string,
+    lastLogin: Date,
+    gender?: string,
+    phone?: string,
+    birthDay?: Date
 }

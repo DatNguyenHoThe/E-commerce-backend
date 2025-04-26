@@ -65,7 +65,10 @@ const create = async (payload: any) => {
         password: payload.password,
         roles: payload.roles ? payload.roles : "customer",
         status: payload.status ? payload.status : "active",
-        avatarUrl: payload.avatarUrl
+        avatarUrl: payload.avatarUrl,
+        gender: payload.gender,
+        phone: payload.phone,
+        birthDay: payload.birthDay
     });
     // lưu vào database
     await user.save();
@@ -82,9 +85,15 @@ const updateById = async(id: string, payload: any) => {
     if(emailExist) {
         throw createError(400, 'Email already exists');
     }
+    // Lọc bỏ các field rỗng ("") hoặc null/undefined
+    const cleanUpdates = Object.fromEntries(
+    Object.entries(payload).filter(
+      ([_, value]) => value !== "" && value !== null && value !== undefined
+    )
+  );
 
     //cập nhật nhân viên
-    Object.assign(user, payload); // trộn dữ liệu mới và cũ
+    Object.assign(user, cleanUpdates); // trộn dữ liệu mới và cũ
     await user.save();
     return user;
 }

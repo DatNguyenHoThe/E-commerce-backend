@@ -23,6 +23,15 @@ const getAllSchema = yup
   })
   .required();// khi truyền vào object phải tồn tại
 
+  //get by userId
+  const getByUserIdSchema = yup
+  .object({
+    params: yup.object({
+      userId: yup.string().matches(/^[0-9a-fA-F]{24}$/, {message: 'ID is non-ObjectID'}).required(),
+    }),
+  })
+  .required();// khi truyền vào object phải tồn tại
+
   //create
 const createSchema = yup
   .object({
@@ -30,11 +39,10 @@ const createSchema = yup
         type: yup.string().oneOf(["shipping", "billing"]).max(50).required(),
         fullName: yup.string().max(100).required(),
         phoneNumber: yup.string().max(20).required(),
-        addressLine1: yup.string().max(255).required(),
-        addressLine2: yup.string().max(255).optional(),
+        street: yup.string().max(255).required(),
+        ward: yup.string().max(255).required(),
+        district: yup.string().max(255).required(),
         city: yup.string().max(100).required(),
-        state: yup.string().max(100).required(),
-        postalCode: yup.string().max(20).required(),
         country: yup.string().max(20).required(),
         isDefault: yup.boolean().required(),
         user: yup.string().required()
@@ -55,11 +63,10 @@ const updateByIdSchema = yup
         type: yup.string().oneOf(["shipping", "billing"]).max(50).optional(),
         fullName: yup.string().max(100).optional(),
         phoneNumber: yup.string().max(20).optional(),
-        addressLine1: yup.string().max(255).optional(),
-        addressLine2: yup.string().max(255).optional(),
+        street: yup.string().max(255).optional(),
+        ward: yup.string().max(255).optional(),
+        district: yup.string().max(255).optional(),
         city: yup.string().max(100).optional(),
-        state: yup.string().max(100).optional(),
-        postalCode: yup.string().max(20).optional(),
         country: yup.string().max(20).optional(),
         isDefault: yup.boolean().optional(),
         user: yup.string().optional()
@@ -77,11 +84,10 @@ const deleteByIdSchema = yup
     type: yup.string().oneOf(["shipping", "billing"]).max(50).optional(),
         fullName: yup.string().max(100).optional(),
         phoneNumber: yup.string().max(20).optional(),
-        addressLine1: yup.string().max(255).optional(),
-        addressLine2: yup.string().max(255).optional(),
+        street: yup.string().max(255).optional(),
+        ward: yup.string().max(255).optional(),
+        district: yup.string().max(255).optional(),
         city: yup.string().max(100).optional(),
-        state: yup.string().max(100).optional(),
-        postalCode: yup.string().max(20).optional(),
         country: yup.string().max(20).optional(),
         isDefault: yup.boolean().optional(),
         user: yup.string().optional()
@@ -93,6 +99,7 @@ const deleteByIdSchema = yup
 export default {
     getAllSchema,
     getByIdSchema,
+    getByUserIdSchema,
     createSchema,
     updateByIdSchema,
     deleteByIdSchema

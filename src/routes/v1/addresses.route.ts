@@ -10,6 +10,8 @@ const router = express.Router();
 router.get('/addresses'/* , authenticateToken */, validateSchemaYup(addressesValidation.getAllSchema), addressesController.getAll);
 //get by id
 router.get('/addresses/:id', authenticateToken, validateSchemaYup(addressesValidation.getByIdSchema), addressesController.getById);
+//get by id
+router.get('/addresses/user/:userId', authenticateToken, validateSchemaYup(addressesValidation.getByUserIdSchema), addressesController.getByUserId);
 // create
 router.post('/addresses', authenticateToken, validateSchemaYup(addressesValidation.createSchema), addressesController.create);
 // update by id

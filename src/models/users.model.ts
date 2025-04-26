@@ -1,25 +1,24 @@
 import { Schema, model } from 'mongoose'
 import bcrypt from 'bcrypt';
+import { Iuser } from '../types/type';
 
 const saltRounds = 10;
 
-const UserSchema = new Schema({
+const UserSchema = new Schema<Iuser>({
     userName: {
         type: String,
-        minlength: 2,
         maxlength: 50,
-        require: true,
+        required: true,
     },
     fullName: {
         type: String,
-        minlength: 2,
         maxlength: 100,
-        require: true,
+        required: true,
     },
     email: {
         type: String,
         maxlength: 100,
-        require: true,
+        required: true,
         unique: true,//duy nhất
         validate: {
             validator: function (v: string) {
@@ -31,29 +30,44 @@ const UserSchema = new Schema({
     password: {
         type: String,
         maxlength: 255,
-        require: true
+        required: true
     },
     roles: {
         type: String,
         maxlength: 50,
-        require: true,
+        required: true,
         default: "customer"
     },
     status: {
         type: String,
         enum: ["active", "inactive","banned"],
-        require: true,
+        required: true,
         default: "active"
     },
     avatarUrl: {
         type: String,
         maxlength: 255,
-        require: true
+        required: true
     },
     lastLogin: {
         type: Date,
         require: false
-    }
+    },
+    gender: {
+        type: String,
+        enum: ["male", "female"],
+        required: false,
+      },
+      phone: {
+        type: String,
+        maxlength: 20,
+        required: false,
+        unique: true
+      },
+      birthDay: {
+        type: Date,
+        required: false,
+      },
 },
 {
     timestamps: true,

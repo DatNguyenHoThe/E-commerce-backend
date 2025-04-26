@@ -14,16 +14,15 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2Y0YzVmM
 
 {
     "type": "shipping",
-    "fullName": "Softech",
-    "phoneNumber": "0908888888",
-    "addressLine1": "38 Yen Bai",
-    "addressLine2": "04 Le Tan Trung",
+    "fullName": "Nguyễn Hồ Thế Đạt",
+    "phoneNumber": "0905273001",
+    "street": "20 Bầu Tràm",
+    "ward": "Hòa Sơn",
+    "district": "Hòa Vang",
     "city": "Da Nang",
-    "state": "Hai Chau",
-    "postalCode": "5000",
-    "country": "VN",
-    "isDefault": false,
-    "user": "67f4cab25268f5fb727f9bea"
+    "country": "Việt Nam",
+    "isDefault": true,
+    "user": "6800a1756acc4bfbf1fc7759"
 }
 
 ### update by id
