@@ -24,7 +24,11 @@ interface Product {
   price: number;
   stock: number;
   images: string[];
-  category: string;
+  category: {
+    _id: string;
+    category_name: string;
+    [key: string]: any;
+  };
   status: 'active' | 'inactive';
   created_at: string;
   updated_at: string;
@@ -53,7 +57,7 @@ const ProductsPage: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [saving, setSaving] = useState(false);
   const [form] = Form.useForm();
-  const [categories, setCategories] = useState<string[]>([]);
+  const [categories, setCategories] = useState<any[]>([]);
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value);
@@ -62,10 +66,15 @@ const ProductsPage: React.FC = () => {
   const handleAddProduct = () => {
     setSelectedProduct(null);
     setIsModalOpen(true);
+    form.resetFields();
   };
 
   const handleEditProduct = (product: Product) => {
     setSelectedProduct(product);
+    form.setFieldsValue({
+      ...product,
+      category: product.category?._id,
+    });
     setIsModalOpen(true);
   };
 
@@ -83,21 +92,26 @@ const ProductsPage: React.FC = () => {
     try {
       setSaving(true);
       const values = await form.validateFields();
-
+      // Xử lý images: chuyển fileList thành mảng URL string
+      values.images = (values.images || []).map((file: any) => file.url || file.response?.url).filter(Boolean);
+      console.log('Submit values:', values);
       if (selectedProduct) {
-        // Update product
-        await axios.put(`http://localhost:8889/api/v1/products/${selectedProduct._id}`, values);
+        await axios.put(`http://localhost:8889/api/v1/products/${selectedProduct._id}`, {
+          ...values,
+          category: values.category,
+        });
         message.success('Sản phẩm đã được cập nhật thành công!');
       } else {
-        // Create new product
-        await axios.post('http://localhost:8889/api/v1/products', values);
+        await axios.post('http://localhost:8889/api/v1/products', {
+          ...values,
+          category: values.category,
+        });
         message.success('Sản phẩm đã được tạo thành công!');
       }
-
-      // Refresh products list
       fetchProducts();
       setIsModalOpen(false);
-    } catch (error) {
+    } catch (error: any) {
+      console.error('Save product error:', error?.response?.data || error);
       message.error('Có lỗi xảy ra khi lưu sản phẩm!');
     } finally {
       setSaving(false);
@@ -119,9 +133,8 @@ const ProductsPage: React.FC = () => {
           search: searchTerm,
         },
       });
-
-      setProducts(response.data.products);
-      setPagination({ ...pagination, total: response.data.total });
+      setProducts(response.data.data.products);
+      setPagination({ ...pagination, total: response.data.data.total });
     } catch (error) {
       message.error('Có lỗi xảy ra khi lấy danh sách sản phẩm!');
     } finally {
@@ -129,10 +142,11 @@ const ProductsPage: React.FC = () => {
     }
   };
 
+  // Sửa fetchCategories để lấy từ endpoint /categories/root
   const fetchCategories = async () => {
     try {
-      const response = await axios.get('http://localhost:8889/api/v1/categories');
-      setCategories(response.data.categories);
+      const response = await axios.get('http://localhost:8889/api/v1/categories/root');
+      setCategories(response.data.data.categories);
     } catch (error) {
       message.error('Có lỗi xảy ra khi lấy danh mục sản phẩm!');
     }
@@ -141,6 +155,7 @@ const ProductsPage: React.FC = () => {
   useEffect(() => {
     fetchProducts();
     fetchCategories();
+    // eslint-disable-next-line
   }, [pagination.current, pagination.pageSize, searchTerm]);
 
   const columns: import('antd').TableColumnType<Product>[] = [
@@ -176,6 +191,7 @@ const ProductsPage: React.FC = () => {
       key: 'category',
       sorter: true,
       sortDirections: ['ascend', 'descend'] as const,
+      render: (category: any) => category?.category_name || '',
     },
     {
       title: 'Mô tả',
@@ -282,7 +298,10 @@ const ProductsPage: React.FC = () => {
         <Form
           form={form}
           layout="vertical"
-          initialValues={selectedProduct || undefined}
+          initialValues={selectedProduct ? {
+            ...selectedProduct,
+            category: selectedProduct.category?._id,
+          } : undefined}
         >
           <Form.Item
             name="product_name"
@@ -307,9 +326,9 @@ const ProductsPage: React.FC = () => {
           >
             <Select
               placeholder="Chọn danh mục"
-              options={categories.map((category) => ({
-                value: category,
-                label: category,
+              options={categories.map((cat) => ({
+                value: cat._id,
+                label: cat.category_name,
               }))}
             />
           </Form.Item>
@@ -337,9 +356,14 @@ const ProductsPage: React.FC = () => {
           <Form.Item
             name="status"
             label="Trạng thái"
-            valuePropName="checked"
+            rules={[{ required: true, message: 'Vui lòng chọn trạng thái!' }]}
           >
-            <Checkbox>Hoạt động</Checkbox>
+            <Select
+              options={[
+                { value: 'active', label: 'Hoạt động' },
+                { value: 'inactive', label: 'Ngừng hoạt động' },
+              ]}
+            />
           </Form.Item>
 
           <Form.Item

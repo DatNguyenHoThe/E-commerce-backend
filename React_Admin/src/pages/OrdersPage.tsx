@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Table, Button, Space, Modal, Form, Input, message, Select } from 'antd';
+import { Table, Button, Space, Modal, Form, Input, message, Select, InputNumber } from 'antd';
 import { PlusOutlined, EditOutlined, DeleteOutlined, DollarOutlined, ClockCircleOutlined, CheckOutlined, CloseOutlined } from '@ant-design/icons';
 import axios from 'axios';
 import { useAuthStore } from '../stores/useAuthStore';
@@ -42,6 +42,12 @@ interface Pagination {
   page: number;
 }
 
+interface ProductApi {
+  _id: string;
+  name: string;
+  price: number;
+}
+
 const OrdersPage: React.FC = () => {
   const navigate = useNavigate();
   const { user, tokens } = useAuthStore();
@@ -53,6 +59,8 @@ const OrdersPage: React.FC = () => {
   const [saving, setSaving] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedOrder, setSelectedOrder] = useState<Order | null>(null);
+  const [allProducts, setAllProducts] = useState<ProductApi[]>([]);
+  const [selectedProducts, setSelectedProducts] = useState<Product[]>([]);
 
   const isAdmin = user?.roles === 'admin';
 
@@ -94,17 +102,13 @@ const OrdersPage: React.FC = () => {
     }
   };
 
-  const handleAddOrder = () => {
-    setSelectedOrder(null);
-    form.resetFields();
-    setIsModalOpen(true);
-  };
-
   const handleEditOrder = (order: Order) => {
     setSelectedOrder(order);
+    fetchProducts();
+    setSelectedProducts(order.products);
     form.setFieldsValue({
       orderNumber: order.orderNumber,
-      products: order.products,
+      products: order.products.map(p => p.productId),
       totalAmount: order.totalAmount,
       shippingFee: order.shippingFee,
       tax: order.tax,
@@ -115,6 +119,17 @@ const OrdersPage: React.FC = () => {
       shippingAddress: order.shippingAddress,
     });
     setIsModalOpen(true);
+  };
+
+  const fetchProducts = async () => {
+    try {
+      if (!tokens?.accessToken) return;
+      const response = await axios.get('http://localhost:8889/api/v1/products', {
+        headers: { Authorization: `Bearer ${tokens.accessToken}` },
+        params: { limit: 1000 },
+      });
+      setAllProducts(response.data.data.products || []);
+    } catch {}
   };
 
   const handleDeleteOrder = (orderId: string) => {
@@ -159,18 +174,23 @@ const OrdersPage: React.FC = () => {
       setSaving(true);
       const values = await form.validateFields();
 
+      const products = selectedProducts.map(p => ({
+        productId: p.productId,
+        name: p.name,
+        price: p.price,
+        quantity: p.quantity,
+      }));
+      const payload = {
+        ...values,
+        products,
+        totalAmount: products.reduce((acc, p) => acc + p.price * p.quantity, 0),
+      };
+
       if (selectedOrder) {
-        await axios.put(`http://localhost:8889/api/v1/orders/${selectedOrder._id}`, values, {
+        await axios.put(`http://localhost:8889/api/v1/orders/${selectedOrder._id}`, payload, {
           headers: { Authorization: `Bearer ${tokens.accessToken}` },
         });
-
         message.success('Cập nhật đơn hàng thành công');
-      } else {
-        await axios.post('http://localhost:8889/api/v1/orders', values, {
-          headers: { Authorization: `Bearer ${tokens.accessToken}` },
-        });
-
-        message.success('Tạo mới đơn hàng thành công');
       }
 
       setIsModalOpen(false);
@@ -196,11 +216,24 @@ const OrdersPage: React.FC = () => {
       dataIndex: 'orderNumber', 
       key: 'orderNumber'
     },
+    {
+      title: 'Sản Phẩm',
+      dataIndex: 'products',
+      key: 'products',
+      render: (products: Product[]) =>
+        products && products.length
+          ? products.map(p => `${p.name} (x${p.quantity})`).join(', ')
+          : ''
+    },
     { 
       title: 'Tổng Tiền', 
       dataIndex: 'totalAmount', 
       key: 'totalAmount',
-      render: (totalAmount: number) => `<span style="color: #1890ff">${totalAmount.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })}</span>`
+      render: (totalAmount: number) => (
+        <span style={{ color: '#1890ff' }}>
+          {totalAmount.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })}
+        </span>
+      )
     },
     { 
       title: 'Phương Thức Thanh Toán', 
@@ -282,16 +315,6 @@ const OrdersPage: React.FC = () => {
 
   return (
     <div style={{ padding: '20px' }}>
-      <div style={{ marginBottom: '20px' }}>
-        <Button
-          type="primary"
-          icon={<PlusOutlined />}
-          onClick={handleAddOrder}
-        >
-          Thêm Mới Đơn Hàng
-        </Button>
-      </div>
-
       <Table
         columns={columns}
         dataSource={orders}
@@ -305,7 +328,7 @@ const OrdersPage: React.FC = () => {
       />
 
       <Modal
-        title={selectedOrder ? 'Chỉnh sửa đơn hàng' : 'Thêm mới đơn hàng'}
+        title={'Chỉnh sửa đơn hàng'}
         open={isModalOpen}
         onOk={handleModalOk}
         onCancel={() => setIsModalOpen(false)}
@@ -331,7 +354,48 @@ const OrdersPage: React.FC = () => {
               { required: true, message: 'Vui lòng thêm sản phẩm' },
             ]}
           >
-            {/* Add product selection UI here */}
+            <Select
+              mode="multiple"
+              placeholder="Chọn sản phẩm"
+              value={selectedProducts.map(p => p.productId)}
+              onChange={(productIds: string[]) => {
+                const newSelected = productIds.map(pid => {
+                  const existed = selectedProducts.find(p => p.productId === pid);
+                  const prod = allProducts.find(p => p._id === pid);
+                  return existed || (prod ? {
+                    productId: prod._id,
+                    name: prod.name,
+                    price: prod.price,
+                    quantity: 1
+                  } : null);
+                }).filter(Boolean) as Product[];
+                setSelectedProducts(newSelected);
+              }}
+              optionLabelProp="label"
+            >
+              {allProducts.map(p => (
+                <Select.Option key={p._id} value={p._id} label={p.name}>{p.name}</Select.Option>
+              ))}
+            </Select>
+            {selectedProducts.length > 0 && (
+              <div style={{ marginTop: 10 }}>
+                {selectedProducts.map((p, idx) => (
+                  <div key={p.productId} style={{ display: 'flex', alignItems: 'center', marginBottom: 8 }}>
+                    <span style={{ flex: 1 }}>{p.name}:</span>
+                    <InputNumber
+                      min={1}
+                      value={p.quantity}
+                      onChange={val => {
+                        const newArr = [...selectedProducts];
+                        newArr[idx].quantity = val || 1;
+                        setSelectedProducts(newArr);
+                      }}
+                      style={{ width: 100, marginLeft: 8 }}
+                    />
+                  </div>
+                ))}
+              </div>
+            )}
           </Form.Item>
 
           <Form.Item
@@ -342,7 +406,7 @@ const OrdersPage: React.FC = () => {
               { min: 0, message: 'Tổng tiền phải lớn hơn 0' },
             ]}
           >
-            <Input type="number" />
+            <Input value={selectedProducts.reduce((acc, p) => acc + p.price * p.quantity, 0)} readOnly style={{ color: '#1890ff' }} />
           </Form.Item>
 
           <Form.Item

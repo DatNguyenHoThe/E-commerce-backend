@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Table, Button, Space, Modal, Form, Input, message, Select } from 'antd';
+import { Table, Button, Space, Modal, Form, Input, message, Select, InputNumber } from 'antd';
 import { PlusOutlined, EditOutlined, DeleteOutlined } from '@ant-design/icons';
 import axios from 'axios';
 import { useAuthStore } from '../stores/useAuthStore';
@@ -41,12 +41,23 @@ const CartPage: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedCart, setSelectedCart] = useState<Cart | null>(null);
 
+  const [products, setProducts] = useState<any[]>([]);
+  const [selectedProductKeys, setSelectedProductKeys] = useState<string[]>([]);
+  const [selectedProducts, setSelectedProducts] = useState<any[]>([]);
+
   const isAdmin = user?.roles === 'admin';
 
   useEffect(() => {
     fetchCarts();
     fetchUsers();
+    fetchProducts();
   }, [tokens?.accessToken, pagination.page, pagination.limit]);
+
+  useEffect(() => {
+    // Tự động cập nhật tổng tiền khi sản phẩm hoặc số lượng thay đổi
+    const total = selectedProducts.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+    form.setFieldsValue({ totalAmount: total });
+  }, [selectedProducts, form]);
 
   const fetchCarts = async () => {
     try {
@@ -89,6 +100,18 @@ const CartPage: React.FC = () => {
     }
   };
 
+  const fetchProducts = async () => {
+    try {
+      if (!tokens?.accessToken) return;
+      const response = await axios.get('http://localhost:8889/api/v1/products', {
+        headers: { Authorization: `Bearer ${tokens.accessToken}` },
+      });
+      setProducts(response.data.data.products);
+    } catch (error) {
+      message.error('Lỗi khi lấy danh sách sản phẩm');
+    }
+  };
+
   const handleError = (error: any, defaultMessage: string) => {
     if (error.response?.status === 401) {
       message.error('Phiên đăng nhập hết hạn. Vui lòng đăng nhập lại');
@@ -103,6 +126,8 @@ const CartPage: React.FC = () => {
   const handleAddCart = () => {
     setSelectedCart(null);
     form.resetFields();
+    setSelectedProductKeys([]);
+    setSelectedProducts([]);
     setIsModalOpen(true);
   };
 
@@ -110,9 +135,16 @@ const CartPage: React.FC = () => {
     setSelectedCart(cart);
     form.setFieldsValue({
       user: cart.user._id,
-      items: cart.items.map(item => `${item.productId},${item.quantity},${item.name},${item.price}`).join('\n'),
       totalAmount: cart.totalAmount,
     });
+    setSelectedProductKeys(cart.items.map(item => item.productId));
+    setSelectedProducts(cart.items.map(item => ({
+      key: item.productId,
+      productId: item.productId,
+      name: item.name,
+      price: item.price,
+      quantity: item.quantity,
+    })));
     setIsModalOpen(true);
   };
 
@@ -147,6 +179,25 @@ const CartPage: React.FC = () => {
     });
   };
 
+  const handleProductSelectChange = (selectedRowKeys: React.Key[], selectedRows: any[]) => {
+    const newSelectedProducts = selectedRows.map(row => {
+      const existed = selectedProducts.find(p => p.productId === row._id);
+      return {
+        key: row._id,
+        productId: row._id,
+        name: row.product_name,
+        price: row.price,
+        quantity: existed ? existed.quantity : 1
+      };
+    });
+    setSelectedProductKeys(selectedRowKeys as string[]);
+    setSelectedProducts(newSelectedProducts);
+  };
+
+  const handleProductQuantityChange = (productId: string, quantity: number) => {
+    setSelectedProducts(prev => prev.map(p => p.productId === productId ? { ...p, quantity } : p));
+  };
+
   const handleModalOk = async () => {
     try {
       if (!tokens?.accessToken) {
@@ -158,51 +209,30 @@ const CartPage: React.FC = () => {
       setSaving(true);
       const values = await form.validateFields();
 
-      // Kiểm tra và xử lý dữ liệu items
-      const items = values.items
-        .split('\n')
-        .filter((item: string) => item.trim())
-        .map((item: string) => {
-          const parts = item.split(',');
-          if (parts.length !== 4) {
-            throw new Error('Mỗi dòng phải có 4 trường: productId,quantity,name,price');
-          }
-          
-          const [productId, quantity, name, price] = parts;
-          
-          // Validate dữ liệu
-          if (!productId.trim()) {
-            throw new Error('productId không được để trống');
-          }
-          if (!quantity.trim() || isNaN(parseInt(quantity.trim()))) {
-            throw new Error('quantity phải là số hợp lệ');
-          }
-          if (!name.trim()) {
-            throw new Error('name không được để trống');
-          }
-          if (!price.trim() || isNaN(parseFloat(price.trim()))) {
-            throw new Error('price phải là số hợp lệ');
-          }
+      if (selectedProducts.length === 0) {
+        throw new Error('Vui lòng chọn ít nhất một sản phẩm');
+      }
+      for (const p of selectedProducts) {
+        if (!p.quantity || p.quantity <= 0) {
+          throw new Error(`Số lượng sản phẩm "${p.name}" phải lớn hơn 0`);
+        }
+      }
 
-          return {
-            productId: productId.trim(),
-            quantity: parseInt(quantity.trim()),
-            name: name.trim(),
-            price: parseFloat(price.trim())
-          };
-        });
-
-      // Validate tổng tiền
+      const calculatedTotal = selectedProducts.reduce((sum, item) => sum + (item.price * item.quantity), 0);
       const totalAmount = parseFloat(values.totalAmount);
       if (isNaN(totalAmount) || totalAmount <= 0) {
         throw new Error('Tổng tiền phải là số dương');
       }
-
-      // Kiểm tra xem tổng tiền có khớp với tổng giá trị các item không
-      const calculatedTotal = items.reduce((sum, item) => sum + (item.price * item.quantity), 0);
       if (Math.abs(calculatedTotal - totalAmount) > 0.01) {
-        throw new Error('Tổng tiền không khớp với tổng giá trị các item');
+        throw new Error('Tổng tiền không khớp với tổng giá trị các sản phẩm');
       }
+
+      const items = selectedProducts.map(p => ({
+        productId: p.productId,
+        quantity: p.quantity,
+        name: p.name,
+        price: p.price
+      }));
 
       const data = {
         user: values.user,
@@ -214,13 +244,11 @@ const CartPage: React.FC = () => {
         await axios.put(`http://localhost:8889/api/v1/carts/${selectedCart._id}`, data, {
           headers: { Authorization: `Bearer ${tokens.accessToken}` },
         });
-
         message.success('Cập nhật giỏ hàng thành công');
       } else {
         await axios.post('http://localhost:8889/api/v1/carts', data, {
           headers: { Authorization: `Bearer ${tokens.accessToken}` },
         });
-
         message.success('Tạo mới giỏ hàng thành công');
       }
 
@@ -330,18 +358,40 @@ const CartPage: React.FC = () => {
             />
           </Form.Item>
 
-          <Form.Item
-            name="items"
-            label="Sản Phẩm"
-            rules={[{ required: true, message: 'Vui lòng thêm sản phẩm' }]}
-          >
-            <Input.TextArea
-              rows={4}
-              placeholder="Mỗi sản phẩm trên một dòng: productId,quantity,name,price"
-              showCount
-              maxLength={1000}
+          <div style={{ marginBottom: 16 }}>
+            <b>Chọn sản phẩm</b>
+            <Table
+              rowKey="_id"
+              dataSource={products}
+              columns={[
+                { title: 'Tên sản phẩm', dataIndex: 'product_name', key: 'name' },
+                { title: 'Giá', dataIndex: 'price', key: 'price' },
+                {
+                  title: 'Số lượng',
+                  key: 'quantity',
+                  render: (_, record) => {
+                    const selected = selectedProducts.find(p => p.productId === record._id);
+                    return selected ? (
+                      <InputNumber
+                        min={1}
+                        value={selected.quantity}
+                        onChange={val => handleProductQuantityChange(record._id, val || 1)}
+                        style={{ width: 80 }}
+                      />
+                    ) : null;
+                  },
+                },
+              ]}
+              rowSelection={{
+                type: 'checkbox',
+                selectedRowKeys: selectedProductKeys,
+                onChange: handleProductSelectChange,
+                getCheckboxProps: (record) => ({ disabled: false })
+              }}
+              pagination={false}
+              size="small"
             />
-          </Form.Item>
+          </div>
 
           <Form.Item
             name="totalAmount"
@@ -353,6 +403,7 @@ const CartPage: React.FC = () => {
               min={0}
               addonAfter="VND"
               style={{ width: '100%' }}
+              readOnly
             />
           </Form.Item>
         </Form>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Table, Button, Space, message, Input, Select, Modal, Form } from 'antd';
+import { Table, Button, Space, message, Input, Select, Modal, Form, Checkbox } from 'antd';
 import { SearchOutlined, PlusOutlined, EditOutlined, DeleteOutlined } from '@ant-design/icons';
 import axios from 'axios';
 import { useAuthStore } from '../stores/useAuthStore';
@@ -37,6 +37,7 @@ const AddressPage: React.FC = () => {
   const { user, tokens } = useAuthStore();
   const [form] = Form.useForm();
   const [addresses, setAddresses] = useState<Address[]>([]);
+  const [users, setUsers] = useState<any[]>([]);
   const [pagination, setPagination] = useState<Pagination>({ totalRecord: 0, limit: 10, page: 1 });
   const [loading, setLoading] = useState(false);
   const [saving, setSaving] = useState(false);
@@ -49,6 +50,27 @@ const AddressPage: React.FC = () => {
   });
 
   const isAdmin = user?.roles === 'admin';
+
+  const fetchUsers = async () => {
+    try {
+      if (!tokens?.accessToken) {
+        message.error('Vui lòng đăng nhập để tiếp tục');
+        return;
+      }
+      const response = await axios.get('http://localhost:8889/api/v1/users', {
+        headers: {
+          Authorization: `Bearer ${tokens.accessToken}`,
+        },
+      });
+      setUsers(response.data.data.users);
+    } catch (error: any) {
+      if (error.response?.status === 401) {
+        message.error('Phiên đăng nhập hết hạn. Vui lòng đăng nhập lại');
+      } else {
+        message.error('Lỗi khi lấy danh sách người dùng');
+      }
+    }
+  };
 
   const fetchAddresses = async (params = {}) => {
     try {
@@ -98,7 +120,7 @@ const AddressPage: React.FC = () => {
 
       const data = {
         ...values,
-        user: user?._id,
+        // user is already selected from dropdown
       };
 
       if (selectedAddress) {
@@ -181,6 +203,7 @@ const AddressPage: React.FC = () => {
     setSelectedAddress(address);
     form.setFieldsValue({
       ...address,
+      user: address.user?._id || undefined,
       isDefault: address.isDefault,
     });
     setIsModalOpen(true);
@@ -198,6 +221,10 @@ const AddressPage: React.FC = () => {
       limit: newPagination.pageSize,
     });
   };
+
+  useEffect(() => {
+    fetchUsers();
+  }, [tokens?.accessToken]);
 
   useEffect(() => {
     fetchAddresses(searchParams);
@@ -365,6 +392,19 @@ const AddressPage: React.FC = () => {
           initialValues={{ type: 'shipping', country: 'VN', isDefault: false }}
         >
           <Form.Item
+            name="user"
+            label="User"
+            rules={[{ required: true, message: 'Vui lòng chọn người dùng!' }]}
+          >
+            <Select showSearch optionFilterProp="children" placeholder="Chọn người dùng">
+              {users.map((u) => (
+                <Option key={u._id} value={u._id}>
+                  {u.fullName} ({u.userName})
+                </Option>
+              ))}
+            </Select>
+          </Form.Item>
+          <Form.Item
             name="type"
             label="Type"
             rules={[{ required: true, message: 'Vui lòng chọn loại địa chỉ!' }]}
@@ -455,7 +495,7 @@ const AddressPage: React.FC = () => {
             label="Is Default"
             valuePropName="checked"
           >
-            {/* <Checkbox>Đặt làm địa chỉ mặc định</Checkbox> */}
+            <Checkbox>Đặt làm địa chỉ mặc định</Checkbox>
           </Form.Item>
         </Form>
       </Modal>

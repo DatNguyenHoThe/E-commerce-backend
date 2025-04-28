@@ -4,6 +4,7 @@ import { PlusOutlined, EditOutlined, DeleteOutlined } from '@ant-design/icons';
 import axios from 'axios';
 import { useAuthStore } from '../stores/useAuthStore';
 import { useNavigate } from 'react-router-dom';
+import dayjs from 'dayjs';
 
 interface Coupon {
   _id: string;
@@ -91,8 +92,8 @@ const CouponPage: React.FC = () => {
       type: coupon.type,
       value: coupon.value,
       minPurchase: coupon.minPurchase,
-      startDate: coupon.startDate,
-      endDate: coupon.endDate,
+      startDate: coupon.startDate ? dayjs(coupon.startDate) : null,
+      endDate: coupon.endDate ? dayjs(coupon.endDate) : null,
       usageLimit: coupon.usageLimit,
       usageCount: coupon.usageCount,
       isActive: coupon.isActive,
@@ -141,15 +142,20 @@ const CouponPage: React.FC = () => {
 
       setSaving(true);
       const values = await form.validateFields();
+      const payload = {
+        ...values,
+        startDate: values.startDate ? values.startDate.toISOString() : undefined,
+        endDate: values.endDate ? values.endDate.toISOString() : undefined,
+      };
 
       if (selectedCoupon) {
-        await axios.put(`http://localhost:8889/api/v1/coupons/${selectedCoupon._id}`, values, {
+        await axios.put(`http://localhost:8889/api/v1/coupons/${selectedCoupon._id}`, payload, {
           headers: { Authorization: `Bearer ${tokens.accessToken}` },
         });
 
         message.success('Cập nhật coupon thành công');
       } else {
-        await axios.post('http://localhost:8889/api/v1/coupons', values, {
+        await axios.post('http://localhost:8889/api/v1/coupons', payload, {
           headers: { Authorization: `Bearer ${tokens.accessToken}` },
         });
 

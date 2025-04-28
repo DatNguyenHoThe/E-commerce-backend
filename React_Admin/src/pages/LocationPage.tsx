@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Table, Button, Space, Modal, Form, Input, message } from 'antd';
+import { Table, Button, Space, Modal, Form, Input, message, Checkbox } from 'antd';
 import { PlusOutlined, EditOutlined, DeleteOutlined } from '@ant-design/icons';
 import axios from 'axios';
 import { useAuthStore } from '../stores/useAuthStore';
@@ -336,8 +336,9 @@ const LocationPage: React.FC = () => {
           <Form.Item
             name="isActive"
             label="Trạng Thái"
+            valuePropName="checked"
           >
-            <Input type="checkbox" />
+            <Checkbox>Hoạt động</Checkbox>
           </Form.Item>
         </Form>
       </Modal>

@@ -48,6 +48,7 @@ const PaymentMethodsPage: React.FC = () => {
   const [saving, setSaving] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState<PaymentMethod | null>(null);
+  const [users, setUsers] = useState<{ _id: string; userName: string }[]>([]);
 
   const isAdmin = user?.roles === 'admin';
 
@@ -64,7 +65,7 @@ const PaymentMethodsPage: React.FC = () => {
       }
 
       setLoading(true);
-      const response = await axios.get('http://localhost:8889/api/v1/payment-methods', {
+      const response = await axios.get('http://localhost:8889/api/v1/paymentmethods', {
         headers: { Authorization: `Bearer ${tokens.accessToken}` },
         params: { page: pagination.page, limit: pagination.limit },
       });
@@ -92,6 +93,7 @@ const PaymentMethodsPage: React.FC = () => {
   const handleAddPaymentMethod = () => {
     setSelectedPaymentMethod(null);
     form.resetFields();
+    fetchUsers();
     setIsModalOpen(true);
   };
 
@@ -103,10 +105,20 @@ const PaymentMethodsPage: React.FC = () => {
       accountNumber: paymentMethod.accountNumber,
       expiryDate: paymentMethod.expiryDate,
       cardholderName: paymentMethod.cardholderName,
-      billingAddress: paymentMethod.billingAddress,
+      billingAddress: {
+        fullName: paymentMethod.billingAddress?.fullName || '',
+        addressLine1: paymentMethod.billingAddress?.addressLine1 || '',
+        addressLine2: paymentMethod.billingAddress?.addressLine2 || '',
+        city: paymentMethod.billingAddress?.city || '',
+        state: paymentMethod.billingAddress?.state || '',
+        postalCode: paymentMethod.billingAddress?.postalCode || '',
+        country: paymentMethod.billingAddress?.country || '',
+      },
       isDefault: paymentMethod.isDefault,
       metadata: paymentMethod.metadata,
+      user: paymentMethod.user?._id || '',
     });
+    fetchUsers();
     setIsModalOpen(true);
   };
 
@@ -126,7 +138,7 @@ const PaymentMethodsPage: React.FC = () => {
           }
 
           setLoading(true);
-          await axios.delete(`http://localhost:8889/api/v1/payment-methods/${paymentMethodId}`, {
+          await axios.delete(`http://localhost:8889/api/v1/paymentmethods/${paymentMethodId}`, {
             headers: { Authorization: `Bearer ${tokens.accessToken}` },
           });
 
@@ -141,6 +153,17 @@ const PaymentMethodsPage: React.FC = () => {
     });
   };
 
+  const fetchUsers = async () => {
+    try {
+      if (!tokens?.accessToken) return;
+      const res = await axios.get('http://localhost:8889/api/v1/users', {
+        headers: { Authorization: `Bearer ${tokens.accessToken}` },
+        params: { page: 1, limit: 100 },
+      });
+      setUsers(res.data.data.users);
+    } catch {}
+  };
+
   const handleModalOk = async () => {
     try {
       if (!tokens?.accessToken) {
@@ -151,15 +174,24 @@ const PaymentMethodsPage: React.FC = () => {
 
       setSaving(true);
       const values = await form.validateFields();
+      let metadata = values.metadata;
+      if (typeof metadata === 'string') {
+        try {
+          metadata = metadata ? JSON.parse(metadata) : {};
+        } catch {
+          metadata = {};
+        }
+      }
+      const payload = { ...values, metadata };
 
       if (selectedPaymentMethod) {
-        await axios.put(`http://localhost:8889/api/v1/payment-methods/${selectedPaymentMethod._id}`, values, {
+        await axios.put(`http://localhost:8889/api/v1/paymentmethods/${selectedPaymentMethod._id}`, payload, {
           headers: { Authorization: `Bearer ${tokens.accessToken}` },
         });
 
         message.success('Cập nhật phương thức thanh toán thành công');
       } else {
-        await axios.post('http://localhost:8889/api/v1/payment-methods', values, {
+        await axios.post('http://localhost:8889/api/v1/paymentmethods', payload, {
           headers: { Authorization: `Bearer ${tokens.accessToken}` },
         });
 
@@ -221,8 +253,7 @@ const PaymentMethodsPage: React.FC = () => {
       title: 'Địa Chỉ Nợ', 
       dataIndex: 'billingAddress', 
       key: 'billingAddress',
-      render: (address: any) => 
-        `${address.fullName}\n${address.addressLine1}${address.addressLine2 ? ', ' + address.addressLine2 : ''}\n${address.city}, ${address.state} ${address.postalCode}\n${address.country}`
+      render: (addr: any) => addr ? `${addr.city || ''}, ${addr.state || ''}, ${addr.postalCode || ''}, ${addr.country || ''}` : '',
     },
     { 
       title: 'Mặc Định', 
@@ -337,7 +368,7 @@ const PaymentMethodsPage: React.FC = () => {
           </Form.Item>
 
           <Form.Item
-            name="billingAddress.fullName"
+            name={["billingAddress", "fullName"]}
             label="Họ Tên"
             rules={[{ required: true, message: 'Vui lòng nhập họ tên' }]}
           >
@@ -345,7 +376,7 @@ const PaymentMethodsPage: React.FC = () => {
           </Form.Item>
 
           <Form.Item
-            name="billingAddress.addressLine1"
+            name={["billingAddress", "addressLine1"]}
             label="Địa Chỉ 1"
             rules={[{ required: true, message: 'Vui lòng nhập địa chỉ 1' }]}
           >
@@ -353,39 +384,36 @@ const PaymentMethodsPage: React.FC = () => {
           </Form.Item>
 
           <Form.Item
-            name="billingAddress.addressLine2"
+            name={["billingAddress", "addressLine2"]}
             label="Địa Chỉ 2"
           >
             <Input.TextArea rows={2} />
           </Form.Item>
 
           <Form.Item
-            name="billingAddress.city"
-            label="Thành Phố"
-            rules={[{ required: true, message: 'Vui lòng nhập thành phố' }]}
+            name={["billingAddress", "city"]}
+            label="Thành phố"
           >
             <Input />
           </Form.Item>
 
           <Form.Item
-            name="billingAddress.state"
-            label="Tỉnh/Thành"
+            name={["billingAddress", "state"]}
+            label="Tỉnh/Bang"
           >
             <Input />
           </Form.Item>
 
           <Form.Item
-            name="billingAddress.postalCode"
+            name={["billingAddress", "postalCode"]}
             label="Mã Bưu Chính"
-            rules={[{ required: true, message: 'Vui lòng nhập mã bưu chính' }]}
           >
             <Input />
           </Form.Item>
 
           <Form.Item
-            name="billingAddress.country"
+            name={["billingAddress", "country"]}
             label="Quốc Gia"
-            rules={[{ required: true, message: 'Vui lòng nhập quốc gia' }]}
           >
             <Input />
           </Form.Item>
@@ -398,10 +426,33 @@ const PaymentMethodsPage: React.FC = () => {
           </Form.Item>
 
           <Form.Item
+            name="user"
+            label="Người Sử Dụng"
+            rules={[{ required: true, message: 'Vui lòng chọn người dùng' }]}
+          >
+            <Select
+              showSearch
+              optionFilterProp="children"
+              placeholder="Chọn người dùng"
+              filterOption={(input, option) =>
+                String(option?.children).toLowerCase().includes(input.toLowerCase())
+              }
+            >
+              {users.map(u => (
+                <Select.Option key={u._id} value={u._id}>{u.userName}</Select.Option>
+              ))}
+            </Select>
+          </Form.Item>
+
+          <Form.Item
             name="metadata"
             label="Điều Kiện Khác"
           >
-            <Input.TextArea rows={4} />
+            <Select>
+              <Select.Option value={JSON.stringify({})}>Không có</Select.Option>
+              <Select.Option value={JSON.stringify({ onlyDomestic: true })}>Chỉ dùng nội địa</Select.Option>
+              <Select.Option value={JSON.stringify({ priority: 'international' })}>Ưu tiên thẻ quốc tế</Select.Option>
+            </Select>
           </Form.Item>
         </Form>
       </Modal>

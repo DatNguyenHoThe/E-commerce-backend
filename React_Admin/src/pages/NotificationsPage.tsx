@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Table, Button, Space, message } from 'antd';
+import { Table, Button, Space, message, Modal, Form, Input, Select, Checkbox } from 'antd';
 import { EyeOutlined, EyeInvisibleOutlined } from '@ant-design/icons';
 import axios from 'axios';
 import { useAuthStore } from '../stores/useAuthStore';
@@ -32,12 +32,29 @@ const NotificationsPage: React.FC = () => {
   const [notifications, setNotifications] = useState<Notification[]>([]);
   const [pagination, setPagination] = useState<Pagination>({ totalRecord: 0, limit: 10, page: 1 });
   const [loading, setLoading] = useState(false);
+  const [users, setUsers] = useState<{ _id: string; userName: string }[]>([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [form] = Form.useForm();
+  const [saving, setSaving] = useState(false);
+  const [selectedNotification, setSelectedNotification] = useState<Notification | null>(null);
 
   const isAdmin = user?.roles === 'admin';
 
   useEffect(() => {
     fetchNotifications();
+    fetchUsers();
   }, [tokens?.accessToken, pagination.page, pagination.limit]);
+
+  const fetchUsers = async () => {
+    try {
+      if (!tokens?.accessToken) return;
+      const response = await axios.get('http://localhost:8889/api/v1/users', {
+        headers: { Authorization: `Bearer ${tokens.accessToken}` },
+        params: { limit: 1000 },
+      });
+      setUsers(response.data.data.users || []);
+    } catch {}
+  };
 
   const fetchNotifications = async () => {
     try {
@@ -70,6 +87,57 @@ const NotificationsPage: React.FC = () => {
       message.error(error.response.data.message);
     } else {
       message.error(defaultMessage);
+    }
+  };
+
+  const handleAddNotification = () => {
+    setSelectedNotification(null);
+    form.resetFields();
+    setIsModalOpen(true);
+  };
+
+  const handleEditNotification = (notification: Notification) => {
+    setSelectedNotification(notification);
+    form.setFieldsValue({
+      type: notification.type,
+      title: notification.title,
+      message: notification.message,
+      user: notification.user?._id,
+      isRead: notification.isRead,
+    });
+    setIsModalOpen(true);
+  };
+
+  const handleModalOk = async () => {
+    try {
+      if (!tokens?.accessToken) {
+        message.error('Vui lòng đăng nhập để tiếp tục');
+        navigate('/login');
+        return;
+      }
+      setSaving(true);
+      const values = await form.validateFields();
+      const payload = {
+        ...values,
+        user: values.user,
+      };
+      if (selectedNotification) {
+        await axios.put(`http://localhost:8889/api/v1/notifications/${selectedNotification._id}`, payload, {
+          headers: { Authorization: `Bearer ${tokens.accessToken}` },
+        });
+        message.success('Cập nhật thông báo thành công');
+      } else {
+        await axios.post('http://localhost:8889/api/v1/notifications', payload, {
+          headers: { Authorization: `Bearer ${tokens.accessToken}` },
+        });
+        message.success('Tạo mới thông báo thành công');
+      }
+      setIsModalOpen(false);
+      fetchNotifications();
+    } catch (error: any) {
+      handleError(error, 'Lỗi khi xử lý thông báo');
+    } finally {
+      setSaving(false);
     }
   };
 
@@ -128,7 +196,8 @@ const NotificationsPage: React.FC = () => {
     { 
       title: 'Người Nhận', 
       dataIndex: ['user', 'userName'], 
-      key: 'user'
+      key: 'user',
+      render: (_: any, record: Notification) => record.user?.userName || ''
     },
     { 
       title: 'Trạng Thái', 
@@ -149,12 +218,20 @@ const NotificationsPage: React.FC = () => {
       dataIndex: 'createdAt', 
       key: 'createdAt'
     },
+    {
+      title: 'Action',
+      key: 'action',
+      render: (_: any, record: Notification) => (
+        <Button type="primary" onClick={() => handleEditNotification(record)}>Sửa</Button>
+      )
+    },
   ];
 
   return (
     <div style={{ padding: '20px' }}>
-      <div style={{ marginBottom: '20px' }}>
+      <div style={{ marginBottom: '20px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         <h2 style={{ margin: 0 }}>Danh Sách Thông Báo</h2>
+        <Button type="primary" onClick={handleAddNotification}>Thêm Mới</Button>
       </div>
 
       <Table
@@ -168,6 +245,41 @@ const NotificationsPage: React.FC = () => {
         }}
         rowKey="_id"
       />
+
+      <Modal
+        title={selectedNotification ? 'Chỉnh sửa thông báo' : 'Thêm mới thông báo'}
+        open={isModalOpen}
+        onOk={handleModalOk}
+        onCancel={() => setIsModalOpen(false)}
+        confirmLoading={saving}
+      >
+        <Form form={form} layout="vertical">
+          <Form.Item name="type" label="Loại" rules={[{ required: true, message: 'Chọn loại thông báo' }]}> 
+            <Select>
+              <Select.Option value="order">Đơn Hàng</Select.Option>
+              <Select.Option value="payment">Thanh Toán</Select.Option>
+              <Select.Option value="account">Tài Khoản</Select.Option>
+              <Select.Option value="promotion">Khuyến Mãi</Select.Option>
+            </Select>
+          </Form.Item>
+          <Form.Item name="title" label="Tiêu Đề" rules={[{ required: true, message: 'Nhập tiêu đề' }]}> 
+            <Input />
+          </Form.Item>
+          <Form.Item name="message" label="Nội Dung" rules={[{ required: true, message: 'Nhập nội dung' }]}> 
+            <Input.TextArea rows={3} />
+          </Form.Item>
+          <Form.Item name="user" label="Người Nhận" rules={[{ required: true, message: 'Chọn người nhận' }]}> 
+            <Select showSearch optionFilterProp="children" placeholder="Chọn người nhận">
+              {users.map(u => (
+                <Select.Option key={u._id} value={u._id}>{u.userName}</Select.Option>
+              ))}
+            </Select>
+          </Form.Item>
+          <Form.Item name="isRead" label="Trạng Thái" valuePropName="checked">
+            <Checkbox>Đã đọc</Checkbox>
+          </Form.Item>
+        </Form>
+      </Modal>
     </div>
   );
 };

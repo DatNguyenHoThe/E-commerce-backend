@@ -78,7 +78,7 @@ const ProductVariantsPage: React.FC = () => {
       }
 
       setLoading(true);
-      const response = await axios.get('http://localhost:8889/api/v1/product-variants', {
+      const response = await axios.get('http://localhost:8889/api/v1/productvariants', {
         headers: { Authorization: `Bearer ${tokens.accessToken}` },
         params: {
           page: pagination.page,
@@ -87,7 +87,7 @@ const ProductVariantsPage: React.FC = () => {
         },
       });
 
-      setVariants(response.data.data.variants);
+      setVariants(response.data.data.productVariants);
       setPagination(response.data.data.pagination);
     } catch (error: any) {
       handleError(error, 'Lỗi khi lấy danh sách biến đổi');
@@ -123,13 +123,19 @@ const ProductVariantsPage: React.FC = () => {
     form.setFieldsValue({
       sku: variant.sku,
       variantName: variant.variantName,
-      attributes: variant.attributes,
+      // Chuyển attributes object thành chuỗi để hiển thị trong TextArea
+      attributes: variant.attributes
+        ? Object.entries(variant.attributes)
+            .map(([key, value]) => `${key}:${value}`)
+            .join(',')
+        : '',
       price: variant.price,
       salePrice: variant.salePrice,
       stock: variant.stock,
-      images: variant.images,
+      // Chuyển images array thành chuỗi để hiển thị trong TextArea
+      images: Array.isArray(variant.images) ? variant.images.join(',') : '',
       isActive: variant.isActive,
-      product: variant.product._id,
+      product: variant.product?._id,
     });
     setIsModalOpen(true);
   };
@@ -150,7 +156,7 @@ const ProductVariantsPage: React.FC = () => {
           }
 
           setLoading(true);
-          await axios.delete(`http://localhost:8889/api/v1/product-variants/${variantId}`, {
+          await axios.delete(`http://localhost:8889/api/v1/productvariants/${variantId}`, {
             headers: { Authorization: `Bearer ${tokens.accessToken}` },
           });
 
@@ -174,16 +180,32 @@ const ProductVariantsPage: React.FC = () => {
       }
 
       setSaving(true);
-      const values = await form.validateFields();
+      let values = await form.validateFields();
+
+      // Parse attributes nếu là string -> object
+      if (typeof values.attributes === 'string') {
+        values.attributes = values.attributes
+          .split(',')
+          .map((pair: string) => pair.split(':').map((s: string) => s.trim()))
+          .reduce((obj: Record<string, string>, item: string[]) => {
+            const [key, value] = item;
+            if (key) obj[key] = value || '';
+            return obj;
+          }, {});
+      }
+      // Parse images nếu là string -> array
+      if (typeof values.images === 'string') {
+        values.images = values.images.split(',').map((url: string) => url.trim()).filter(Boolean);
+      }
 
       if (selectedVariant) {
-        await axios.put(`http://localhost:8889/api/v1/product-variants/${selectedVariant._id}`, values, {
+        await axios.put(`http://localhost:8889/api/v1/productvariants/${selectedVariant._id}`, values, {
           headers: { Authorization: `Bearer ${tokens.accessToken}` },
         });
 
         message.success('Cập nhật biến đổi thành công');
       } else {
-        await axios.post('http://localhost:8889/api/v1/product-variants', values, {
+        await axios.post('http://localhost:8889/api/v1/productvariants', values, {
           headers: { Authorization: `Bearer ${tokens.accessToken}` },
         });
 
@@ -217,7 +239,9 @@ const ProductVariantsPage: React.FC = () => {
       title: 'Sản Phẩm',
       dataIndex: 'product',
       key: 'product',
-      render: (product: any) => <span style={{ color: '#1890ff', fontWeight: 'bold' }}>{product.product_name}</span>,
+      render: (product: any) => product && product.product_name
+        ? <span style={{ color: '#1890ff', fontWeight: 'bold' }}>{product.product_name}</span>
+        : <span style={{ color: '#aaa' }}>Chưa gán sản phẩm</span>,
       sorter: (a: ProductVariant, b: ProductVariant) => a.product.product_name.localeCompare(b.product.product_name),
       sortDirections: ['ascend', 'descend'] as SortOrder[],
     },

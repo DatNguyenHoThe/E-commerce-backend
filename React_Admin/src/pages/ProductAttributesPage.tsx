@@ -63,7 +63,7 @@ const ProductAttributesPage: React.FC = () => {
         search: searchText
       };
 
-      const response = await axios.get('http://localhost:8889/api/v1/product-attributes', {
+      const response = await axios.get('http://localhost:8889/api/v1/productattributes', {
         headers: { Authorization: `Bearer ${tokens.accessToken}` },
         params,
       });

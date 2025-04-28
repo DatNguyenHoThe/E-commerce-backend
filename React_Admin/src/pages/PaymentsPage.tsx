@@ -42,6 +42,10 @@ const PaymentsPage: React.FC = () => {
   const [saving, setSaving] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedPayment, setSelectedPayment] = useState<Payment | null>(null);
+  const [users, setUsers] = useState<{ _id: string; userName: string }[]>([]);
+  const [orders, setOrders] = useState<{ _id: string; orderNumber: string }[]>([]);
+  const [customMetadata, setCustomMetadata] = useState('');
+  const [metadataMode, setMetadataMode] = useState<'select'|'custom'>('select');
 
   const isAdmin = user?.roles === 'admin';
 
@@ -83,22 +87,63 @@ const PaymentsPage: React.FC = () => {
     }
   };
 
+  const fetchUsers = async () => {
+    try {
+      if (!tokens?.accessToken) return;
+      const res = await axios.get('http://localhost:8889/api/v1/users', {
+        headers: { Authorization: `Bearer ${tokens.accessToken}` },
+        params: { page: 1, limit: 100 },
+      });
+      setUsers(res.data.data.users);
+    } catch {}
+  };
+
+  const fetchOrders = async () => {
+    try {
+      if (!tokens?.accessToken) return;
+      const res = await axios.get('http://localhost:8889/api/v1/orders', {
+        headers: { Authorization: `Bearer ${tokens.accessToken}` },
+        params: { page: 1, limit: 100 },
+      });
+      setOrders(res.data.data.orders);
+    } catch {}
+  };
+
   const handleAddPayment = () => {
     setSelectedPayment(null);
     form.resetFields();
+    setMetadataMode('select');
+    setCustomMetadata('');
+    form.setFieldsValue({ metadata: JSON.stringify({}) });
+    fetchUsers();
+    fetchOrders();
     setIsModalOpen(true);
   };
 
   const handleEditPayment = (payment: Payment) => {
     setSelectedPayment(payment);
+    let metaStr = payment.metadata ? JSON.stringify(payment.metadata) : JSON.stringify({});
+    const preset = [JSON.stringify({}), JSON.stringify({ fast: true }), JSON.stringify({ refunded: true }), JSON.stringify({ note: 'Khách VIP' })];
+    if (!preset.includes(metaStr)) {
+      setMetadataMode('custom');
+      setCustomMetadata(metaStr);
+      form.setFieldsValue({ metadata: metaStr });
+    } else {
+      setMetadataMode('select');
+      setCustomMetadata('');
+      form.setFieldsValue({ metadata: metaStr });
+    }
     form.setFieldsValue({
       amount: payment.amount,
       method: payment.method,
       status: payment.status,
       transactionId: payment.transactionId,
       gateway: payment.gateway,
-      metadata: payment.metadata,
+      user: payment.user?._id || '',
+      order: payment.order?._id || '',
     });
+    fetchUsers();
+    fetchOrders();
     setIsModalOpen(true);
   };
 
@@ -143,15 +188,24 @@ const PaymentsPage: React.FC = () => {
 
       setSaving(true);
       const values = await form.validateFields();
+      let metadata = metadataMode === 'custom' ? customMetadata : values.metadata;
+      if (typeof metadata === 'string') {
+        try {
+          metadata = metadata ? JSON.parse(metadata) : {};
+        } catch {
+          metadata = {};
+        }
+      }
+      const payload = { ...values, metadata, user: values.user, order: values.order };
 
       if (selectedPayment) {
-        await axios.put(`http://localhost:8889/api/v1/payments/${selectedPayment._id}`, values, {
+        await axios.put(`http://localhost:8889/api/v1/payments/${selectedPayment._id}`, payload, {
           headers: { Authorization: `Bearer ${tokens.accessToken}` },
         });
 
         message.success('Cập nhật thanh toán thành công');
       } else {
-        await axios.post('http://localhost:8889/api/v1/payments', values, {
+        await axios.post('http://localhost:8889/api/v1/payments', payload, {
           headers: { Authorization: `Bearer ${tokens.accessToken}` },
         });
 
@@ -337,8 +391,70 @@ const PaymentsPage: React.FC = () => {
           <Form.Item
             name="metadata"
             label="Điều Kiện Khác"
+            rules={[{ required: false }]}
           >
-            <Input.TextArea rows={4} />
+            {metadataMode === 'select' ? (
+              <Select
+                onChange={val => {
+                  if (val === '__custom__') setMetadataMode('custom');
+                  else form.setFieldsValue({ metadata: val });
+                }}
+                placeholder="Chọn điều kiện hoặc tùy chỉnh"
+                defaultValue={''}
+              >
+                <Select.Option value={JSON.stringify({})}>Không có</Select.Option>
+                <Select.Option value={JSON.stringify({ fast: true })}>Thanh toán nhanh</Select.Option>
+                <Select.Option value={JSON.stringify({ refunded: true })}>Đã hoàn trả</Select.Option>
+                <Select.Option value={JSON.stringify({ note: 'Khách VIP' })}>Ghi chú đặc biệt</Select.Option>
+                <Select.Option value="__custom__">Tùy chỉnh...</Select.Option>
+              </Select>
+            ) : (
+              <Input.TextArea
+                rows={4}
+                placeholder="Nhập JSON cho metadata"
+                value={customMetadata}
+                onChange={e => setCustomMetadata(e.target.value)}
+                onBlur={() => form.setFieldsValue({ metadata: customMetadata })}
+              />
+            )}
+          </Form.Item>
+
+          <Form.Item
+            name="user"
+            label="Người Dùng"
+            rules={[{ required: true, message: 'Vui lòng chọn người dùng' }]}
+          >
+            <Select
+              showSearch
+              optionFilterProp="children"
+              placeholder="Chọn người dùng"
+              filterOption={(input, option) =>
+                String(option?.children).toLowerCase().includes(input.toLowerCase())
+              }
+            >
+              {users.map(u => (
+                <Select.Option key={u._id} value={u._id}>{u.userName}</Select.Option>
+              ))}
+            </Select>
+          </Form.Item>
+
+          <Form.Item
+            name="order"
+            label="Đơn Hàng"
+            rules={[{ required: true, message: 'Vui lòng chọn đơn hàng' }]}
+          >
+            <Select
+              showSearch
+              optionFilterProp="children"
+              placeholder="Chọn đơn hàng"
+              filterOption={(input, option) =>
+                String(option?.children).toLowerCase().includes(input.toLowerCase())
+              }
+            >
+              {orders.map(o => (
+                <Select.Option key={o._id} value={o._id}>{o.orderNumber}</Select.Option>
+              ))}
+            </Select>
           </Form.Item>
         </Form>
       </Modal>
