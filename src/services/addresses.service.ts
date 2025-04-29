@@ -104,6 +104,36 @@ const deleteById = async(id: string) => {
     return address;
 }
 
+//update isDefault = true
+const updateAddressDefault = async (id: string) => {
+    //kiểm tra xem id có tồn tại không
+    const address = await getById(id);
+    if(!address) {
+      throw createError(404, "address not found");
+    }
+    //Bước 1: Lấy userId
+  const userId = address.user;
+
+    // Bước 2: Set tất cả địa chỉ của user đó thành isDefault: false
+    await Address.updateMany(
+      { user: userId }, 
+      { $set: { isDefault: false } }
+    );
+  
+    // Bước 3: Set địa chỉ được chọn thành isDefault: true
+    const updateAddress = await Address.findByIdAndUpdate(
+        id,
+      { $set: { isDefault: true } },
+      { new: true } // trả về bản ghi sau khi update
+    );
+  
+    if (!updateAddress) {
+      throw new Error('Address not found');
+    }
+  
+    return updateAddress;
+  }
+
 
 export default {
     getAll,
@@ -111,7 +141,8 @@ export default {
     getByUserId,
     create,
     updateById,
-    deleteById
+    deleteById,
+    updateAddressDefault
 }
 
 

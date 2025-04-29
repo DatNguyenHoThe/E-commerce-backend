@@ -39,9 +39,9 @@ export interface IProduct{
     flashSale: boolean,
     promotion: string[],
     contentBlock: object[],
-    category: object,
-    brand: object,
-    vendor: object
+    category: Types.ObjectId,
+    brand: Types.ObjectId,
+    vendor: Types.ObjectId,
 }
 
 export interface IVendor {
@@ -56,7 +56,7 @@ export interface IVendor {
     socialLinks: object,
     rating: number,
     status: string,
-    user: object
+    user: Types.ObjectId,
 }
 
 export interface IOrder{
@@ -71,7 +71,7 @@ export interface IOrder{
     shippingAddress: object,
     status: string,
     notes: string,
-    user: object
+    user: Types.ObjectId
 }
 
 export interface IReview {
@@ -80,14 +80,24 @@ export interface IReview {
     comment: string,
     images: string[],
     isVerified: boolean,
-    product: object,
-    user: object
+    product: Types.ObjectId
+    user: Types.ObjectId
+}
+
+
+export interface ICartItem {
+    _id?: Types.ObjectId,
+    productVariant: Types.ObjectId
+    quantity: number,
+    currentPrice: number,
+    currentSalePrice: number,
+    totalAmount: number
 }
 
 export interface ICart {
-    items: object[],
+    items: ICartItem[],
     totalAmount: number,
-    user: object
+    user: Types.ObjectId
 }
 
 export interface IPayment {
@@ -97,13 +107,13 @@ export interface IPayment {
     transactionId: string,
     gateway: string,
     metadata: object,
-    order: object,
-    user: object
+    order: Types.ObjectId
+    user: Types.ObjectId
 }
 
 export interface IWishlist {
-    user: object,
-    product: object
+    user: Types.ObjectId
+    product: Types.ObjectId | string
 }
 
 export interface ICoupon {
@@ -128,7 +138,7 @@ export interface IAddress {
     city: string,
     country: string,
     isDefault: boolean,
-    user: object
+    user: Types.ObjectId | string
 }
 
 export interface IShipping {
@@ -139,7 +149,7 @@ export interface IShipping {
     actualDelivery: Date,
     shippingMethod: string,
     shippingFee: number,
-    order: object
+    order: Types.ObjectId | string
 }
 
 
@@ -149,7 +159,7 @@ export interface INotification {
     message: string,
     metadata: object,
     isRead: boolean,
-    user: object
+    user: Types.ObjectId | string
 }
 
 export interface IProductVariant {
@@ -161,7 +171,7 @@ export interface IProductVariant {
     stock: number,
     images: string[],
     isActive: boolean,
-    product: object
+    product: Types.ObjectId | string
 }
 
 export interface ILocation {
@@ -180,9 +190,9 @@ export interface IProductInventory {
     reservedQuantity: number,
     lowStockThreshold: number,
     lastRestocked: Date,
-    product: object,
-    variant: object,
-    location: object,
+    product: Types.ObjectId
+    variant: Types.ObjectId
+    location: Types.ObjectId
 }
 
 export interface ISetting {
@@ -214,7 +224,7 @@ export interface IPaymentMethod {
     billingAddress: object,
     isDefault: boolean,
     metadata: object,
-    user: object
+    user: Types.ObjectId | string
 }
 
 export interface IActivityLog {
@@ -225,7 +235,7 @@ export interface IActivityLog {
     metadata: object,
     ipAddress: string,
     userAgent: string,
-    user: object
+    user: Types.ObjectId | string
 }
 
 export interface ISEO {

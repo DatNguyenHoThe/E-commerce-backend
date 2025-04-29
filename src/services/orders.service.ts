@@ -52,24 +52,30 @@ const getById = async(id: string) => {
 
 // Create
 const create = async(payload: any) => {
-    // kiểm tra xem tên của orders có tồn tại không
-    const orderExist = await Order.findOne({order_name: payload.order_name});
+    // kiểm tra xem orders có tồn tại không
+    const orderExist = await Order.findOne({orderNumber: payload.orderNumber});
     if(orderExist) {
         throw createError(404, "order already exists");
     }
+    // Lọc bỏ các field rỗng ("") hoặc null/undefined
+    const cleanData = Object.fromEntries(
+        Object.entries(payload).filter(
+          ([_, value]) => value !== "" && value !== null && value !== undefined
+        )
+    )
     const order = new Order({
-        orderNumber: payload.orderNumber,
-        products: payload.products,
-        totalAmount: payload.totalAmount ? payload.totalAmount : 0,
-        shippingFee: payload.shippingFee ? payload.shippingFee : 0,
-        tax: payload.tax ? payload.tax : 0,
-        discount: payload.discount ? payload.discount : 0,
-        paymentMethod: payload.paymentMethod,
-        paymentStatus: payload.paymentStatus,
-        shippingAddress: payload.shippingAddress,
-        status: payload.status ? payload.status : "pending",
-        notes: payload.notes,
-        user: payload.user,
+        orderNumber: cleanData.orderNumber,
+        products: cleanData.products,
+        totalAmount: cleanData.totalAmount ? cleanData.totalAmount : 0,
+        shippingFee: cleanData.shippingFee ? cleanData.shippingFee : 0,
+        tax: cleanData.tax ? cleanData.tax : 0,
+        discount: cleanData.discount ? cleanData.discount : 0,
+        paymentMethod: cleanData.paymentMethod,
+        paymentStatus: cleanData.paymentStatus ? cleanData.status : "pending",
+        shippingAddress: cleanData.shippingAddress,
+        status: cleanData.status ? cleanData.status : "pending",
+        notes: cleanData.notes,
+        user: cleanData.user,
     });
     // lưu dữ liệu
     await order.save();

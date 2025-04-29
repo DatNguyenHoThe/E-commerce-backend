@@ -30,13 +30,13 @@ const createSchema = yup
         orderNumber: yup.string().max(50).required(), // required: bắt buộc
         products: yup.array().of(yup.object()).required(),  // required: không bắt buộc
         totalAmount: yup.number().min(0).required(), // required: bắt buộc
-        shippingFee: yup.number().min(0).required(),
-        tax: yup.number().min(0).required(),
-        discount: yup.number().min(0).required(),
+        shippingFee: yup.number().min(0).default(0),
+        tax: yup.number().min(0).default(0).optional(),
+        discount: yup.number().min(0).default(0),
         paymentMethod: yup.string().oneOf(["credit_card", "paypal", "cod"]).required(),
-        paymentStatus: yup.string().oneOf(["pending", "paid", "failed"]).required(),
+        paymentStatus: yup.string().oneOf(["pending", "paid", "failed"]).default("pending"),
         shippingAddress: yup.object().required(),
-        status: yup.string().oneOf(["pending", "processing", "shipped", "delivered", "cancelled"]).required(),
+        status: yup.string().oneOf(["pending", "processing", "shipped", "delivered", "cancelled"]).default("pending"),
         notes: yup.string().max(500).optional(),
         user: yup.string().required()
     }),

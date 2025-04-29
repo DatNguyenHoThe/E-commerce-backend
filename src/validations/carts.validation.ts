@@ -23,16 +23,41 @@ const getAllSchema = yup
   })
   .required();// khi truyền vào object phải tồn tại
 
+  //get by userId
+    const getByUserIdSchema = yup
+    .object({
+      params: yup.object({
+        userId: yup.string().matches(/^[0-9a-fA-F]{24}$/, {message: 'ID is non-ObjectID'}).required(),
+      }),
+    })
+    .required();// khi truyền vào object phải tồn tại
+
   //create
 const createSchema = yup
   .object({
     body: yup.object({
         items: yup.array().of(yup.object()).required(),
-        totalAmount: yup.string().max(100).optional(), 
+        totalAmount: yup.number().min(0).optional(), 
         user: yup.string().required()
     }),
   })
   .required();// khi truyền vào object phải tồn tại
+
+  //create AddToCart
+const createAddToCartSchema = yup
+.object({
+  params: yup.object({
+    userId: yup.string().matches(/^[0-9a-fA-F]{24}$/, {message: 'ID is non-ObjectID'}).required(),
+  }),
+  body: yup.object({
+    productVariant: yup.string().required(),
+    quantity: yup.number().integer().positive().required(),
+    currentPrice: yup.number().integer().positive().required(),
+    currentSalePrice: yup.number().integer().positive().required(),
+    totalAmount: yup.number().integer().positive().required(),
+  })
+})
+.required();// khi truyền vào object phải tồn tại
 
 
 
@@ -51,6 +76,29 @@ const updateByIdSchema = yup
   })
   .required();
 
+  //update by id
+const updateByUserIdSchema = yup
+.object({
+  params: yup.object({
+      userId: yup.string().matches(/^[0-9a-fA-F]{24}$/, {message: 'ID is non-ObjectID'}).required(),
+  }),
+  body: yup.object({
+      items: yup
+      .array()
+      .of(yup.object({
+        productVariant: yup.string().optional(),
+        quantity: yup.number().integer().positive().optional(),
+        currentPrice: yup.number().integer().positive().optional(),
+        currentSalePrice: yup.number().integer().positive().optional(),
+        totalAmount: yup.number().integer().positive().optional(),
+      }))
+      .optional(),
+      totalAmount: yup.string().max(100).optional(), 
+      user: yup.string().optional()
+  })
+})
+.required();
+
   //delete by id
 const deleteByIdSchema = yup
 .object({
@@ -65,11 +113,32 @@ const deleteByIdSchema = yup
 })
 .required();
 
+ //delete by itemId
+ const deleteByItemIdSchema = yup
+ .object({
+   params: yup.object({
+       userId: yup.string().matches(/^[0-9a-fA-F]{24}$/, {message: 'ID is non-ObjectID'}).required(),
+       itemId: yup.string().matches(/^[0-9a-fA-F]{24}$/, {message: 'ID is non-ObjectID'}).required(),
+   }),
+   body: yup.object({
+    productVariant: yup.string().optional(),
+    quantity: yup.number().integer().positive().optional(),
+    currentPrice: yup.number().integer().positive().optional(),
+    currentSalePrice: yup.number().integer().positive().optional(),
+    totalAmount: yup.number().integer().positive().optional(),
+   })
+ })
+ .required();
+
 
 export default {
     getAllSchema,
     getByIdSchema,
+    getByUserIdSchema,
     createSchema,
+    createAddToCartSchema,
     updateByIdSchema,
-    deleteByIdSchema
+    updateByUserIdSchema,
+    deleteByIdSchema,
+    deleteByItemIdSchema
 };

@@ -3,28 +3,48 @@ import { ICart } from '../types/type';
 
 
 const cartSchema = new Schema<ICart>({
-    items: {
-        type: [Object],
-        require: true,
-        default: []
-    },
+    items: [
+      {
+        productVariant: {
+          type: Schema.Types.ObjectId,
+          ref: 'productVariants',
+          required: true
+        },
+        quantity: {
+          type: Number,
+          required: true
+        },
+        currentPrice: {
+          type: Number,
+          required: true
+        },
+        currentSalePrice: {
+            type: Number,
+            required: true
+          },
+        totalAmount: {
+            type: Number,
+            min: 0,
+            required: true,
+            default: 0
+          },
+      }
+    ],
     totalAmount: {
-        type: Number,
-        min: 0,
-        require: true,
-        default: 0
+      type: Number,
+      min: 0,
+      required: true,
+      default: 0
     },
-    //tham chiếu
+    
     user: {
-        type: Schema.Types.ObjectId,
-        ref: 'users',
-        require: true
+      type: Schema.Types.ObjectId,
+      ref: 'users',
+      required: true
     }
-},
-{
-    timestamps: true, // Thêm createdAt và updatedAt
+  }, {
+    timestamps: true,
     versionKey: false
-}
-)
+  });
 
 export default model('carts', cartSchema);

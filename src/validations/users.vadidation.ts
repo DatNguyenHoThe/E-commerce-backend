@@ -29,11 +29,18 @@ const createSchema = yup
     body: yup.object({
       userName: yup.string().min(2).max(50).required(), // required: bắt buộc
       fullName: yup.string().min(2).max(100).required(),
-      email: yup.string().max(100).email().required(),
+      email: yup
+      .string()
+      .max(100)
+      .matches(
+        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+        "Email address is invalid"
+      )
+      .required(),
       password: yup.string().min(6).max(255).required(),
       roles: yup.string().min(2).max(50).optional(),
       status: yup.string().oneOf(["active", "inactive", "banned"]).optional(),
-      avatarUrl: yup.string().min(2).max(255).required(),
+      avatarUrl: yup.string().optional(),
       lastLogin: yup.date().optional(),
       gender: yup.string().optional(),
       phone: yup.string().optional(),

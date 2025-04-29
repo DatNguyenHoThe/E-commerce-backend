@@ -10,12 +10,16 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODAwYTE3N
 
 ### create
 
-POST http://localhost:8889/api/v1/users/680b58cbcd2845ba20567174
+POST http://localhost:8889/api/v1/users
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODAwYTE3NTZhY2M0YmZiZjFmYzc3NTkiLCJlbWFpbCI6ImRhdG5ndXllbmhvdGhlQGdtYWlsLmNvbSIsImlhdCI6MTc0NTU3NDYyOSwiZXhwIjoxNzQ1NjYxMDI5fQ.2JmRv0djWO-ltDP-u169FZvcEpJ-8PC_F9q2i--bI5A
 
 {
-    "fullName": "",
+    "userName": "Dat",
+    "fullName": "Nguyen Ho The Dat",
+    "email": "datnguyenhothe@gmail.com",
+    "password": "123456",
+    "avatarUrl": "http://localhost:8889/uploads/users/leader_team_5.png"
 }
 
 ### update by id

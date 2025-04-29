@@ -63,6 +63,16 @@ const deleteById = async(req: Request, res: Response, next: NextFunction) => {
         next(error);
     }
 }
+//update isDefault = true
+const updateAddressDefault = async(req: Request, res: Response, next: NextFunction) => {
+    try {
+        const {id} = req.params;
+        const address = await addressesService.updateAddressDefault(id);
+        sendJsonSuccess(res, address, httpStatus.OK.statusCode, httpStatus.OK.message);
+    } catch (error) {
+        next(error);
+    }
+}
 
 export default {
     getAll,
@@ -70,5 +80,6 @@ export default {
     getByUserId,
     create,
     updateById,
-    deleteById
+    deleteById,
+    updateAddressDefault
 }

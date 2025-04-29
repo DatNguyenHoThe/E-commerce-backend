@@ -95,6 +95,27 @@ const deleteByIdSchema = yup
 })
 .required();
 
+//update isDefault = true
+const updateAddressDefault = yup
+.object({
+  params: yup.object({
+      id: yup.string().matches(/^[0-9a-fA-F]{24}$/, {message: 'ID is non-ObjectID'}).required(),
+  }),
+  body: yup.object({
+    type: yup.string().oneOf(["shipping", "billing"]).max(50).optional(),
+        fullName: yup.string().max(100).optional(),
+        phoneNumber: yup.string().max(20).optional(),
+        street: yup.string().max(255).optional(),
+        ward: yup.string().max(255).optional(),
+        district: yup.string().max(255).optional(),
+        city: yup.string().max(100).optional(),
+        country: yup.string().max(20).optional(),
+        isDefault: yup.boolean().optional(),
+        user: yup.string().optional()
+  })
+})
+.required();
+
 
 export default {
     getAllSchema,
@@ -102,5 +123,6 @@ export default {
     getByUserIdSchema,
     createSchema,
     updateByIdSchema,
-    deleteByIdSchema
+    deleteByIdSchema,
+    updateAddressDefault
 };

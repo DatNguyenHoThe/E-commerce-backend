@@ -47,7 +47,7 @@ const UserSchema = new Schema<Iuser>({
     avatarUrl: {
         type: String,
         maxlength: 255,
-        required: true
+        required: false
     },
     lastLogin: {
         type: Date,

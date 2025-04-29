@@ -11,7 +11,6 @@ Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2Y0YzVmMDI1MTYwYjIyNGY0MTFlNjEiLCJlbWFpbCI6Im5ndXllbmhvdGhlZGF0QGdtYWlsLmNvbSIsImlhdCI6MTc0NDA5NDc0NywiZXhwIjoxNzQ0MTgxMTQ3fQ.oXb0IY9Bx2LTR9NrzWnbyrEJ4w1PMGYAlZf5EeFVuF0
 
 {
-   "orderNumber": "ORD123456789",
    "products": [
     {
       "productId": "6613b0a2d5622a4f3b6d3c99",

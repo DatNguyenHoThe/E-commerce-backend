@@ -1,11 +1,14 @@
 import createError from 'http-errors';
 import User from '../models/users.model';
+import bcrypt from 'bcrypt';
 /**
  * Service :
  * - Nhận đầu vào từ controller
  * - Xử lý logic
  * - Lấy dữ liệu về cho Controller
  */
+
+
 
 const getAll = async(query: any) => {
     const { page = 1, limit = 10} = query;
@@ -91,6 +94,13 @@ const updateById = async(id: string, payload: any) => {
       ([_, value]) => value !== "" && value !== null && value !== undefined
     )
   );
+
+    // Kiểm tra nếu có thay đổi mật khẩu
+    if (payload.password) {
+        // Mã hóa lại mật khẩu mới
+        const hashedPassword = await bcrypt.hash(payload.password, 10);
+        cleanUpdates.password = hashedPassword; // Cập nhật mật khẩu đã mã hóa
+    }
 
     //cập nhật nhân viên
     Object.assign(user, cleanUpdates); // trộn dữ liệu mới và cũ
