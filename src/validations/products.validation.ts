@@ -41,6 +41,15 @@ const getAllByTypeSchema = yup
   })
   .required();// khi truyền vào object phải tồn tại
 
+  //get by slug
+  const getBySlugSchema = yup
+  .object({
+    params: yup.object({
+      slug: yup.string().required('Slug is required').matches(/^[\w-]+$/, 'Slug must be a valid string with only letters, numbers, hyphens, and underscores').required('Slug is required'),
+    }),
+  })
+  .required();
+
   //create
 const createSchema = yup
   .object({
@@ -132,6 +141,7 @@ export default {
     getAllSchema,
     getAllByTypeSchema,
     getByIdSchema,
+    getBySlugSchema,
     createSchema,
     updateByIdSchema,
     deleteByIdSchema

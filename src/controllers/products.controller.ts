@@ -33,6 +33,16 @@ const getById = async(req: Request, res: Response, next: NextFunction) => {
         next(error);
     }
 }
+// get by slug
+const getBySlug = async(req: Request, res: Response, next: NextFunction) => {
+    try {
+        const {slug} = req.params;
+    const product = await productsService.getBySlug(slug);
+    sendJsonSuccess(res, product, httpStatus.OK.statusCode, httpStatus.OK.message);
+    } catch (error) {
+        next(error);
+    }
+}
 //create
 const create = async(req: Request, res: Response, next: NextFunction) => {
     try {
@@ -68,7 +78,7 @@ const deleteById = async(req: Request, res: Response, next: NextFunction) => {
 export default {
     getAll,
     getAllByType,
-    getById,
+    getBySlug,
     create,
     updateById,
     deleteById

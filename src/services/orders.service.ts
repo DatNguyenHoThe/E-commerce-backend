@@ -49,6 +49,17 @@ const getById = async(id: string) => {
     return order;
 }
 
+//get by userId
+const getByUserId = async(userId: string) => {
+    const order = await Order
+    .find({user: userId})
+    .populate('user');
+    if(!order) {
+        createError(404, 'order not found, please try again with other userId');
+    }
+    return order;
+}
+
 
 // Create
 const create = async(payload: any) => {
@@ -75,6 +86,7 @@ const create = async(payload: any) => {
         shippingAddress: cleanData.shippingAddress,
         status: cleanData.status ? cleanData.status : "pending",
         notes: cleanData.notes,
+        orderDate: cleanData.orderDate,
         user: cleanData.user,
     });
     // lưu dữ liệu
@@ -118,6 +130,7 @@ const deleteById = async(id: string) => {
 export default {
     getAll,
     getById,
+    getByUserId,
     create,
     updateById,
     deleteById

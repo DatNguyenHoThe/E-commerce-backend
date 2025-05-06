@@ -73,6 +73,10 @@ const orderSchema = new Schema<IOrder>({
         maxlength: 500,
         require: false
     },
+    orderDate: {
+        type: Date,
+        require: true
+    },
     //tham chiếu
     user: {
         type: Schema.Types.ObjectId,

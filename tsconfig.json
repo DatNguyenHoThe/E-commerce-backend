@@ -110,7 +110,7 @@
     // "skipDefaultLibCheck": true,                      /* Skip type checking .d.ts files that are included with TypeScript. */
     "skipLibCheck": true                                 /* Skip type checking all .d.ts files. */
   },
-  "include": ["src/**/*", "server.ts", "index.d.ts"],
+  "include": ["src/**/*", "server.ts", "index.d.ts", "../font-end/libs/generateOrderNumber.helper.ts"],
   "exclude": ["node_modules", "**/*.spec.ts"]
 
 }

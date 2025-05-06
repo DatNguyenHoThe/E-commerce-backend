@@ -76,7 +76,7 @@ const updateByIdSchema = yup
   })
   .required();
 
-  //update by id
+  //update by userId
 const updateByUserIdSchema = yup
 .object({
   params: yup.object({

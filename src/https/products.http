@@ -10,139 +10,130 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODAwYTE3N
 
 POST http://localhost:8889/api/v1/products
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODAwYTE3NTZhY2M0YmZiZjFmYzc3NTkiLCJlbWFpbCI6ImRhdG5ndXllbmhvdGhlQGdtYWlsLmNvbSIsImlhdCI6MTc0NTMxNzI1NCwiZXhwIjoxNzQ1NDAzNjU0fQ.nQE0nLtLdTNL0PeUUMgQwtNvA5ADuJj4SZ9MADKh1Hc
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODBkZjk1OTgxZmU4ZGI4MmExY2Y5ZDMiLCJlbWFpbCI6Im5ndXllbmhvdGhlZGF0ODhAZ21haWwuY29tIiwiaWF0IjoxNzQ2NTE4NDIzLCJleHAiOjE3NDY2MDQ4MjN9.sk_9cfzPOs4oF2cluWGEN1aOjmYEZLwLQKx2c8aDkWo
 
 {
-  "product_name": "Laptop ASUS Vivobook 15 OLED A1505VA MA468W",
-  "description": "Asus Vivobook 15 OLED A1505VA L1114W mang lại trải nghiệm hình ảnh tốt hơn với trang bị màn hình OLED. Thiết kế mỏng nhẹ cùng cấu hình mạnh mẽ cho phép người dùng nâng cao hiệu suất khi làm việc.",
-  "price": 20990000,
-  "salePrice": 18490000,
+  "product_name": "PC GVN Intel i5-12400F/ VGA RTX 4060",
+  "description": "PC GVN Intel i5-12400F/ VGA RTX 4060 mang lại trải nghiệm hình ảnh tốt hơn với trang bị màn hình OLED. Thiết kế mỏng nhẹ cùng cấu hình mạnh mẽ cho phép người dùng nâng cao hiệu suất khi làm việc.",
+  "price": 55510000,
+  "salePrice": 52990000,
   "stock": 100,
   "images": [
-    "http://localhost:8889/uploads/Laptop_ASUS_Vivobook_15_OLED_A1505VA_MA468W/khung_laptop_23_b898f38424a44201bf2df947e637c74e_grande.webp",
-    "http://localhost:8889/uploads/Laptop_ASUS_Vivobook_15_OLED_A1505VA_MA468W/asus_vivobook_15_oled_a1505va_ma468w_d2642bc41bd84971a2970fd38c2c9185_13ba03b92bcf44188b8ad89f772aba68_grande.webp",
-    "http://localhost:8889/uploads/Laptop_ASUS_Vivobook_15_OLED_A1505VA_MA468W/0eef2c64124985082c2e5251d24_7fe5f53a7c6247f68cad7a76af233226_1024x1024_8aa5cdc5033f42b88b12f495370bf805_grande.webp",
-    "http://localhost:8889/uploads/Laptop_ASUS_Vivobook_15_OLED_A1505VA_MA468W/177d6dd45dba017f687f0500e05_5c03347b17454d2b813fa1dcad19c813_1024x1024_6c7342a6ec3047a68e1efb6520ecc105_grande.webp",
-    "http://localhost:8889/uploads/Laptop_ASUS_Vivobook_15_OLED_A1505VA_MA468W/sus_vivobook_15_oled_a1505va_ma468w_3_8a55adc974de491ab6488a7cb10acbb4_5006db168fd343b194ad84db51699970_grande.webp",
-    "http://localhost:8889/uploads/Laptop_ASUS_Vivobook_15_OLED_A1505VA_MA468W/sus_vivobook_15_oled_a1505va_ma468w_4_b26ab9a8153648f690e41fccb3706613_a509be8005404762b089609967014162_grande.webp",
-    "http://localhost:8889/uploads/Laptop_ASUS_Vivobook_15_OLED_A1505VA_MA468W/sus_vivobook_15_oled_a1505va_ma468w_1_585a938bb73d4a05b73b23347e67ba5e_78a13cb4f8034270baf86a256f5b920e_grande.png",
-    "http://localhost:8889/uploads/Laptop_ASUS_Vivobook_15_OLED_A1505VA_MA468W/sus_vivobook_15_oled_a1505va_ma468w_2_f651f04a58ef4f9fb7f33c19a540cf57_a6892af9d5594f8d830dcf52fe05562a_grande.png",
-    "http://localhost:8889/uploads/Laptop_ASUS_Vivobook_15_OLED_A1505VA_MA468W/sus_vivobook_15_oled_a1505va_ma468w_5_9cb59ab1662342398782bf089095927d_07ad841d0fe5412f8e32a97c6e50161f_grande.png"
+    "http://localhost:8889/uploads/PC_GVN_Intel_i5_12400F_VGA_RTX_4060/png_web_8_38797b9ef9b04c75ab93c467e13b2d17_grande.webp",
+    "http://localhost:8889/uploads/PC_GVN_Intel_i5_12400F_VGA_RTX_4060/png_web_7_b4622dd90d57431a87a601671e27e2e3_grande.webp",
+    "http://localhost:8889/uploads/PC_GVN_Intel_i5_12400F_VGA_RTX_4060/png_web_6_f59a35f813884a6d8361dfe35e720173_grande.webp",
+    "http://localhost:8889/uploads/PC_GVN_Intel_i5_12400F_VGA_RTX_4060/png_web_3_6537a3bcf10f4233b538520087e8dce5_grande.webp",
+    "http://localhost:8889/uploads/PC_GVN_Intel_i5_12400F_VGA_RTX_4060/png_5_cf9c2ed3e1d94cfbad60c0fe3d056275_grande.webp",
+    "http://localhost:8889/uploads/PC_GVN_Intel_i5_12400F_VGA_RTX_4060/pc_gvn_nzxt_02878_896793c380014749b538d96060bc5419_grande.webp",
+    "http://localhost:8889/uploads/PC_GVN_Intel_i5_12400F_VGA_RTX_4060/pc_gvn_nzxt_02870_d08e7888155b44fca9ae7f5cff308c41_grande.webp",
+    "http://localhost:8889/uploads/PC_GVN_Intel_i5_12400F_VGA_RTX_4060/pc_gvn_nzxt_02858_cbe30f240263472b8388b5a3803645b3_grande.webp",
+    "http://localhost:8889/uploads/PC_GVN_Intel_i5_12400F_VGA_RTX_4060/pc_gvn_nzxt_02841_85418cbeec6b44788f7fc043d43ec716_grande.webp"
   ],
   "attributes": [
-  { "name": "CPU", "value": "Intel Core i5-13500H (2.6GHz ~ 4.7GHz, 12 nhân, 16 luồng, 18MB Cache)", "time": "24 Tháng" },
-  { "name": "RAM", "value": "16GB (8GB Onboard + 8GB Sodimm) DDR4 3200MHz", "time": "24 Tháng" },
-  { "name": "Ổ cứng", "value": "512GB M.2 NVMe PCIe 3.0 SSD", "time": "24 Tháng" },
-  { "name": "Card đồ họa", "value": "Intel Iris Xe Graphics (dual channel)", "time": "24 Tháng" },
-  { "name": "Màn hình", "value": "15.6 inch 2.8K OLED (2880 x 1620), 120Hz, 0.2ms, 600nits, 100% DCI-P3, HDR True Black 600", "time": "24 Tháng" },
-  { "name": "Cổng giao tiếp", "value": "1x USB 2.0 Type-A, 2x USB 3.2 Gen 1 Type-A, 1x USB 3.2 Gen 1 Type-C (PD), 1x HDMI 1.4, 1x Audio Jack, 1x DC-in", "time": "24 Tháng" },
-  { "name": "Bàn phím", "value": "Chiclet có phím số", "time": "24 Tháng" },
-  { "name": "Bảo mật", "value": "Cảm biến vân tay", "time": "24 Tháng" },
-  { "name": "Âm thanh", "value": "SonicMaster Audio", "time": "24 Tháng" },
-  { "name": "Kết nối không dây", "value": "Wi-Fi 6E, Bluetooth 5.3", "time": "24 Tháng" },
-  { "name": "Webcam", "value": "720p HD có màn che bảo mật", "time": "24 Tháng" },
-  { "name": "Hệ điều hành", "value": "Windows 11 Home", "time": "24 Tháng" },
-  { "name": "Pin", "value": "50WHrs, 3-cell Li-ion", "time": "24 Tháng" },
-  { "name": "Trọng lượng", "value": "1.7 kg", "time": "24 Tháng" },
-  { "name": "Màu sắc", "value": "Cool Silver", "time": "24 Tháng" },
-  { "name": "Chất liệu", "value": "Nhựa (Top, Bottom, LCD cover)", "time": "24 Tháng" },
-  { "name": "Kích thước", "value": "35.68 x 22.76 x 1.99 cm", "time": "24 Tháng" }
+  { "name": "Mainboard", "value": "GIGABYTE B760M AORUS ELITE AX DDR4", "time": "36 Tháng" },
+  { "name": "CPU", "value": "Intel Core i5-12400F (2.5GHz Turbo 4.4GHz, 6 nhân, 12 luồng, 18MB, LGA 1700)", "time": "36 Tháng" },
+  { "name": "RAM", "value": "T-Group T-Force Delta RGB Black 16GB (2x8GB) DDR4 3600MHz", "time": "36 Tháng" },
+  { "name": "Card đồ họa", "value": "GIGABYTE GeForce RTX 4060 WINDFORCE OC 8G", "time": "36 Tháng" },
+  { "name": "HDD", "value": "Tùy chọn nâng cấp", "time": "24 Tháng" },
+  { "name": "SSD", "value": "Kingston NV3 500GB M.2 PCIe NVMe Gen4", "time": "36 Tháng" },
+  { "name": "Nguồn (PSU)", "value": "NZXT C750W - 80 Plus Bronze - Non Modular (750W)", "time": "36 Tháng" },
+  { "name": "Vỏ case", "value": "NZXT H5 Flow Black (CC-H52FB-01) 2024", "time": "12 Tháng" }
 ],
-  "rating": 4.5,
+  "rating": 5.0,
   "tags": [
-  "i5-13500H",
-  "Onboard",
-  "16 GB",
-  "512 GB",
-  "15.6 inch 2.8K OLED"
+  "i5 12400F",
+  "RTX 4060",
+  "B760M",
+  "16GB",
+  "500GB"
 ],
-  "bestSale": false,
-  "flashSale": true,
+  "bestSale": true,
+  "flashSale": false,
   "promotion": [
     "Giảm ngay 100.000đ khi mua Microsoft Office kèm Laptop."
   ],
   "contentBlock": [
     {
       "type": "text",
-      "content": "<strong>Đánh giá chi tiết laptop Asus Vivobook 15 OLED A1505VA L1114W</strong>"
+      "content": "<strong>Chi tiết về PC GVN Intel i9-14900KF/ VGA RTX 4060 Ti</strong>"
     },
     {
       "type": "text",
-      "content": "Asus Vivobook 15 OLED A1505VA L1114W mang lại trải nghiệm hình ảnh tốt hơn với trang bị màn hình OLED. Thiết kế mỏng nhẹ cùng cấu hình mạnh mẽ cho phép người dùng nâng cao hiệu suất khi làm việc."
+      "content": "CPU Intel Core i9 14900K, nhân tố khuất đảo thị trường PC Gaming khi sở hữu mức giá rẻ cùng hiệu năng xuất sắc. Với 24 nhân 32 luồng, xung nhịp 4.4GHz và turbo boost lên 6.0GHz, quả là sự lựa chọn tuyệt vời từ khả năng chơi game cho tới stream game của thế hệ vi xử lý Intel Gen 14, chính là sự nâng cấp vượt bậc so với người tiền nhiệm i9-13900K."
     },
     {
       "type": "image",
-      "src": "http://localhost:8889/uploads/Laptop_ASUS_Vivobook_15_OLED_A1505VA_MA468W/khung_laptop_23_b898f38424a44201bf2df947e637c74e_grande.webp",
+      "src": "http://localhost:8889/uploads/PC_GVN_Intel_i9-14900K_VGA_RTX_4060_Ti/icue_f904604eb7204e38b359dbabc7a55971_grande.webp",
       "alt": "image_1"
     },
      {
       "type": "text",
-      "content": "<strong>Thiết kế sang trọng, độc đáo</strong>"
+      "content": "<strong>Mainboard GIGABYTE Z790 AORUS MASTER DDR5</strong>"
     },
     {
       "type": "text",
-      "content": "Laptop Asus Vivobook 15 OLED sở hữu một màu đen sang trọng với thiết kế vuông vắn đầy tinh tế. Bản lề được thiết kế tự tạo một góc nghiêng vừa phải khi mở nắp máy tính lên. Trọng lượng nhẹ khoảng 1.7kg với bề dày máy tính là 1.99cm tạo điều kiện hơn cho người dùng bỏ vào balo và mang vác đi bất cứ đâu."
+      "content": "GIGABYTE Z790 AORUS MASTER DDR5 là một trong những dòng mainboard được chắt lọc các yếu tố thiết yếu của nền tảng Intel mới nhất và kết hợp chúng để tạo thành một sản phẩm hoàn hảo trong phân khúc tầm trung. Được hoàn thiện với những thành phần tốt nhất, chiếc bo mạch chủ cung cấp đầy đủ những kết nối cơ bản. Cùng với đó là những công nghệ tiên tiến từ tản nhiệt đến khả năng khai thác hiệu năng. Sở hữu chipset Z790, GIGABYTE Z790 AORUS MASTER DDR5 sẽ mang đến cho bạn những khả năng tương thích đến tuyệt vời trên những linh kiện máy tính tiên tiến."
     },
     {
       "type": "image",
-      "src": "http://localhost:8889/uploads/Laptop_ASUS_Vivobook_15_OLED_A1505VA_MA468W/sus_vivobook_15_oled_a1505va_ma468w_1_585a938bb73d4a05b73b23347e67ba5e_78a13cb4f8034270baf86a256f5b920e_grande.png",
+      "src": "http://localhost:8889/uploads/PC_GVN_Intel_i9-14900K_VGA_RTX_4060_Ti/post_01_ef5ece0b7155443b95c288e9e15b659b_grande.webp",
       "alt": "image_2"
     },
     {
       "type": "text",
-      "content": "<strong>Cấu hình vượt trội</strong>"
+      "content": "<strong>VGA GIGABYTE GeForce RTX 4060 Ti GAMING OC 8G</strong>"
     },
     {
       "type": "text",
-      "content": "Sử dụng CPU Intel core i5-13500H thế hệ 13 mạnh mẽ cho phép Asus OLED Vivobook 15 OLED giải quyết mọi tác vụ văn phòng cơ bản đến nâng cao. Việc làm đồ họa cơ bản trên máy cũng được hỗ trợ với VGA tích hợp Intel® Iris Xe Graphics. 16GB RAM DDR4 xử lý đa nhiệm nhanh chóng cho những thao tác mượt mà. Bộ lưu trữ 512GB thỏa sức lưu trữ các dữ liệu quan trọng mà người dùng cần."
+      "content": "GIGABYTE GeForce RTX 4060 Ti GAMING OC 8G có được vẻ ngoài gaming trước đó. Khoác lên màu đen mạnh mẽ cùng các góc cạnh được hoàn thiện một cách bắt mắt, cái tên từ Giga sẽ làm nổi bật chiếc case nói riêng và góc gaming nói chung."
     },
     {
       "type": "image",
-      "src": "http://localhost:8889/uploads/Laptop_ASUS_Vivobook_15_OLED_A1505VA_MA468W/0eef2c64124985082c2e5251d24_7fe5f53a7c6247f68cad7a76af233226_1024x1024_8aa5cdc5033f42b88b12f495370bf805_grande.webp",
+      "src": "http://localhost:8889/uploads/PC_GVN_Intel_i9-14900K_VGA_RTX_4060_Ti/post_04_44e03afe999a4110ada057ba2781a5fb_grande.webp",
       "alt": "image_3"
     },
     {
       "type": "text",
-      "content": "<strong>Hệ thống tản nhiệt hiệu quả trên Asus Vivobook 15 OLED A1505VA L1114W</strong>"
+      "content": "<strong>RAM Corsair Vengeance RGB 32GB (2x16GB) 5600 DDR5</strong>"
     },
     {
       "type": "text",
-      "content": "Để duy trì mọi hoạt động và công suất làm việc từ các linh kiện một cách tốt nhất nhà Asus đã trang bị thêm hệ thống tản nhiệt trên laptop Asus Vivobook 15 OLED. Công nghệ tản nhiệt Asus IceCool hiệu quả khi sử dụng 6 ống dẫn nhiệt và bộ quạt IceBlade 87 cánh được làm bằng Polyme tinh thể lỏng cao cấp. Tất cả góp phần trong việc dẫn các khí nóng được sản sinh trong quá trình vận hành máy từ các linh kiện bên trong thân máy. Từ đó tối ưu hóa công việc một cách trơn tru và mượt mà nhất cho người dùng."
+      "content": "RAM Corsair Vengeance RGB 32GB (2x16GB) 5600 DDR5 khoác lên mình giáp tản nhiệt nổi bật với màu bạc sang trọng cùng dải đèn LED RGB đầy đủ màu sắc rực rỡ chiếu sáng kết hợp với hiệu ứng rainbow khi build PC. Các vùng đèn sáng trên RAM có thể phát sáng với góc siêu rộng lên đến 120 độ tạo nên trải nghiệm thị giác tuyệt vời, tô điểm thêm cho bữa tiệc ánh sáng cho PC GVN Intel i9-14900KF/ VGA RTX 4060 Ti."
     },
     {
       "type": "image",
-      "src": "http://localhost:8889/uploads/Laptop_ASUS_Vivobook_15_OLED_A1505VA_MA468W/sus_vivobook_15_oled_a1505va_ma468w_4_b26ab9a8153648f690e41fccb3706613_a509be8005404762b089609967014162_grande.webp",
+      "src": "http://localhost:8889/uploads/PC_GVN_Intel_i9-14900K_VGA_RTX_4060_Ti/post_05_592bc5d85b3f4d2296fbbdc5946fdcfc_grande.webp",
       "alt": "image_4"
     },
     {
       "type": "text",
-      "content": "<strong>Chất lượng hình ảnh chân thực</strong>"
+      "content": "<strong>SSD WD Black SN770 500G M.2 NVMe PCIe Gen4</strong>"
     },
     {
       "type": "text",
-      "content": "Asus Vivobook 15 sở hữu màn hình OLED Full HD với độ phân giải 1920 x 1080. Tỷ lệ màn hình 16:9 cùng thiết kế viền mỏng mở ra tầm nhìn thoải mái hơn trên một sản phẩm laptop mỏng nhẹ. Độ sáng 600 nits hỗ trợ hình ảnh hiển thị luôn tốt trong nhiều điều kiện ánh sáng. Vivobook 15 OLED đạt chuẩn PANTONE Validated và dải màu DCI-P3 100% mang lại độ chính xác về màu sắc cao. Trải nghiệm xem phim hay chiến những tựa game chân thực đến từng chi tiết."
+      "content": "Nhằm tối ưu khả năng lưu và làm việc trên máy tính để bàn PC GVN Intel i9-14900KF/ VGA RTX 4060 Ti, GEARVN đã trang bị thêm cho bộ PC này bộ nhớ SSD M.2 tốc độ cao với dung lượng 500G M.2 NVMe PCIe Gen4 mang đến tốc độ khởi động máy và ứng dụng chỉ trong vài giây cho trải nghiệm thú vị hơn rất nhiều. Trang bị tốc độ đọc/ghi lên đến 5000/4000 MB/s, WD mang lại khả năng truyền tải dữ liệu nhanh chóng giúp đẩy nhanh hiệu quả công việc. Cùng với đó, SSD WD giúp cho hệ thống khởi động Windows nhanh với chuẩn SSD tiên tiến này."
     },
     {
       "type": "image",
-      "src": "http://localhost:8889/uploads/Laptop_ASUS_Vivobook_15_OLED_A1505VA_MA468W/177d6dd45dba017f687f0500e05_5c03347b17454d2b813fa1dcad19c813_1024x1024_6c7342a6ec3047a68e1efb6520ecc105_grande.webp",
+      "src": "http://localhost:8889/uploads/PC_GVN_Intel_i9-14900K_VGA_RTX_4060_Ti/post_15_56f3e720564e4d3a9159497d7eebf71b_grande.webp",
       "alt": "image_5"
     },
     {
       "type": "text",
-      "content": "<strong>Bàn phím và bảo mật</strong>"
+      "content": "<strong>Nguồn máy tính Corsair RM850e ATX 3.0 - 80 Plus Gold - Full Modular (850W)</strong>"
     },
     {
       "type": "text",
-      "content": "Đây có lẽ là sản phẩm laptop cho sinh viên hoàn hảo với thiết kế bàn phím thoải mái. Hành trình phím sâu với đầy đủ các phím để việc gõ máy trên Asus Vivobook 15 OLED thuận lợi không khác gì những dòng bàn phím cơ rời có trên thị trường. Cảm biến vân tay được tích hợp với bàn di chuột trải nghiệm mở máy nhanh hơn chỉ với 1 chạm."
+      "content": "Chứng nhận 80 Plus Gold đảm bảo hiệu suất hoạt động tốt hơn, ít lãng phí điện năng, tối ưu nhiệt và tiếng ồn của quạt, là tất cả những gì Corsair RM850e ATX 3.0 - 80 Plus Gold - Full Modular (850W) sẽ mang lại cho bạn. Đóng vai trò là nguồn năng lượng cho PC GVN Intel i9-14900KF/ VGA RTX 4060 Ti, Corsair RM850e ATX 3.0 - 80 Plus Gold - Full Modular (850W) cung cấp giải pháp tốt nhất cho việc xây dựng hệ thống PC. Cáp bện lưới làm giảm sự lộn xộn và cải thiện luồng không khí trong case. Tất cả các tụ điện là tụ điện chất lượng cao, để tạo ra hiệu suất hiệu quả và đảm bảo độ tin cậy lâu hơn. Đường Single rail + 12V cung cấp năng lượng tốt nhất, ổn định và tương thích cho phần cứng."
     },
     {
       "type": "image",
-      "src": "http://localhost:8889/uploads/Laptop_ASUS_Vivobook_15_OLED_A1505VA_MA468W/sus_vivobook_15_oled_a1505va_ma468w_3_8a55adc974de491ab6488a7cb10acbb4_5006db168fd343b194ad84db51699970_grande.webp",
+      "src": "http://localhost:8889/uploads/PC_GVN_Intel_i9-14900K_VGA_RTX_4060_Ti/post_20_68ace760641d4499b26fd0f471009a2e_grande.webp",
       "alt": "image_6"
     }
   ],
-  "category": "680516243556be73141264bc",
-  "brand": "6805e67efea56b05826cc2d6",
+  "category": "6805167c3556be73141264c0",
+  "brand": "6805e67ffea56b05826cc2e7",
   "vendor": "6805ebf6c350793d7da27a88"
 }
 

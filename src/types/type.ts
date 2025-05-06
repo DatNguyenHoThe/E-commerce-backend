@@ -71,6 +71,7 @@ export interface IOrder{
     shippingAddress: object,
     status: string,
     notes: string,
+    orderDate: Date,
     user: Types.ObjectId
 }
 

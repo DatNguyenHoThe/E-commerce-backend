@@ -23,6 +23,15 @@ const getAllSchema = yup
   })
   .required();// khi truyền vào object phải tồn tại
 
+  //get by id
+  const getByUserIdSchema = yup
+  .object({
+    params: yup.object({
+      userId: yup.string().matches(/^[0-9a-fA-F]{24}$/, {message: 'ID is non-ObjectID'}).required(),
+    }),
+  })
+  .required();// khi truyền vào object phải tồn tại
+
   //create
 const createSchema = yup
   .object({
@@ -38,6 +47,7 @@ const createSchema = yup
         shippingAddress: yup.object().required(),
         status: yup.string().oneOf(["pending", "processing", "shipped", "delivered", "cancelled"]).default("pending"),
         notes: yup.string().max(500).optional(),
+        orderDate: yup.date().optional(),
         user: yup.string().required()
     }),
   })
@@ -64,6 +74,7 @@ const updateByIdSchema = yup
         shippingAddress: yup.object().optional(),
         status: yup.string().oneOf(["pending", "processing", "shipped", "delivered", "cancelled"]).optional(),
         notes: yup.string().max(500).optional(),
+        orderDate: yup.date().optional(),
         user: yup.string().optional()
     })
   })
@@ -87,6 +98,7 @@ const deleteByIdSchema = yup
         shippingAddress: yup.object().optional(),
         status: yup.string().oneOf(["pending", "processing", "shipped", "delivered", "cancelled"]).optional(),
         notes: yup.string().max(500).optional(),
+        orderDate: yup.date().optional(),
         user: yup.string().optional()
   })
 })
@@ -96,6 +108,7 @@ const deleteByIdSchema = yup
 export default {
     getAllSchema,
     getByIdSchema,
+    getByUserIdSchema,
     createSchema,
     updateByIdSchema,
     deleteByIdSchema

@@ -130,6 +130,15 @@ const getById = async(id: string) => {
     return product;
 }
 
+//get by slug
+const getBySlug = async(slug: string) => {
+    const product = await Product.findOne({slug});
+    if(!product) {
+        createError(404, 'product not found, please try again with other id');
+    }
+    return product;
+}
+
 
 // Create
 const create = async(payload: any) => {
@@ -205,6 +214,7 @@ export default {
     getAll,
     getAllByType,
     getById,
+    getBySlug,
     create,
     updateById,
     deleteById

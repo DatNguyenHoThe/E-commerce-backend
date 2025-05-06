@@ -11,7 +11,9 @@ router.get('/products'/* , authenticateToken */, validateSchemaYup(productsValid
 //getAllByType
 router.get('/collections/:slug'/* , authenticateToken */, validateSchemaYup(productsValidation.getAllByTypeSchema), productsController.getAllByType);
 //get by id
-router.get('/products/:id'/* , authenticateToken */, validateSchemaYup(productsValidation.getByIdSchema), productsController.getById);
+//router.get('/products/:id'/* , authenticateToken */, validateSchemaYup(productsValidation.getByIdSchema), productsController.getById);
+//get by slug
+router.get('/products/:slug'/* , authenticateToken */, validateSchemaYup(productsValidation.getBySlugSchema), productsController.getBySlug);
 // create
 router.post('/products', authenticateToken, validateSchemaYup(productsValidation.createSchema), productsController.create);
 // update by id
