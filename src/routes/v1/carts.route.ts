@@ -18,10 +18,12 @@ router.post('/carts', authenticateToken, validateSchemaYup(cartsValidation.creat
 router.post('/carts/user/:userId', authenticateToken, validateSchemaYup(cartsValidation.createAddToCartSchema), cartsController.createAddToCart);
 // update by id
 router.put('/carts/:id', authenticateToken, validateSchemaYup(cartsValidation.updateByIdSchema), cartsController.updateById);
-// update by id
+// update by userId
 router.put('/carts/user/:userId', authenticateToken, validateSchemaYup(cartsValidation.updateByUserIdSchema), cartsController.updateByUserId);
 //delete by id
 router.delete('/carts/:id', authenticateToken, validateSchemaYup(cartsValidation.deleteByIdSchema), cartsController.deleteById);
+//delete by userId
+router.delete('/carts/user/:userId', authenticateToken, validateSchemaYup(cartsValidation.deleteByUserIdSchema), cartsController.deleteByUserId);
 //delete by itemId
 router.delete('/carts/user/:userId/item/:itemId', authenticateToken, validateSchemaYup(cartsValidation.deleteByItemIdSchema), cartsController.deleteByItemId);
 

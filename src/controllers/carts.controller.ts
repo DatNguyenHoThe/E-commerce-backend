@@ -86,6 +86,17 @@ const deleteById = async(req: Request, res: Response, next: NextFunction) => {
     }
 }
 
+// delete by userId
+const deleteByUserId = async(req: Request, res: Response, next: NextFunction) => {
+    try {
+        const {userId} = req.params;
+        const cart = await cartsService.deleteByUserId(userId);
+        sendJsonSuccess(res, cart, httpStatus.OK.statusCode, httpStatus.OK.message);
+    } catch (error) {
+        next(error);
+    }
+}
+
 // delete by itemId
 const deleteByItemId = async(req: Request, res: Response, next: NextFunction) => {
     try {
@@ -106,5 +117,6 @@ export default {
     updateById,
     updateByUserId,
     deleteById,
+    deleteByUserId,
     deleteByItemId
 }

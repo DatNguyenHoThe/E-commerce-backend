@@ -5,7 +5,7 @@ import { Types } from "mongoose"
 
 
 type TCartItemPayload = {
-    productVariant: Types.ObjectId,
+    product: Types.ObjectId,
     quantity: number,
     currentPrice: number,
     currentSalePrice: number,
@@ -64,12 +64,8 @@ const getByUserId = async(userId: string) => {
     const cart = await Cart
     .findOne({user: userId})
     .populate({
-        path: 'items.productVariant',
-        select: 'variantName price salePrice images product',
-        populate: {
-            path: 'product',
-            select: 'product_name'
-        }
+        path: 'items.product',
+        select: 'product_name slug price salePrice images'
       });
     if(!cart) {
         createError(404, 'cart not found, please try again with other userId');
@@ -92,28 +88,35 @@ const create = async(payload: ICart) => {
 
 // add new productVariant to cartItems (click add to carts)
 const createAddToCart = async(userId: string, payload: TCartItemPayload) => {
-    const cart = await Cart.findOne({user: userId});
-    if(!cart) {
-        throw createError(404, "cart not found");
-    }
-    //kiểm tra xem productVariant có tồn tại trong cart chưa
-    const productVariantExist = cart.items.find(item => item.productVariant === payload.productVariant)
-    if(productVariantExist) {
-        throw createError(404, "productVariant have been existed");
-    } else {
-    //kiểm tra xem payload có tồn tại không
-    if (!payload.productVariant || !payload.quantity || !payload.currentPrice || !payload.currentSalePrice || !payload.totalAmount) {
+     //kiểm tra xem payload có tồn tại không
+     if (!payload.product || !payload.quantity || !payload.currentPrice || !payload.currentSalePrice || !payload.totalAmount) {
         throw createError(400, "không có payload");
       }
-    //thêm data vào giỏ hàng
-    cart.items.push(payload);
-     // cập nhật lại tổng tiền giỏ hàng
-     cart.totalAmount = cart.items.reduce((sum, item) => sum + item.totalAmount, 0);
+    let cart = await Cart.findOne({user: userId});
+
+    if(!cart) {
+        //Tạo mới giỏ hàng
+        cart = new Cart({
+            user: userId,
+            items: [payload],
+            totalAmount: payload.totalAmount
+        });
+    } else {
+        //kiểm tra xem product có tồn tại trong cart chưa
+        const productExist = cart.items.find(item => item.product === payload.product)
+        if(productExist) {
+            throw createError(404, "product have been existed");
+        }
+    
+        //thêm data vào giỏ hàng
+        cart.items.push(payload);
+        // cập nhật lại tổng tiền giỏ hàng
+        cart.totalAmount = cart.items.reduce((sum, item) => sum + item.totalAmount, 0);
     }
     // lưu dữ liệu
     await cart.save();
     return cart;
-}
+};
 
 // update by ID
 const updateById = async(id: string, payload: any) => {
@@ -159,6 +162,18 @@ const deleteById = async(id: string) => {
     return cart;
 }
 
+//Delete by userId
+const deleteByUserId = async(userId: string) => {
+    //kiểm tra xem id có tồn tại không
+    const cart = await getByUserId(userId);
+    if(!cart) {
+        throw createError(404, "cart not found");
+    }
+    //xóa cart
+    await cart.deleteOne();
+    return cart;
+}
+
 //Delete by itemId
 const deleteByItemId = async(userId: string, itemId: string) => {
     //kiểm tra xem id có tồn tại không
@@ -190,5 +205,6 @@ export default {
     updateById,
     updateByUserId,
     deleteById,
+    deleteByUserId,
     deleteByItemId
 }

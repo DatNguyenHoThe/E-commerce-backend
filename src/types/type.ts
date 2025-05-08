@@ -88,7 +88,7 @@ export interface IReview {
 
 export interface ICartItem {
     _id?: Types.ObjectId,
-    productVariant: Types.ObjectId
+    product: Types.ObjectId
     quantity: number,
     currentPrice: number,
     currentSalePrice: number,

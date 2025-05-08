@@ -5,9 +5,9 @@ import { ICart } from '../types/type';
 const cartSchema = new Schema<ICart>({
     items: [
       {
-        productVariant: {
+        product: {
           type: Schema.Types.ObjectId,
-          ref: 'productVariants',
+          ref: 'products',
           required: true
         },
         quantity: {

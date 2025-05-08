@@ -50,7 +50,7 @@ const createAddToCartSchema = yup
     userId: yup.string().matches(/^[0-9a-fA-F]{24}$/, {message: 'ID is non-ObjectID'}).required(),
   }),
   body: yup.object({
-    productVariant: yup.string().required(),
+    product: yup.string().required(),
     quantity: yup.number().integer().positive().required(),
     currentPrice: yup.number().integer().positive().required(),
     currentSalePrice: yup.number().integer().positive().required(),
@@ -86,7 +86,7 @@ const updateByUserIdSchema = yup
       items: yup
       .array()
       .of(yup.object({
-        productVariant: yup.string().optional(),
+        product: yup.string().optional(),
         quantity: yup.number().integer().positive().optional(),
         currentPrice: yup.number().integer().positive().optional(),
         currentSalePrice: yup.number().integer().positive().optional(),
@@ -113,6 +113,19 @@ const deleteByIdSchema = yup
 })
 .required();
 
+//delete by id
+const deleteByUserIdSchema = yup
+.object({
+  params: yup.object({
+      userId: yup.string().matches(/^[0-9a-fA-F]{24}$/, {message: 'userID is non-ObjectID'}).required(),
+  }),
+  body: yup.object({
+    items: yup.array().of(yup.object()).optional(),
+    totalAmount: yup.number().min(0).optional()
+  })
+})
+.required();
+
  //delete by itemId
  const deleteByItemIdSchema = yup
  .object({
@@ -121,7 +134,7 @@ const deleteByIdSchema = yup
        itemId: yup.string().matches(/^[0-9a-fA-F]{24}$/, {message: 'ID is non-ObjectID'}).required(),
    }),
    body: yup.object({
-    productVariant: yup.string().optional(),
+    product: yup.string().optional(),
     quantity: yup.number().integer().positive().optional(),
     currentPrice: yup.number().integer().positive().optional(),
     currentSalePrice: yup.number().integer().positive().optional(),
@@ -140,5 +153,6 @@ export default {
     updateByIdSchema,
     updateByUserIdSchema,
     deleteByIdSchema,
+    deleteByUserIdSchema,
     deleteByItemIdSchema
 };

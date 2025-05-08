@@ -53,7 +53,8 @@ const getById = async(id: string) => {
 const getByUserId = async(userId: string) => {
     const order = await Order
     .find({user: userId})
-    .populate('user');
+    .populate('user')
+    .sort({createdAt: -1});
     if(!order) {
         createError(404, 'order not found, please try again with other userId');
     }

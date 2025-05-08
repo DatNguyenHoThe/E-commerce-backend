@@ -23,7 +23,7 @@ const getAllSchema = yup
   })
   .required();// khi truyền vào object phải tồn tại
 
-  //get by id
+  //get by userId
   const getByUserIdSchema = yup
   .object({
     params: yup.object({

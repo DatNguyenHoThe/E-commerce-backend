@@ -1,5 +1,6 @@
 import Product from '../models/product.model';
 import Category from '../models/category.model';
+import Brand from '../models/brand.model';
 import { buildSlug } from '../helpers/slugify.helper';
 import createError from 'http-errors';
 
@@ -21,10 +22,10 @@ const getAll = async(query: any) => {
     if(query.product_name && query.product_name.length > 0) {
         where = {...where, product_name: {$regex: query.product_name, $options: 'i'}};
     }
-    // Nếu có tìm kiếm theo tên danh mục
-    if (query.category_name && query.category_name.length > 0) {
-        // Tìm danh mục theo tên
-        const category = await Category.findOne({ category_name: { $regex: query.category_name, $options: "i" } });
+    // Nếu có tìm kiếm theo slug danh mục
+    if (query.category_slug && query.category_slug.length > 0) {
+        // Tìm danh mục theo slug
+        const category = await Category.findOne({ slug: { $regex: query.category_slug, $options: "i" } });
     
         if (category) {
             where = { ...where, category: category._id }; // Lọc theo category._id
@@ -35,6 +36,48 @@ const getAll = async(query: any) => {
             };
         }
     }
+
+    // Nếu có tìm kiếm theo slug brand
+    if (query.brand_slug && query.brand_slug.length > 0) {
+        // Tìm danh mục theo slug
+        const brand = await Brand.findOne({ slug: { $regex: query.brand_slug, $options: "i" } });
+    
+        if (brand) {
+            where = { ...where, brand: brand._id }; // Lọc theo category._id
+        } else {
+            return {
+                products: [],
+                pagination: { totalRecord: 0, limit, page },
+            };
+        }
+    }
+
+    // Nếu có tìm kiếm theo giá
+    let priceFilter: { $gte?: number; $lte?: number } = {};
+
+    if (query.price_gte && !isNaN(parseFloat(query.price_gte))) {
+        priceFilter.$gte = parseFloat(query.price_gte);
+    }
+
+    if (query.price_lte && !isNaN(parseFloat(query.price_lte))) {
+        priceFilter.$lte = parseFloat(query.price_lte);
+    }
+
+    if (Object.keys(priceFilter).length > 0) {
+        where = { ...where, salePrice: priceFilter };
+    }
+
+    //Nếu có tìm kiếm theo ratting
+    let ratingFilter: { $gte?: number } = {};
+
+    if (query.rating_gte && !isNaN(parseFloat(query.rating_gte))) {
+        ratingFilter.$gte = parseFloat(query.rating_gte);
+    }
+
+    if (Object.keys(ratingFilter).length > 0) {
+        where = { ...where, rating: ratingFilter };
+    }
+
 
     const products = await Product
     .find(where)
