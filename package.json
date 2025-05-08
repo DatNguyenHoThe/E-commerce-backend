@@ -13,8 +13,9 @@
   "license": "ISC",
   "dependencies": {
     "@tanstack/react-query": "^5.69.0",
+    "@types/bcryptjs": "^3.0.0",
     "axios": "^1.8.3",
-    "bcrypt": "^5.1.1",
+    "bcryptjs": "^3.0.2",
     "compression": "^1.8.0",
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
@@ -27,7 +28,6 @@
     "yup": "^1.6.1"
   },
   "devDependencies": {
-    "@types/bcrypt": "^5.0.2",
     "@types/express": "^5.0.0",
     "@types/http-errors": "^2.0.4",
     "@types/jsonwebtoken": "^9.0.9",

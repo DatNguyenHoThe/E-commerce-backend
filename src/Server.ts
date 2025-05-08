@@ -1,4 +1,4 @@
-import app from './app';
+import app from './App'
 import {env} from './helpers/env.helper';
 import mongoose from 'mongoose';
 

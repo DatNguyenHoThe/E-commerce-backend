@@ -43,7 +43,7 @@ const createSchema = yup
         ward: yup.string().max(255).required(),
         district: yup.string().max(255).required(),
         city: yup.string().max(100).required(),
-        country: yup.string().max(20).required(),
+        country: yup.string().max(100).required(), // Đã sửa từ 20 thành 100 để phù hợp với model
         isDefault: yup.boolean().required(),
         user: yup.string().required()
     }),

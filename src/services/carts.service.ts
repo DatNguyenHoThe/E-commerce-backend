@@ -33,6 +33,7 @@ const getAll = async(query: any) => {
     const carts = await Cart
     .find(where)
     .populate('user')
+    .populate('items.product')
     .skip((page-1)*limit)
     .limit(limit)
     .sort({...sortObject});

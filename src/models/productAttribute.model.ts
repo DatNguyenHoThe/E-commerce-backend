@@ -1,47 +1,61 @@
 import { Schema, model } from 'mongoose';
 import { IProductAttribute } from '../types/type';
 
+interface ProductAttribute {
+  _id: string;
+  name: string;
+  displayName: string;
+  description?: string;
+  type: 'text' | 'number' | 'boolean' | 'select';
+  options?: string[];
+  isFilterable: boolean;
+  isVariant: boolean;
+  isRequired: boolean;
+  createdAt: string;
+  updatedAt: string;
+  productsCount: number;
+}
 
-const productAtributeSchema = new Schema<IProductAttribute>({
+const productAtributeSchema = new Schema<ProductAttribute>({
     name: {
         type: String,
         maxLength: 50,
-        require: true,
+        required: true,
         unique: true
     },
     displayName: {
         type: String,
         maxLength: 100,
-        require: true
+        required: true
     },
     description: {
         type: String,
         maxLength: 255,
-        require: false
+        required: false
     },
     type: {
         type: String,
         maxLength: 20,
-        require: true,
+        required: true,
         enum: ["text", "number", "boolean", "select"]
     },
     options: {
         type: [String],
-        require: false
+        required: false
     },
     isFilterable: {
         type: Boolean,
-        require: true,
+        required: true,
         default: false
     },
     isVariant: {
         type: Boolean,
-        require: true,
+        required: true,
         default: false
     },
     isRequired: {
         type: Boolean,
-        require: true,
+        required: true,
         default: false
     }
 },
