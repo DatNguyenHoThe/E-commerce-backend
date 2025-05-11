@@ -147,10 +147,10 @@ const updateById = async(id: string, payload: any) => {
         throw createError(404, "category not found");
     }
     // kiểm tra xem category_name tồn tại không
-    const categoryExist = await Category.findOne({category_name: payload.category_name});
-    if(categoryExist) {
-        throw createError(404, "category already exists");
-    }
+    // const categoryExist = await Category.findOne({category_name: payload.category_name});
+    // if(categoryExist) {
+    //     throw createError(404, "category already exists");
+    // }
     // update slug
     if(payload.category_name){
         payload.slug = buildSlug(payload.category_name);// tự động tạo trường slug vào payload

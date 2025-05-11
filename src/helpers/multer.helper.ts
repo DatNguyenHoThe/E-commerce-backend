@@ -34,7 +34,7 @@ const storageSetting: StorageEngine = multer.diskStorage({
 // 2. Tạo hàm lọc
 /** Bộ lọc hình ảnh */
 const imageFilter = (req: CustomRequest, file: Express.Multer.File, cb: multer.FileFilterCallback) => {
-    const mimetypeAllow = ["image/png", "image/jpg", "image/gif", "image/jpeg", "image/webp"];
+    const mimetypeAllow = ["image/png", "image/jpg", "image/gif", "image/jpeg", "image/webp", "image/x-png"];
     if (!mimetypeAllow.includes(file.mimetype)) {
         req.fileValidationError = 'Only .png, .gif, .jpg, webp, and .jpeg formats allowed!';
         return cb(null, false);

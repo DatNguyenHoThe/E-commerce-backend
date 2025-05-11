@@ -224,10 +224,10 @@ const updateById = async(id: string, payload: any) => {
         throw createError(404, "product not found");
     }
     // kiểm tra xem product_name tồn tại không
-    const productExist = await Product.findOne({product_name: payload.product_name});
-    if(productExist) {
-        throw createError(404, "product already exists");
-    }
+    // const productExist = await Product.findOne({product_name: payload.product_name});
+    // if(productExist) {
+    //     throw createError(404, "product already exists");
+    // }
     // update slug
     if(payload.product_name){
         payload.slug = buildSlug(payload.product_name);// tự động tạo trường slug vào payload
