@@ -7,7 +7,7 @@ GET http://localhost:8889/api/v1/orders/67def287122b4c409039e79e
 ### get by userId
 GET http://localhost:8889/api/v1/orders/user/680df95981fe8db82a1cf9d3
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODBkZjk1OTgxZmU4ZGI4MmExY2Y5ZDMiLCJlbWFpbCI6Im5ndXllbmhvdGhlZGF0ODhAZ21haWwuY29tIiwiaWF0IjoxNzQ2MzQ3OTk4LCJleHAiOjE3NDY0MzQzOTh9.wrqNpNW54VpoQx6SShu3vi7Dtsgo2hpL7lxIBQD5n18
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODBkZjk1OTgxZmU4ZGI4MmExY2Y5ZDMiLCJlbWFpbCI6Im5ndXllbmhvdGhlZGF0ODhAZ21haWwuY29tIiwiaWF0IjoxNzQ2NTg1NzY5LCJleHAiOjE3NDY2NzIxNjl9.yX4xbyDs1_xCiZni7v8F_aF-ysOPnwYgv_lqCDHoNtk
 
 ### create
 

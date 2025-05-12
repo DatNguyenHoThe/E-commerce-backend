@@ -190,6 +190,8 @@ const deleteByItemId = async(userId: string, itemId: string) => {
 
     // Loại bỏ item ra khỏi mảng
     cart.items.splice(itemIndex, 1);
+    // cập nhật lại tổng tiền giỏ hàng
+    cart.totalAmount = cart.items.reduce((sum, item) => sum + item.totalAmount, 0);
     //lưu xuống data
     await cart.save();
     return cart;

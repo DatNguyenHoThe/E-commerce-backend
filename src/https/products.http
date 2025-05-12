@@ -1,5 +1,5 @@
 ### GET ALL
-GET http://localhost:8889/api/v1/products?page=3
+GET http://localhost:8889/api/v1/products?price_gte=15000000&price_lte=20000000
 
 ### get by id
 GET http://localhost:8889/api/v1/products/680615c848f0a1f1f4eb4d6d
@@ -10,130 +10,153 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODAwYTE3N
 
 POST http://localhost:8889/api/v1/products
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODBkZjk1OTgxZmU4ZGI4MmExY2Y5ZDMiLCJlbWFpbCI6Im5ndXllbmhvdGhlZGF0ODhAZ21haWwuY29tIiwiaWF0IjoxNzQ2NTE4NDIzLCJleHAiOjE3NDY2MDQ4MjN9.sk_9cfzPOs4oF2cluWGEN1aOjmYEZLwLQKx2c8aDkWo
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODBkZjk1OTgxZmU4ZGI4MmExY2Y5ZDMiLCJlbWFpbCI6Im5ndXllbmhvdGhlZGF0ODhAZ21haWwuY29tIiwiaWF0IjoxNzQ2NjMzNDgxLCJleHAiOjE3NDY3MTk4ODF9.49HUoS_0MwJYrXQApaWqv3riAQmwLRNNqbAz0ZnPNMg
 
 {
-  "product_name": "PC GVN Intel i5-12400F/ VGA RTX 4060",
-  "description": "PC GVN Intel i5-12400F/ VGA RTX 4060 mang lại trải nghiệm hình ảnh tốt hơn với trang bị màn hình OLED. Thiết kế mỏng nhẹ cùng cấu hình mạnh mẽ cho phép người dùng nâng cao hiệu suất khi làm việc.",
-  "price": 55510000,
-  "salePrice": 52990000,
+  "product_name": "PC GVN Intel i3-12100F/ VGA RX 6500XT",
+  "description": "PC GVN Intel i3-12100F/ VGA RX 6500XT mang lại trải nghiệm hình ảnh tốt hơn với trang bị màn hình OLED. Thiết kế mỏng nhẹ cùng cấu hình mạnh mẽ cho phép người dùng nâng cao hiệu suất khi làm việc.",
+  "price": 11430000,
+  "salePrice": 10490000,
   "stock": 100,
   "images": [
-    "http://localhost:8889/uploads/PC_GVN_Intel_i5_12400F_VGA_RTX_4060/png_web_8_38797b9ef9b04c75ab93c467e13b2d17_grande.webp",
-    "http://localhost:8889/uploads/PC_GVN_Intel_i5_12400F_VGA_RTX_4060/png_web_7_b4622dd90d57431a87a601671e27e2e3_grande.webp",
-    "http://localhost:8889/uploads/PC_GVN_Intel_i5_12400F_VGA_RTX_4060/png_web_6_f59a35f813884a6d8361dfe35e720173_grande.webp",
-    "http://localhost:8889/uploads/PC_GVN_Intel_i5_12400F_VGA_RTX_4060/png_web_3_6537a3bcf10f4233b538520087e8dce5_grande.webp",
-    "http://localhost:8889/uploads/PC_GVN_Intel_i5_12400F_VGA_RTX_4060/png_5_cf9c2ed3e1d94cfbad60c0fe3d056275_grande.webp",
-    "http://localhost:8889/uploads/PC_GVN_Intel_i5_12400F_VGA_RTX_4060/pc_gvn_nzxt_02878_896793c380014749b538d96060bc5419_grande.webp",
-    "http://localhost:8889/uploads/PC_GVN_Intel_i5_12400F_VGA_RTX_4060/pc_gvn_nzxt_02870_d08e7888155b44fca9ae7f5cff308c41_grande.webp",
-    "http://localhost:8889/uploads/PC_GVN_Intel_i5_12400F_VGA_RTX_4060/pc_gvn_nzxt_02858_cbe30f240263472b8388b5a3803645b3_grande.webp",
-    "http://localhost:8889/uploads/PC_GVN_Intel_i5_12400F_VGA_RTX_4060/pc_gvn_nzxt_02841_85418cbeec6b44788f7fc043d43ec716_grande.webp"
+    "http://localhost:8889/uploads/PC_GVN_Intel_i3_12100F_VGA_RX_6500XT/pc_gvn_rx6600___3_762ba90a94904a50809a93355cd819a7_grande.webp",
+    "http://localhost:8889/uploads/PC_GVN_Intel_i3_12100F_VGA_RX_6500XT/pba_poster_viet_e85938a153454a50bfbe1df4b4200b9d_grande.webp",
+    "http://localhost:8889/uploads/PC_GVN_Intel_i3_12100F_VGA_RX_6500XT/pc_gvn_rx6600___4_b0f0beb2642a42399c305f3638d2c364_grande.webp",
+    "http://localhost:8889/uploads/PC_GVN_Intel_i3_12100F_VGA_RX_6500XT/pc_gvn_rx6600___1_c0c7d32f4c274ff280c9e75a3b8b0213_grande.webp",
+    "http://localhost:8889/uploads/PC_GVN_Intel_i3_12100F_VGA_RX_6500XT/pc_gvn_rx6600___2_9577b2a53e584c10b3f50521079dd5cf_grande.webp",
+    "http://localhost:8889/uploads/PC_GVN_Intel_i3_12100F_VGA_RX_6500XT/pc_gvn_rx6600___5_b2d8837656c5443fac89ab0c84f93ba0_grande.webp",
+    "http://localhost:8889/uploads/PC_GVN_Intel_i3_12100F_VGA_RX_6500XT/post_01_eb1af161f55b46d3b518cd51b1b88b75_grande.webp",
+    "http://localhost:8889/uploads/PC_GVN_Intel_i3_12100F_VGA_RX_6500XT/post_02_a63b507db4cd42558caa4ff0e14d668f_grande.webp",
+    "http://localhost:8889/uploads/PC_GVN_Intel_i3_12100F_VGA_RX_6500XT/post_03_5f342d16dc6e4438b9018fd0c0d2df1a_grande.webp",
+    "http://localhost:8889/uploads/PC_GVN_Intel_i3_12100F_VGA_RX_6500XT/post_04_a989ab65d1464f5f8567d07c21321acd_grande.webp",
+    "http://localhost:8889/uploads/PC_GVN_Intel_i3_12100F_VGA_RX_6500XT/post_05_35e780ef246c4f3fb0ca74f2d9b348af_grande.webp",
+    "http://localhost:8889/uploads/PC_GVN_Intel_i3_12100F_VGA_RX_6500XT/post_09_beeb3df03d90441daaecf3466b2a72ea_grande.webp",
+    "http://localhost:8889/uploads/PC_GVN_Intel_i3_12100F_VGA_RX_6500XT/post_10_d59fe170a38743009de0a47b84e0376c_grande.webp",
+    "http://localhost:8889/uploads/PC_GVN_Intel_i3_12100F_VGA_RX_6500XT/post_11_8d17d4e5bd634820b7906a759229790f_grande.webp",
+    "http://localhost:8889/uploads/PC_GVN_Intel_i3_12100F_VGA_RX_6500XT/post_12_fa1c19e0b3f344308036ce6a45f9f555_grande.webp"
   ],
   "attributes": [
-  { "name": "Mainboard", "value": "GIGABYTE B760M AORUS ELITE AX DDR4", "time": "36 Tháng" },
-  { "name": "CPU", "value": "Intel Core i5-12400F (2.5GHz Turbo 4.4GHz, 6 nhân, 12 luồng, 18MB, LGA 1700)", "time": "36 Tháng" },
-  { "name": "RAM", "value": "T-Group T-Force Delta RGB Black 16GB (2x8GB) DDR4 3600MHz", "time": "36 Tháng" },
-  { "name": "Card đồ họa", "value": "GIGABYTE GeForce RTX 4060 WINDFORCE OC 8G", "time": "36 Tháng" },
-  { "name": "HDD", "value": "Tùy chọn nâng cấp", "time": "24 Tháng" },
-  { "name": "SSD", "value": "Kingston NV3 500GB M.2 PCIe NVMe Gen4", "time": "36 Tháng" },
-  { "name": "Nguồn (PSU)", "value": "NZXT C750W - 80 Plus Bronze - Non Modular (750W)", "time": "36 Tháng" },
-  { "name": "Vỏ case", "value": "NZXT H5 Flow Black (CC-H52FB-01) 2024", "time": "12 Tháng" }
+  { "name": "Mainboard", "value": "Mainboard ASUS PRIME H610M-A WIFI D4", "time": "36 Tháng" },
+  { "name": "CPU", "value": "Intel Core i3 12100F / 3.3GHz Turbo 4.3GHz / 4 Nhân 8 Luồng / 12MB / LGA 1700", "time": "36 Tháng" },
+  { "name": "RAM", "value": "Ram V-Color Skywalker Plus 1x8 3600 RGB Black DDR4", "time": "36 Tháng" },
+  { "name": "VGA - Card đồ họa", "value": "ASUS Dual Radeon RX 6500 XT V2 OC Edition 4GB GDDR6", "time": "36 Tháng" },
+  { "name": "HDD", "value": "Có thể tùy chọn Nâng cấp", "time": "24 Tháng" },
+  { "name": "SSD", "value": "PNY CS900 250GB Sata3", "time": "36 Tháng" },
+  { "name": "PSU", "value": "Deepcool PF450D - 80 Plus (450W)", "time": "36 Tháng" },
+  { "name": "Case", "value": "Xigmatek QUANTUM 3GF", "time": "12 Tháng" }
 ],
-  "rating": 5.0,
+  "rating": 4.9,
   "tags": [
-  "i5 12400F",
-  "RTX 4060",
-  "B760M",
-  "16GB",
-  "500GB"
+  "i3-12100F",
+  "RX 6500XT",
+  "H610",
+  "8GB",
+  "250GB"
 ],
   "bestSale": true,
   "flashSale": false,
   "promotion": [
-    "Giảm ngay 100.000đ khi mua Microsoft Office kèm Laptop."
+    "Tặng ngay 1 x Ram V-Color Skywalker Plus 1x8GB 3600 RGB Black DDR4 trị giá 550.000₫.",
+    "Tặng ngay 1 x Quạt XIGMATEK INFINITY BLACK 120mm (EN44564) - RGB FIXED trị giá 90.000₫."
   ],
   "contentBlock": [
     {
       "type": "text",
-      "content": "<strong>Chi tiết về PC GVN Intel i9-14900KF/ VGA RTX 4060 Ti</strong>"
+      "content": "<strong>Chi tiết về PC GVN Intel i3-12100F/ VGA RX 6500XT</strong>"
     },
     {
       "type": "text",
-      "content": "CPU Intel Core i9 14900K, nhân tố khuất đảo thị trường PC Gaming khi sở hữu mức giá rẻ cùng hiệu năng xuất sắc. Với 24 nhân 32 luồng, xung nhịp 4.4GHz và turbo boost lên 6.0GHz, quả là sự lựa chọn tuyệt vời từ khả năng chơi game cho tới stream game của thế hệ vi xử lý Intel Gen 14, chính là sự nâng cấp vượt bậc so với người tiền nhiệm i9-13900K."
+      "content": "Được trang bị vi xử lý Intel Core i3 -12100F, chiếc PC i3 này đảm bảo hiệu năng xử lý ổn định cho các tác vụ hàng ngày. Với kiến trúc 4 nhân 8 luồng, con chip này dễ dàng xử lý đa nhiệm, cho phép bạn làm việc, lướt web và giải trí cùng lúc mà không gặp phải tình trạng giật lag. Công nghệ sản xuất tiên tiến giúp tối ưu hóa hiệu suất năng lượng, giảm thiểu tiêu thụ điện năng."
     },
     {
       "type": "image",
-      "src": "http://localhost:8889/uploads/PC_GVN_Intel_i9-14900K_VGA_RTX_4060_Ti/icue_f904604eb7204e38b359dbabc7a55971_grande.webp",
+      "src": "http://localhost:8889/uploads/PC_GVN_Intel_i3_12100F_VGA_RX_6500XT/post_01_eb1af161f55b46d3b518cd51b1b88b75_grande.webp",
       "alt": "image_1"
     },
      {
       "type": "text",
-      "content": "<strong>Mainboard GIGABYTE Z790 AORUS MASTER DDR5</strong>"
+      "content": "<strong>Đồ họa sắc nét với GPU AMD Radeon RX 6500XT</strong>"
     },
     {
       "type": "text",
-      "content": "GIGABYTE Z790 AORUS MASTER DDR5 là một trong những dòng mainboard được chắt lọc các yếu tố thiết yếu của nền tảng Intel mới nhất và kết hợp chúng để tạo thành một sản phẩm hoàn hảo trong phân khúc tầm trung. Được hoàn thiện với những thành phần tốt nhất, chiếc bo mạch chủ cung cấp đầy đủ những kết nối cơ bản. Cùng với đó là những công nghệ tiên tiến từ tản nhiệt đến khả năng khai thác hiệu năng. Sở hữu chipset Z790, GIGABYTE Z790 AORUS MASTER DDR5 sẽ mang đến cho bạn những khả năng tương thích đến tuyệt vời trên những linh kiện máy tính tiên tiến."
+      "content": "Card đồ họa AMD Radeon RX 6500XT là một lựa chọn hợp lý cho những ai muốn trải nghiệm đồ họa mượt mà ở mức cài đặt trung bình. Với kiến trúc RDNA 2 tiên tiến, card đồ họa này mang đến hiệu suất chơi game ấn tượng, đặc biệt là với các tựa game eSports phổ biến. Bộ nhớ GDDR6 dung lượng lớn đảm bảo việc xử lý hình ảnh diễn ra nhanh chóng và mượt mà."
     },
     {
       "type": "image",
-      "src": "http://localhost:8889/uploads/PC_GVN_Intel_i9-14900K_VGA_RTX_4060_Ti/post_01_ef5ece0b7155443b95c288e9e15b659b_grande.webp",
+      "src": "http://localhost:8889/uploads/PC_GVN_Intel_i3_12100F_VGA_RX_6500XT/post_02_a63b507db4cd42558caa4ff0e14d668f_grande.webp",
       "alt": "image_2"
     },
     {
       "type": "text",
-      "content": "<strong>VGA GIGABYTE GeForce RTX 4060 Ti GAMING OC 8G</strong>"
+      "content": "<strong>Bộ nhớ RAM của PC GVN Intel i3-12100F đáp ứng nhu cầu đa nhiệm</strong>"
     },
     {
       "type": "text",
-      "content": "GIGABYTE GeForce RTX 4060 Ti GAMING OC 8G có được vẻ ngoài gaming trước đó. Khoác lên màu đen mạnh mẽ cùng các góc cạnh được hoàn thiện một cách bắt mắt, cái tên từ Giga sẽ làm nổi bật chiếc case nói riêng và góc gaming nói chung."
+      "content": "Được trang bị 8GB RAM DDR4, chiếc PC này đủ sức để bạn mở nhiều tab trình duyệt, ứng dụng cùng lúc mà không gặp phải tình trạng giật lag. Bạn có thể thoải mái làm việc với các phần mềm văn phòng, chỉnh sửa ảnh cơ bản hoặc thậm chí là stream một số tựa game nhẹ."
+    },
+    {
+      "type": "text",
+      "content": "<strong>Ổ cứng SSD NVMe - Tốc độ và không gian lưu trữ</strong>"
+    },
+    {
+      "type": "text",
+      "content": "Việc trang bị ổ cứng SSD NVMe giúp cho chiếc PC khởi động nhanh chóng, load ứng dụng và game mượt mà hơn so với ổ cứng HDD truyền thống. Dung lượng ổ cứng SSD thường khá lớn, đủ để bạn lưu trữ hệ điều hành, game, ứng dụng và các tập tin cá nhân."
     },
     {
       "type": "image",
-      "src": "http://localhost:8889/uploads/PC_GVN_Intel_i9-14900K_VGA_RTX_4060_Ti/post_04_44e03afe999a4110ada057ba2781a5fb_grande.webp",
+      "src": "http://localhost:8889/uploads/PC_GVN_Intel_i3_12100F_VGA_RX_6500XT/post_04_a989ab65d1464f5f8567d07c21321acd_grande.webp",
       "alt": "image_3"
     },
     {
       "type": "text",
-      "content": "<strong>RAM Corsair Vengeance RGB 32GB (2x16GB) 5600 DDR5</strong>"
+      "content": "<strong>Mainboard ASUS PRIME H610M-CS D4</strong>"
     },
     {
       "type": "text",
-      "content": "RAM Corsair Vengeance RGB 32GB (2x16GB) 5600 DDR5 khoác lên mình giáp tản nhiệt nổi bật với màu bạc sang trọng cùng dải đèn LED RGB đầy đủ màu sắc rực rỡ chiếu sáng kết hợp với hiệu ứng rainbow khi build PC. Các vùng đèn sáng trên RAM có thể phát sáng với góc siêu rộng lên đến 120 độ tạo nên trải nghiệm thị giác tuyệt vời, tô điểm thêm cho bữa tiệc ánh sáng cho PC GVN Intel i9-14900KF/ VGA RTX 4060 Ti."
+      "content": "Bảng mạch chủ ASUS PRIME H610M-CS D4 là một lựa chọn đáng tin cậy, cung cấp nền tảng vững chắc cho hệ thống. Với thiết kế tối ưu, bảng mạch chủ này đảm bảo sự ổn định và tương thích tốt với các linh kiện khác."
     },
     {
       "type": "image",
-      "src": "http://localhost:8889/uploads/PC_GVN_Intel_i9-14900K_VGA_RTX_4060_Ti/post_05_592bc5d85b3f4d2296fbbdc5946fdcfc_grande.webp",
+      "src": "http://localhost:8889/uploads/PC_GVN_Intel_i3_12100F_VGA_RX_6500XT/post_05_35e780ef246c4f3fb0ca74f2d9b348af_grande.webp",
       "alt": "image_4"
     },
     {
       "type": "text",
-      "content": "<strong>SSD WD Black SN770 500G M.2 NVMe PCIe Gen4</strong>"
+      "content": "<strong>Nguồn cung cấp năng lượng ổn định</strong>"
     },
     {
       "type": "text",
-      "content": "Nhằm tối ưu khả năng lưu và làm việc trên máy tính để bàn PC GVN Intel i9-14900KF/ VGA RTX 4060 Ti, GEARVN đã trang bị thêm cho bộ PC này bộ nhớ SSD M.2 tốc độ cao với dung lượng 500G M.2 NVMe PCIe Gen4 mang đến tốc độ khởi động máy và ứng dụng chỉ trong vài giây cho trải nghiệm thú vị hơn rất nhiều. Trang bị tốc độ đọc/ghi lên đến 5000/4000 MB/s, WD mang lại khả năng truyền tải dữ liệu nhanh chóng giúp đẩy nhanh hiệu quả công việc. Cùng với đó, SSD WD giúp cho hệ thống khởi động Windows nhanh với chuẩn SSD tiên tiến này."
+      "content": "Nguồn cung cấp năng lượng đóng vai trò quan trọng trong việc đảm bảo hoạt động ổn định của hệ thống. Chiếc PC này được trang bị nguồn đủ công suất để cung cấp năng lượng cho tất cả các linh kiện, giúp hệ thống hoạt động bền bỉ trong thời gian dài."
+    },
+    {
+      "type": "text",
+      "content": "<strong>Nâng cấp RAM và SSD dễ dàng</strong>"
+    },
+    {
+      "type": "text",
+      "content": "Việc nâng cấp RAM và ổ cứng SSD cho chiếc PC này khá đơn giản và mang lại hiệu quả rõ rệt. Hầu hết các mainboard đi kèm với CPU Intel i3-12100F đều hỗ trợ RAM DDR4 với tốc độ cao. Bạn có thể dễ dàng thay thế thanh RAM hiện tại hoặc thêm vào một thanh RAM mới để tăng tổng dung lượng."
     },
     {
       "type": "image",
-      "src": "http://localhost:8889/uploads/PC_GVN_Intel_i9-14900K_VGA_RTX_4060_Ti/post_15_56f3e720564e4d3a9159497d7eebf71b_grande.webp",
+      "src": "http://localhost:8889/uploads/PC_GVN_Intel_i3_12100F_VGA_RX_6500XT/post_09_beeb3df03d90441daaecf3466b2a72ea_grande.webp",
       "alt": "image_5"
     },
     {
       "type": "text",
-      "content": "<strong>Nguồn máy tính Corsair RM850e ATX 3.0 - 80 Plus Gold - Full Modular (850W)</strong>"
-    },
-    {
-      "type": "text",
-      "content": "Chứng nhận 80 Plus Gold đảm bảo hiệu suất hoạt động tốt hơn, ít lãng phí điện năng, tối ưu nhiệt và tiếng ồn của quạt, là tất cả những gì Corsair RM850e ATX 3.0 - 80 Plus Gold - Full Modular (850W) sẽ mang lại cho bạn. Đóng vai trò là nguồn năng lượng cho PC GVN Intel i9-14900KF/ VGA RTX 4060 Ti, Corsair RM850e ATX 3.0 - 80 Plus Gold - Full Modular (850W) cung cấp giải pháp tốt nhất cho việc xây dựng hệ thống PC. Cáp bện lưới làm giảm sự lộn xộn và cải thiện luồng không khí trong case. Tất cả các tụ điện là tụ điện chất lượng cao, để tạo ra hiệu suất hiệu quả và đảm bảo độ tin cậy lâu hơn. Đường Single rail + 12V cung cấp năng lượng tốt nhất, ổn định và tương thích cho phần cứng."
+      "content": "Ngoài ra, bạn cũng có thể sử dụng thêm một khe SATA để lắp đặt ổ cứng SSD SATA (nếu mainboard hỗ trợ). Việc nâng cấp ổ cứng SSD sẽ giúp máy tính của bạn hoạt động nhanh chóng và mượt mà hơn, đặc biệt là khi khởi động hệ điều hành, mở ứng dụng và chơi game."
     },
     {
       "type": "image",
-      "src": "http://localhost:8889/uploads/PC_GVN_Intel_i9-14900K_VGA_RTX_4060_Ti/post_20_68ace760641d4499b26fd0f471009a2e_grande.webp",
+      "src": "http://localhost:8889/uploads/PC_GVN_Intel_i3_12100F_VGA_RX_6500XT/post_12_fa1c19e0b3f344308036ce6a45f9f555_grande.webp",
       "alt": "image_6"
+    },
+    {
+      "type": "text",
+      "content": "Nếu bạn đang tìm kiếm một bộ PC Gaming vừa túi tiền mà vẫn đảm bảo hiệu năng cao để chiến game, PC GVN Intel i3-12100F/ VGA RX 6500XT là một sự lựa chọn đáng cân nhắc với mức giá trung bình trên. Ghé ngay showroom GEARVN để trực tiếp trải nghiệm sản phẩm một cách tốt nhất nhé!"
     }
   ],
   "category": "6805167c3556be73141264c0",
-  "brand": "6805e67ffea56b05826cc2e7",
+  "brand": "6805e67efea56b05826cc2d6",
   "vendor": "6805ebf6c350793d7da27a88"
 }
 
@@ -172,7 +195,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODAwYTE3N
 
 POST http://localhost:8889/api/v1/products
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODAwYTE3NTZhY2M0YmZiZjFmYzc3NTkiLCJlbWFpbCI6ImRhdG5ndXllbmhvdGhlQGdtYWlsLmNvbSIsImlhdCI6MTc0NTIyOTIyNywiZXhwIjoxNzQ1MzE1NjI3fQ.84w1mGGkXLRufKdd-yqxF1aUMj2MVhKnryvA19O7C4A
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODFjYWIzZmY2MTk4MjRmMWFhYzQzYzkiLCJlbWFpbCI6Im5ndXllbmhvdGhlZGF0MjAyNUBnbWFpbC5jb20iLCJpYXQiOjE3NDY5NzY5MjAsImV4cCI6MTc0NzA2MzMyMH0.ADGIMnvcovAe4lyHCJOaxwunxF9cLUcGjQPyb8V3SeM
 
 {
   "product_name": "Bàn phím Asus ROG Strix Scope II 96 Wireless ROG NX Snow Switch",
@@ -258,12 +281,13 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODAwYTE3N
 
 
 ### update by id
-PUT http://localhost:8889/api/v1/products/680752bcc03069f384176bc3
+PUT http://localhost:8889/api/v1/products/6820e53880a8734921371e03
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODFjYWIzZmY2MTk4MjRmMWFhYzQzYzkiLCJlbWFpbCI6Im5ndXllbmhvdGhlZGF0MjAyNUBnbWFpbC5jb20iLCJpYXQiOjE3NDY5NzY5MjAsImV4cCI6MTc0NzA2MzMyMH0.ADGIMnvcovAe4lyHCJOaxwunxF9cLUcGjQPyb8V3SeM
 
 {
-    "product_name": "làm mới Epson® Workforce® Pro WF-4820 lần 5",
-    "price": 400
+    "product_name": "Bàn phím Asus ROG Strix Scope II 96 Wireless ROG NX Snow Switch",
+    "description": "Bàn phím Asus ROG Strix Scope II 96 Wireless ROG NX Snow Switch là một lựa chọn cao cấp dành cho game thủ và người dùng chuyên nghiệp, kết hợp giữa thiết kế nhỏ gọn, hiệu suất cao và khả năng tùy biến linh hoạt."
 }
 
 ### delete by id

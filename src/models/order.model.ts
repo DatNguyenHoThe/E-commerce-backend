@@ -61,6 +61,14 @@ const orderSchema = new Schema<IOrder>({
         },
         required: true
     },
+    shippingInfor: {
+        type: {
+          recipientName: { type: String },
+          phone: { type: String },
+          gender: { type: String }
+        },
+        required: true
+    },
     status: {
         type: String,
         maxlength: 50,

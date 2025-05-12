@@ -85,6 +85,7 @@ const create = async(payload: any) => {
         paymentMethod: cleanData.paymentMethod,
         paymentStatus: cleanData.paymentStatus ? cleanData.status : "pending",
         shippingAddress: cleanData.shippingAddress,
+        shippingInfor: cleanData.shippingInfor,
         status: cleanData.status ? cleanData.status : "pending",
         notes: cleanData.notes,
         orderDate: cleanData.orderDate,

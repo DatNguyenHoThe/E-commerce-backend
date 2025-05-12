@@ -69,6 +69,7 @@ export interface IOrder{
     paymentMethod: string,
     paymentStatus: string,
     shippingAddress: object,
+    shippingInfor: object,
     status: string,
     notes: string,
     orderDate: Date,

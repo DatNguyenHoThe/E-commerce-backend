@@ -8,7 +8,8 @@ import createError from 'http-errors';
 
 //Get all
 const getAll = async(query: any) => {
-    const {page = 1, limit = 20} = query;
+    const {page = 1, limit = 12} = query;
+    const {search} = query;
     let sortObject = {};
     const sortType = query.sort_type || 'desc';
     const sortBy = query.sort_by || 'createdAt';
@@ -17,7 +18,7 @@ const getAll = async(query: any) => {
     console.log('sortObject : ', sortObject);
 
     //tìm kiếm theo điều kiện
-    let where = {};
+    let where:any = {};
     // nếu có tìm kiếm theo tên sản phẩm
     if(query.product_name && query.product_name.length > 0) {
         where = {...where, product_name: {$regex: query.product_name, $options: 'i'}};
@@ -35,6 +36,15 @@ const getAll = async(query: any) => {
                 pagination: { totalRecord: 0, limit, page },
             };
         }
+    }
+    // nếu có tìm kiếm theo flashSale
+    if(query.flashSale && query.flashSale.length > 0) {
+        where = {...where, flashSale: true};
+    }
+
+    // nếu có tìm kiếm theo bestSale
+    if(query.bestSale && query.bestSale.length > 0) {
+        where = {...where, bestSale: true};
     }
 
     // Nếu có tìm kiếm theo slug brand
@@ -76,6 +86,22 @@ const getAll = async(query: any) => {
 
     if (Object.keys(ratingFilter).length > 0) {
         where = { ...where, rating: ratingFilter };
+    }
+
+    // Tìm theo từ khóa
+    if (search && typeof search === "string") {
+        const keywords = search.split(/[\s-]+/).map((word) => word.trim()).filter(Boolean);
+        const regex = new RegExp(keywords.join(".*"), "i");
+        where["$or"] = [
+            { product_name: regex },
+            { description: regex },
+            { slug: regex },
+            { category_name: regex },
+            { brand_name : regex },
+            { "attributes.value": regex }, 
+            { "attributes.name": regex }, 
+            { "contentBlock.content": regex }
+        ];
     }
 
 
@@ -224,7 +250,10 @@ const updateById = async(id: string, payload: any) => {
         throw createError(404, "product not found");
     }
     // kiểm tra xem product_name tồn tại không
-    const productExist = await Product.findOne({product_name: payload.product_name});
+    const productExist = await Product.findOne({
+        product_name: payload.product_name,
+        _id: { $ne: id } // loại trừ sản phẩm hiện tại
+    });
     if(productExist) {
         throw createError(404, "product already exists");
     }
