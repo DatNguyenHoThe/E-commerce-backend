@@ -52,7 +52,13 @@ const fileFilter = (req: CustomRequest, file: Express.Multer.File, cb: multer.Fi
 };
 
 // 3. Cấu hình upload
-
+//Với 1 ảnh
+export const uploadImage = multer({
+    storage: storageSetting,
+    limits: { fileSize: 2000000  }, //2MB in bytes
+    fileFilter: imageFilter,
+}).single('file');
+//Với nhiều ảnh
 export const uploadImages = multer({
     storage: storageSetting,
     limits: { fileSize: 104857600 }, //100MB
