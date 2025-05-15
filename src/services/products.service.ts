@@ -96,11 +96,7 @@ const getAll = async(query: any) => {
             { product_name: regex },
             { description: regex },
             { slug: regex },
-            { category_name: regex },
-            { brand_name : regex },
-            { "attributes.value": regex }, 
-            { "attributes.name": regex }, 
-            { "contentBlock.content": regex }
+            { "attributes.value": regex },
         ];
     }
 

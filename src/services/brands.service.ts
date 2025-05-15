@@ -7,6 +7,7 @@ import createError from 'http-errors';
 //get All
 const getAll = async(query: any) => {
     const {page = 1, limit = 10} = query;
+    const {search} = query;
     let sortObject = {};
     const sortType = query.sort_type || 'desc';
     const sortBy = query.sort_by || 'createdAt';
@@ -15,10 +16,21 @@ const getAll = async(query: any) => {
     console.log('sortObject ===>', sortObject);
 
     //tìm kiếm ở đâu
-    let where = {};
+    let where: any = {};
     //tìm kiếm theo tên hảng
     if(query.brand_name && query.brand_name.length > 0) {
         where = {...where, brand_name: {$regex: query.brand_name, $option: 'i'}}
+    }
+
+    // Tìm theo từ khóa
+    if (search && typeof search === "string") {
+        const keywords = search.split(/[\s-]+/).map((word) => word.trim()).filter(Boolean);
+        const regex = new RegExp(keywords.join(".*"), "i");
+        where["$or"] = [
+            { brand_name: regex },
+            { description: regex },
+            { slug: regex }
+        ];
     }
 
     const brands = await Brand
