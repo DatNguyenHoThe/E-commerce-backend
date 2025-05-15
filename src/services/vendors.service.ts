@@ -84,10 +84,10 @@ const updateById = async(id: string, payload: any) => {
         throw createError(404, "vendor not found");
     }
     // kiểm tra xem tên của vendor tồn tại không
-    const vendorExist = await Vendor.findOne({companyName: payload.companyName});
-    if(vendorExist) {
-        throw createError(404, "vendor already exists");
-    }
+    // const vendorExist = await Vendor.findOne({companyName: payload.companyName});
+    // if(vendorExist) {
+    //     throw createError(404, "vendor already exists");
+    // }
     // trộn dữ liệu mới và cũ
     Object.assign(vendor, payload);
     /*lưu ý dữ liệu sau khi trộn chỉ lưu vào bộ nhớ Ram chứ chưa lưu vào database

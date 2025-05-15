@@ -18,7 +18,7 @@ const getAll = async(query: any) => {
     let where = {};
     //tìm kiếm theo title
     if(query.title && query.title.length > 0) {
-        where = {...where, title: {$regex: query.title, $option: 'i'}}
+        where = {...where, title: {$regex: query.title, $options: 'i'}}
     }
 
     const techNews = await TechNew
@@ -74,13 +74,21 @@ const create = async(payload: ITechNew) => {
 const updateById = async(id: string, payload: ITechNew) => {
     //Kiểm tra xem id có tồn tại không
     const techNew = await getById(id);
-    //Kiểm tra xem tile đã tồn tại chưa
-    const techNewExists = await TechNew.findOne({title: payload.title});
-    if(techNewExists) {
-        throw createError(404, 'Technology new already exists');
+    
+    // Kiểm tra xem title đã tồn tại chưa (trừ bản ghi hiện tại)
+    if (payload.title && payload.title !== techNew.title) {
+        const techNewExists = await TechNew.findOne({ title: payload.title, _id: { $ne: id } });
+        if (techNewExists) {
+            throw createError(400, 'Technology new with this title already exists');
+        }
     }
-    // trộn dữ liệu mới và cũ
+    
+    // Cập nhật các trường dữ liệu
     Object.assign(techNew, payload);
+    
+    // Lưu thay đổi vào database
+    await techNew.save();
+    
     return techNew;
 }
 

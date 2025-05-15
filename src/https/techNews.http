@@ -10,10 +10,10 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODAwYTE3N
 
 POST http://localhost:8889/api/v1/techNews
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODAwYTE3NTZhY2M0YmZiZjFmYzc3NTkiLCJlbWFpbCI6ImRhdG5ndXllbmhvdGhlQGdtYWlsLmNvbSIsImlhdCI6MTc0NTM4MDI5MywiZXhwIjoxNzQ1NDY2NjkzfQ.vs5_pXZPoO76QK8prlVslCG2gY1W__Rxl95BvAOxTgE
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODAwZGY5YTJlN2M0MzNlYjY4OGFmZjYiLCJlbWFpbCI6Im1pa28wQGdtYWlsLmNvbSIsImlhdCI6MTc0NzEyODA1NCwiZXhwIjoxNzQ3MjE0NDU0fQ.vriWeN3N93J6yamGqbALYR_TpJ2CT-n-qlOTpVNKub8
 
 {
-      "title": "Dịch vụ Internet vệ tinh Starlink của SpaceX sẽ sớm được thí điểm tại Việt Nam",
+      "title": " Internet vệ tinh Starlink của SpaceX sẽ sớm được thí điểm tại Việt Nam",
       "keyword": "starlink, viet nam, thi diem",
       "thumbnail": "http://localhost:8889/uploads/techNews/starlink.jpg",
       "description": "Thủ tướng Chính phủ đã ban hành quyết định cho phép dịch vụ Internet vệ tinh Starlink của SpaceX sớm được thí điểm triển khai tại Việt Nam.",

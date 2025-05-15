@@ -5,13 +5,13 @@ POST http://localhost:8889/api/v1/auth/login
 Content-Type: application/json
 
 {
-    "email": "nguyenhothedat88@gmail.com",
+    "email": "miko0@gmail.com",
     "password": "123456"
 }
 
 ### get profile
 GET http://localhost:8889/api/v1/auth/my-profile
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODAwYTE3NTZhY2M0YmZiZjFmYzc3NTkiLCJlbWFpbCI6ImRhdG5ndXllbmhvdGhlQGdtYWlsLmNvbSIsImlhdCI6MTc0NTM4MDI5MywiZXhwIjoxNzQ1NDY2NjkzfQ.vs5_pXZPoO76QK8prlVslCG2gY1W__Rxl95BvAOxTgE
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODAwZGY5YTJlN2M0MzNlYjY4OGFmZjYiLCJlbWFpbCI6Im1pa28wQGdtYWlsLmNvbSIsImlhdCI6MTc0NzEyODA1NCwiZXhwIjoxNzQ3MjE0NDU0fQ.vriWeN3N93J6yamGqbALYR_TpJ2CT-n-qlOTpVNKub8
 
 
